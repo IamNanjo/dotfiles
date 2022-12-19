@@ -1,0 +1,28 @@
+#!/bin/bash
+
+sudo apt update
+
+echo -e "\n------------\n"
+
+if [ "$1" = "full" ]; then
+	sudo apt full-upgrade -y
+else
+	sudo apt upgrade -y
+fi
+
+echo -e "\n------------\n"
+
+sudo apt autopurge -y
+sudo apt autoclean -y
+
+echo -e "\n------------\n"
+
+npm i -g npm@latest yarn@latest pnpm@latest
+npm -g upgrade
+yarn global upgrade
+pnpm -g update
+
+echo -e "\n------------\n"
+
+pnpm -g add pm2@latest
+pm2 update

@@ -78,6 +78,10 @@ export EDITOR=nano
 export LANGUAGE="en_FI.UTF-8",
 export LC_ALL="fi_FI.UTF-8",
 
+if [ -d "$HOME/.local/bin" ]; then
+	export PATH="$PATH:$HOME/.local/bin"
+fi
+
 clear
 
 COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
@@ -115,3 +119,8 @@ elif type compctl &>/dev/null; then
 fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/home/arttu/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
