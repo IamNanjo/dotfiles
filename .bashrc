@@ -75,7 +75,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export EDITOR=nano
-
+export LANGUAGE="en_FI.UTF-8",
+export LC_ALL="fi_FI.UTF-8",
 
 clear
 
