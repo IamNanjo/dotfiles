@@ -13,3 +13,4 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
 alias pn="pnpm"
+alias pnx="pnpx"
