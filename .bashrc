@@ -78,6 +78,7 @@ export EDITOR=nano
 export LANGUAGE="en_FI.UTF-8"
 export LC_ALL="fi_FI.UTF-8"
 export NODE_ENV="development"
+export MCRCON_PASS="passwd"
 
 if [ -d "$HOME/.local/bin" ]; then
 	export PATH="$PATH:$HOME/.local/bin"
