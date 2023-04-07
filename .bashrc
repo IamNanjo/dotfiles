@@ -34,7 +34,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] : \[\033[01;34m\]$PWD\[\033[00m\]\n\$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\H\[\033[00m\] : \[\033[01;34m\]$PWD\[\033[00m\]\n\$ '
 
 case "$TERM" in
 xterm*|rxvt*)
@@ -52,14 +52,14 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-if [ -f ~/.dotfiles/.serverenv ]; then
-    . ~/.dotfiles/.serverenv
+if [ -f "$HOME/.dotfiles/.env" ]; then
+    source "$HOME/.dotfiles/.env"
 fi
 
 if [ -f ~/.dotfiles/.bash_aliases ]; then
     . ~/.dotfiles/.bash_aliases
-elif [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+elif [ -f "$HOME/.bash_aliases" ]; then
+    source "$HOME/.bash_aliases"
 fi
 
 if ! shopt -oq posix; then
@@ -77,7 +77,6 @@ export NVM_DIR="$HOME/.nvm"
 export EDITOR=nano
 export LANGUAGE="en_FI.UTF-8"
 export LC_ALL="fi_FI.UTF-8"
-export NODE_ENV="development"
 
 if [ -d "$HOME/.local/bin" ]; then
 	export PATH="$PATH:$HOME/.local/bin"
