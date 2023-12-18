@@ -52,8 +52,8 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-if [ -f "$HOME/.dotfiles/.env" ]; then
-    source "$HOME/.dotfiles/.env"
+if [ -f "$HOME/.env" ]; then
+    source "$HOME/.env"
 fi
 
 if [ -f ~/.dotfiles/.bash_aliases ]; then
