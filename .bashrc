@@ -52,14 +52,14 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-if [ -f "$HOME/.env" ]; then
-    source "$HOME/.env"
+if [ -f $HOME/.env ]; then
+    source $HOME/.env
 fi
 
 if [ -f ~/.dotfiles/.bash_aliases ]; then
     . ~/.dotfiles/.bash_aliases
-elif [ -f "$HOME/.bash_aliases" ]; then
-    source "$HOME/.bash_aliases"
+elif [ -f $HOME/.bash_aliases ]; then
+    source $HOME/.bash_aliases
 fi
 
 if ! shopt -oq posix; then
@@ -70,20 +70,21 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR=$HOME/.nvm
+[ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh  # This loads nvm
+[ -s $NVM_DIR/bash_completion ] && \. $NVM_DIR/bash_completion  # This loads nvm bash_completion
 
 export EDITOR=nano
 export LANGUAGE="en_FI.UTF-8"
 export LC_ALL="fi_FI.UTF-8"
+export ZELLIJ_CONFIG_DIR=$HOME/.dotfiles/zellij
 
-if [ -d "$HOME/.local/bin" ]; then
-	export PATH="$PATH:$HOME/.local/bin"
+if [ -d $HOME/.local/bin ]; then
+	export PATH=$PATH:$HOME/.local/bin
 fi
 
-if [ -d "$HOME/.dotfiles/.local/bin" ]; then
-	export PATH="$PATH:$HOME/.dotfiles/.local/bin"
+if [ -d $HOME/.dotfiles/.local/bin ]; then
+	export PATH=$PATH:$HOME/.dotfiles/.local/bin
 fi
 
 COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
@@ -120,10 +121,15 @@ elif type compctl &>/dev/null; then
   compctl -K _pm2_completion + -f + pm2
 fi
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# yarn
+export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
+export BUN_INSTALL=$HOME/.bun
 export PATH=$BUN_INSTALL/bin:$PATH
 
-cd
+# go
+export PATH=$PATH:/usr/local/go/bin
+
+. $HOME/.cargo/env
+
