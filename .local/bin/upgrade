@@ -17,12 +17,18 @@ sudo apt autoclean -y
 
 echo -e "\n------------\n"
 
-npm i -g npm@latest yarn@latest pnpm@latest
-npm -g upgrade
-yarn global upgrade
-pnpm -g update
+sudo snap refresh
 
 echo -e "\n------------\n"
 
-pnpm -g add pm2@latest
+sudo flatpak update -y
+
+echo -e "\n------------\n"
+
+npm i -g npm@latest yarn@latest pnpm@latest
+npm -g upgrade
+yarn global upgrade
+bun upgrade
+bun -g update
+
 pm2 update
