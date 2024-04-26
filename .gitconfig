@@ -3,3 +3,5 @@
 	name = IamNanjo
 [init]
 	defaultBranch = main
+[core]
+	autocrlf = input
