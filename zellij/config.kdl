@@ -1,0 +1,30 @@
+attach_to_session false
+mouse_mode false
+on_force_close "quit"
+pane_frames false
+
+scroll_buffer_size 10000
+
+
+ui {
+	pane_frames {
+		rounded_corners true
+		hide_session_name true
+	}
+}
+
+themes {
+	default {
+		fg "#FFFFFF"
+		bg "#000000"
+		black "#000000"
+		red "#FF6961"
+		green "#66BB6A"
+		yellow "#FFEB3B"
+		blue "#42A5F5"
+		magenta "#B48EAD"
+		cyan "#26C6DA"
+		white "#FFFFFF"
+		orange "#FFA726"		
+	}
+}
