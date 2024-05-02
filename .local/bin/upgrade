@@ -25,7 +25,7 @@ sudo flatpak update -y
 
 echo -e "\n------------\n"
 
-npm i -g npm@latest yarn@latest pnpm@latest
+npm i -g npm@latest
 npm -g upgrade
 yarn global upgrade
 bun upgrade
