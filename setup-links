@@ -23,24 +23,8 @@ create_links() {
   done
 }
 
-create_config_links() {
-	CONFIG_DIR=$HOME/.config/$1
-	FILES_DIR=$CURRENT_DIR/.config/$1
-
-	mkdir -p $CONFIG_DIR
-
-	for file in $FILES_DIR/*; do
-		FILE=$(basename $file)
-		
-		rm $CONFIG_DIR/$FILE
-		ln -s $FILES_DIR/$FILE $CONFIG_DIR/$FILE
-	done
-}
-
 create_link .bashrc
 create_link .bash_aliases
 create_link .gitconfig
 
 create_links .local/bin
-
-create_config_links nvim
