@@ -75,9 +75,20 @@ export NVM_DIR=$HOME/.nvm
 [ -s $NVM_DIR/bash_completion ] && \. $NVM_DIR/bash_completion  # This loads nvm bash_completion
 
 export EDITOR=nano
-export LANGUAGE="en_FI.UTF-8"
-export LC_ALL="fi_FI.UTF-8"
 export ZELLIJ_CONFIG_DIR=$HOME/.dotfiles/zellij
+
+if locale -a |grep ^en_US.utf8 &> /dev/null ; then
+  export LANGUAGE="en_US.UTF-8"
+fi
+
+if locale -a |grep ^fi_FI.utf8 &> /dev/null ; then
+  export LC_CTYPE="fi_FI.UTF-8"
+  export LC_NUMERIC="fi_FI.UTF-8"
+  export LC_TIME="fi_FI.UTF-8"
+  export LC_COLLATE="fi_FI.UTF-8"
+  export LC_MONETARY="fi_FI.UTF-8"
+  export LC_MEASUREMENT="fi_FI.UTF-8"
+fi
 
 if [ -d $HOME/.local/bin ]; then
 	export PATH=$PATH:$HOME/.local/bin
@@ -133,3 +144,4 @@ export PATH=$PATH:/usr/local/go/bin
 
 . $HOME/.cargo/env
 
+. "$HOME/.cargo/env"
