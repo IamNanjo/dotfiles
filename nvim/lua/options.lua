@@ -1,9 +1,10 @@
 require "nvchad.options"
 
--- add yours here!
-
 local o = vim.o
-o.cursorlineopt ="both" -- to enable cursorline!
+o.cursorlineopt = "both" -- to enable cursorline!
+
+-- Clipboard
+vim.o.clipboard = "unnamedplus"
 
 -- Line numbers
 vim.opt.number = true
@@ -13,7 +14,6 @@ vim.opt.signcolumn = "number"
 -- Indentations
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
-
 
 -- Colors
 vim.opt.termguicolors = true
