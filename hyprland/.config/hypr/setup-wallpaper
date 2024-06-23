@@ -1,1 +1,15 @@
 #!/bin/bash
+
+# Creates the hyprpaper.conf file that preloads and sets ~/.wallpapers/wallpaper.jpg for all displays.
+
+SCRIPT_DIR=$(dirname $(realpath $0))
+
+wallpaper=~/.wallpapers/wallpaper.jpg
+output_path=~/.config/hypr/hyprpaper.conf
+
+echo "preload = $wallpaper" |tee -a $output_path
+echo "splash = false" |tee -a $output_path
+
+for monitor in $(hyprctl monitors | grep 'Monitor' | awk '{ print $2 }'); do
+  echo "wallpaper = $monitor, $wallpaper" |tee -a $output_path
+done
