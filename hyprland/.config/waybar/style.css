@@ -1,6 +1,6 @@
 * {
-  font-family: Roboto, sans-serif;
-  font-size: 16px;
+  font-family: JetBrainsMonoNF, Roboto, sans-serif;
+  /*font-size: 16px;*/
 }
 
 window#waybar {
@@ -20,7 +20,7 @@ button {
   border-radius: 0;
 }
 
-.module {
+.module:not(#tray) {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0 8px;
   color: #ffffff;
@@ -37,6 +37,10 @@ label:focus {
   background-color: #000000;
 }
 
+#tray {
+  padding-right: 8px;
+}
+
 #tray>.passive {
   -gtk-icon-effect: dim;
 }
@@ -44,4 +48,9 @@ label:focus {
 #tray>.needs-attention {
   -gtk-icon-effect: highlight;
   background-color: #eb4d4b;
+}
+
+#pulseaudio>* {
+  padding-left: 2px;
+  padding-right: 2px;
 }
