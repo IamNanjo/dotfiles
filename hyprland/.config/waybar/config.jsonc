@@ -1,41 +1,42 @@
 // -*- mode: jsonc -*-
 {
-    "layer": "top",
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 28, 
-    "modules-left": [
-    ],
-    "modules-center": [
-    ],
-    "modules-right": [
-        "tray",
-        "pulseaudio",
-        "clock"
+  "layer": "top",
+  "position": "top", // Waybar position (top|bottom|left|right)
+  "height": 28, 
+  "modules-left": [
+  ],
+  "modules-center": [
+  ],
+  "modules-right": [
+    "tray",
+    "pulseaudio",
+    "clock"
     ],
     "tray": {
-        "spacing": 10
+      "spacing": 10
     },
     "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+      "format": "{:%Od.%Om.%EY %H:%M}",
+      "tooltip-format": "<tt>{calendar}</tt>",
+      "on-click": ""
     },
     "pulseaudio": {
-        "scroll-step": 1, 
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": " ",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": " ",
-            "headset": " ",
-            "phone": " ",
-            "portable": " ",
-            "car": " ",
-            "default": [" ", " ", " "]
-        },
-        "on-click": "pavucontrol"
+      "scroll-step": 5, 
+      "format": "{volume}% {icon} {format_source}",
+      "format-bluetooth": "{volume}% {icon} {format_source}",
+      "format-bluetooth-muted": " {icon} {format_source}",
+      "format-muted": " {format_source}",
+      "format-source": "{volume}% ",
+      "format-source-muted": " ",
+      "format-icons": {
+        "headphone": " ",
+        "hands-free": " ",
+        "headset": " ",
+        "phone": " ",
+        "portable": " ",
+        "car": " ",
+        "default": [" ", " ", " "]
+      },
+      "on-click": "pavucontrol"
     },
 }
