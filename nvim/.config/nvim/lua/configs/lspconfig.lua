@@ -10,5 +10,6 @@ for _, lsp in ipairs(servers) do
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
+    root_dir = vim.loop.cwd,
   }
 end
