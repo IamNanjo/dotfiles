@@ -1,6 +1,9 @@
 require "nvchad.options"
 
 local o = vim.o
+
+vim.o.mouse = ""
+
 o.cursorlineopt = "both" -- to enable cursorline!
 
 vim.g.have_nerd_font = true
