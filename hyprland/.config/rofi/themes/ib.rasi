@@ -12,12 +12,12 @@ configuration {
 /*****----- Global Properties -----*****/
 * {
     font:                        "JetBrains Mono Nerd Font 12";
-    background:                  #050e14;
-    background-alt:              #282A2E80;
-    foreground:                  #C5C8C6;
-    selected:                    #F07489;
-    active:                      #6E77FF;
-    urgent:                      #8E3596;
+    background:                  #121212;
+    background-alt:              #212121;
+    foreground:                  #FFFFFF;
+    selected:                    #FF6961;
+    active:                      #FF6961;
+    urgent:                      #EF5350;
 }
 
 /*****----- Main Window -----*****/
@@ -59,12 +59,12 @@ listbox {
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     80px 60px;
+    padding:                     30px 60px;
     background-color:            transparent;
     background-image:            url("~/.config/rofi/themes/ib-black-coffin--high-contrast.jpg", width);
     text-color:                  @foreground;
     orientation:                 horizontal;
-    children:                    [ "textbox-prompt-colon", "entry", "dummy", "mode-switcher" ];
+    children:                    [ "textbox-prompt-colon", "entry" ];
 }
 textbox-prompt-colon {
     enabled:                     true;
@@ -77,7 +77,7 @@ textbox-prompt-colon {
 }
 entry {
     enabled:                     true;
-    expand:                      false;
+    expand:                      true;
     width:                       250px;
     padding:                     12px 16px;
     border-radius:               100%;
@@ -94,7 +94,7 @@ dummy {
 
 /*****----- Mode Switcher -----*****/
 mode-switcher{
-    enabled:                     true;
+    enabled:                     false;
     spacing:                     10px;
     background-color:            transparent;
     text-color:                  @foreground;
@@ -109,14 +109,14 @@ button {
 }
 button selected {
     background-color:            @selected;
-    text-color:                  @background;
+    text-color:                  @foreground;
 }
 
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       7;
+    lines:                       5;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -155,14 +155,14 @@ element normal.active {
 }
 element selected.normal {
     background-color:            @selected;
-    text-color:                  @background;
+    text-color:                  @foreground;
 }
 element selected.urgent {
-    background-color:            @urgent;
+    background-color:            @selected;
     text-color:                  @foreground;
 }
 element selected.active {
-    background-color:            @urgent;
+    background-color:            @selected;
     text-color:                  @foreground;
 }
 element-icon {
