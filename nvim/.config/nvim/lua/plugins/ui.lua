@@ -102,35 +102,16 @@ return {
   },
 
   {
-    "nvim-neo-tree/neo-tree.nvim",
+    "nvim-tree/nvim-tree.lua",
     version = "*",
     dependencies = {
-      "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
     },
-    cmd = "Neotree",
     keys = {
-      { "<leader>e", ":Neotree reveal<CR>", { desc = "NeoTree reveal" } },
+      { "<leader>e", ":NvimTreeOpen<CR>", { desc = "Open NvimTree" } },
     },
-    opts = {
-      window = { position = "current" },
-      filesystem = {
-        window = {
-          mappings = {
-            ["q"] = "close_window",
-          },
-        },
-        filtered_items = {
-          visible = true,
-          hide_dotfiles = false,
-          hide_hidden = false,
-        },
-        follow_current_file = {
-          enabled = true,
-        },
-        hijack_netrw_behavior = "open_current",
-      },
-    },
+    config = function()
+      require("nvim-tree").setup({})
+    end,
   },
 }
