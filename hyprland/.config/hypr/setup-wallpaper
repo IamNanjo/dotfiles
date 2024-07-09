@@ -2,8 +2,6 @@
 
 # Creates the hyprpaper.conf file that preloads and sets ~/.wallpapers/wallpaper.jpg for all displays.
 
-SCRIPT_DIR=$(dirname $(realpath $0))
-
 wallpaper=~/.wallpapers/wallpaper.jpg
 output_path=~/.config/hypr/hyprpaper.conf
 
