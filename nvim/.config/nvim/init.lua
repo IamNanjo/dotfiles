@@ -17,7 +17,8 @@ vim.opt.mouse = ""
 -- Don"t show the mode, since it"s already in the status line
 vim.opt.showmode = false
 
-vim.opt.clipboard = "unnamedplus"
+-- Sync clipboard with OS
+-- vim.opt.clipboard = "unnamedplus"
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -113,7 +114,7 @@ vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "Show diag
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
