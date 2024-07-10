@@ -66,6 +66,9 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       local servers = {
         html = {},
+        emmet_language_server = {
+          filetypes = { "css", "html", "javascript", "javascriptreact", "less", "sass", "scss", "php" },
+        },
         cssls = {},
         css_variables = {},
         intelephense = {},
@@ -147,7 +150,7 @@ return {
         },
         completion = { completeopt = "menu,menuone,noinsert" },
 
-        mapping = cmp.mapping.preset.insert({
+        mapping = {
           ["<C-Down>"] = cmp.mapping.select_next_item(),
           ["<C-Up>"] = cmp.mapping.select_prev_item(),
           ["<C-Left>"] = cmp.mapping.scroll_docs(-4),
@@ -156,7 +159,8 @@ return {
           ["<C-CR>"] = cmp.mapping.confirm({ select = true }),
 
           ["<C-Space>"] = cmp.mapping.complete({}),
-        }),
+          ["<C-e>"] = cmp.mapping.abort(),
+        },
         sources = {
           { name = "nvim_lsp" },
           { name = "luasnip" },
