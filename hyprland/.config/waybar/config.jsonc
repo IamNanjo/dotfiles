@@ -32,7 +32,16 @@
       "on-click": "pavucontrol"
     },
 
-    "battery": {},
+    "battery": {
+      "format": "{capacity}%",
+      "format-icons": [
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+      ]
+    },
 
     "clock": {
       "format": "{:%Od.%Om.%EY %H:%M}",
