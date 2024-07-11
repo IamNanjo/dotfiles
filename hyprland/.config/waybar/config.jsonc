@@ -10,16 +10,14 @@
   "modules-right": [
     "tray",
     "pulseaudio",
+    "battery",
     "clock"
     ],
+
     "tray": {
       "spacing": 10
     },
-    "clock": {
-      "format": "{:%Od.%Om.%EY %H:%M}",
-      "tooltip-format": "<tt>{calendar}</tt>",
-      "on-click": ""
-    },
+
     "pulseaudio": {
       "scroll-step": 5, 
       "format": "{volume}% {icon} {format_source}",
@@ -32,5 +30,13 @@
         "default": [" ", " ", " "]
       },
       "on-click": "pavucontrol"
+    },
+
+    "battery": {},
+
+    "clock": {
+      "format": "{:%Od.%Om.%EY %H:%M}",
+      "tooltip-format": "<tt>{calendar}</tt>",
+      "on-click": ""
     },
 }
