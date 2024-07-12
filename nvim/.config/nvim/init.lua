@@ -90,7 +90,7 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 25
+vim.opt.scrolloff = 5
 
 -- Fill chars
 vim.opt.fillchars = { eob = " " }
