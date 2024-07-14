@@ -150,3 +150,9 @@ export PATH=$PATH:/usr/local/go/bin
 . $HOME/.cargo/env
 
 . "$HOME/.cargo/env"
+
+# Zoxide
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init bash)"
+    alias cd=z
+fi
