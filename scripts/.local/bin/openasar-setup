@@ -1,0 +1,30 @@
+#!/bin/bash
+
+discord_paths=(
+	"/opt/discord/resources"
+	"/usr/lib/discord/resources"
+	"/usr/lib64/discord/resources"
+	"/usr/share/discord/resources"
+	"/var/lib/flatpak/app/com.discordapp.Discord/current/active/files/discord/resources"
+	"$HOME/.local/share/flatpak/app/com.discordapp.Discord/current/active/files/discord/resources"
+)
+
+for path in ${discord_paths[@]}; do
+	if [ -d $path ]; then
+		discord_path=$path
+	fi
+done
+
+if [ -z $discord_path ]; then
+	echo "Discord directory not found"
+	exit 1
+fi
+
+cd $discord_path
+sudo rm app.asar.bk
+sudo mv app.asar app.asar.bk
+sudo curl -LO https://github.com/GooseMod/OpenAsar/releases/download/nightly/app.asar
+
+if [ ! -f app.asar ]; then
+	echo "App.asar not found"
+fi
