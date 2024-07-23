@@ -9,7 +9,7 @@ return {
           require("conform").format({ async = true, lsp_fallback = true })
         end,
         mode = "",
-        desc = "[F]ormat buffer",
+        desc = "Format buffer",
       },
     },
     opts = {
@@ -17,7 +17,8 @@ return {
       format_on_save = true,
       formatters_by_ft = {
         lua = { "stylua" },
-        javascript = { { "prettierd", "prettier" } },
+        javascript = { "prettier" },
+        css = { "prettier" },
       },
     },
   },
