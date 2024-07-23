@@ -43,7 +43,6 @@ return {
 
   {
     "derektata/lorem.nvim",
-    lazy = true,
     config = function()
       require("lorem").setup({
         sentenceLength = "medium",
