@@ -50,9 +50,13 @@ return {
         black = "#080808",
         white = "#ffffff",
         red = "#ff5189",
-        violet = "#d183e8",
-        grey = "#303030",
+        violet = "#cb99c9",
+        grey = "#121212",
       }
+
+      local function notNvimTree()
+        return vim.bo.filetype ~= "NvimTree"
+      end
 
       require("lualine").setup({
         options = {
@@ -78,22 +82,42 @@ return {
           },
         },
         sections = {
-          lualine_a = { { "mode", left_padding = 2, right_padding = 2 } },
-          lualine_b = { "filename", "branch", { "diagnostics", sections = { "error", "warn" } } },
-          lualine_c = { "%=" },
+          lualine_a = {
+            {
+              "mode",
+              left_padding = 2,
+              right_padding = 2,
+              cond = notNvimTree,
+            },
+          },
+          lualine_b = {
+            { "filename", cond = notNvimTree },
+            { "branch", cond = notNvimTree },
+            { "diagnostics", sections = { "error", "warn" }, cond = notNvimTree },
+          },
+          lualine_c = {
+            { "%=", cond = notNvimTree },
+          },
           lualine_x = {},
-          lualine_y = { "filetype" },
+          lualine_y = {
+            { "filetype", cond = notNvimTree },
+          },
           lualine_z = {
-            { "progress", left_padding = 2, right_padding = 2 },
+            {
+              "progress",
+              left_padding = 2,
+              right_padding = 2,
+              cond = notNvimTree,
+            },
           },
         },
         inactive_sections = {
-          lualine_a = { "filename" },
+          lualine_a = {},
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
           lualine_y = {},
-          lualine_z = { "location" },
+          lualine_z = {},
         },
         tabline = {},
         extensions = {},
