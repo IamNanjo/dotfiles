@@ -11,6 +11,9 @@ vim.g.loaded_netrw = 1
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Line wrapping
+vim.wo.wrap = false
+
 -- Disable mouse
 vim.opt.mouse = ""
 
