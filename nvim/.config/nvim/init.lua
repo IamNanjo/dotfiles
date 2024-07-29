@@ -14,8 +14,8 @@ vim.opt.relativenumber = true
 -- Line wrapping
 vim.wo.wrap = false
 
--- Disable mouse
-vim.opt.mouse = ""
+-- Enable mouse for all modes
+vim.opt.mouse = "a"
 
 -- Don"t show the mode, since it"s already in the status line
 vim.opt.showmode = false
