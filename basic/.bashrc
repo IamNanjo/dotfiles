@@ -82,8 +82,8 @@ export EDITOR=nvim
 export SYSTEMD_EDITOR=nvim
 
 if locale -a |grep -i ^en_FI.utf8 &> /dev/null ; then
-  export LANGUAGE="en_FI.UTF-8"
-  export LC_ALL="en_FI.UTF-8"
+  export LANGUAGE="en_FI.utf8"
+  export LC_ALL="en_FI.utf8"
 fi
 
 if [ -d $HOME/.local/bin ]; then
