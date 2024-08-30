@@ -78,9 +78,7 @@ return {
         },
         cssls = {},
         css_variables = {},
-        intelephense = {},
         tsserver = {},
-        rust_analyzer = {},
         lua_ls = {
           settings = {
             Lua = {
