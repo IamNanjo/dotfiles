@@ -1,5 +1,6 @@
 // -*- mode: jsonc -*-
 {
+
   "layer": "top",
   "position": "top", // Waybar position (top|bottom|left|right)
   "height": 28, 
@@ -52,6 +53,15 @@
   "clock": {
     "format": "{:%Od.%Om.%EY %H:%M}",
     "tooltip-format": "<tt>{calendar}</tt>",
-    "on-click": ""
-  },
+    "on-click": "",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 4,
+      "weeks-pos": "left",
+      "format": {
+        "today": "<b><u><span color='#ff6961'>{}</span></u></b>"
+      }
+    }
+  }
+
 }
