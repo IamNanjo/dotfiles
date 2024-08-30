@@ -80,19 +80,10 @@ export NVM_DIR=$HOME/.nvm
 
 export EDITOR=nvim
 export SYSTEMD_EDITOR=nvim
-export ZELLIJ_CONFIG_DIR=$HOME/.dotfiles/zellij
 
-if locale -a |grep ^en_US.utf8 &> /dev/null ; then
-  export LANGUAGE="en_US.UTF-8"
-fi
-
-if locale -a |grep ^fi_FI.utf8 &> /dev/null ; then
-  export LC_CTYPE="fi_FI.UTF-8"
-  export LC_NUMERIC="fi_FI.UTF-8"
-  export LC_TIME="fi_FI.UTF-8"
-  export LC_COLLATE="fi_FI.UTF-8"
-  export LC_MONETARY="fi_FI.UTF-8"
-  export LC_MEASUREMENT="fi_FI.UTF-8"
+if locale -a |grep -i ^en_FI.utf8 &> /dev/null ; then
+  export LANGUAGE="en_FI.UTF-8"
+  export LC_ALL="en_FI.UTF-8"
 fi
 
 if [ -d $HOME/.local/bin ]; then
