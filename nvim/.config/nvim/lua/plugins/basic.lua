@@ -34,17 +34,6 @@ return {
   },
 
   {
-    "derektata/lorem.nvim",
-    config = function()
-      require("lorem").setup({
-        sentenceLength = "medium",
-        comma_chance = 0,
-        max_commas_per_sentence = 0,
-      })
-    end,
-  },
-
-  {
     "windwp/nvim-ts-autotag",
     config = function()
       require("nvim-ts-autotag").setup({
