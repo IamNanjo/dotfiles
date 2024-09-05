@@ -78,7 +78,6 @@ return {
         },
         cssls = {},
         css_variables = {},
-        tsserver = {},
         lua_ls = {
           settings = {
             Lua = {
