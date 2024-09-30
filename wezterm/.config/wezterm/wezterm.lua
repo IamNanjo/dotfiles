@@ -1,9 +1,10 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
+config.enable_wayland = false
 config.default_cursor_style = "SteadyBar"
 config.audible_bell = "Disabled"
-config.hide_tab_bar_if_only_one_tab = true
+config.enable_tab_bar = false
 
 local ansi_colors = {
 	"#121212", -- Black
