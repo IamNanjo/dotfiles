@@ -31,6 +31,7 @@ return {
           map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
           map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
           map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+          map("<C-S-Space>", vim.lsp.buf.hover, "Hover Documentation")
           map("K", vim.lsp.buf.hover, "Hover Documentation")
           map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
@@ -134,13 +135,13 @@ return {
             end,
           },
         },
+        "onsails/lspkind.nvim",
       },
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
     },
     config = function()
       local cmp = require("cmp")
@@ -159,10 +160,15 @@ return {
         mapping = {
           ["<C-Down>"] = cmp.mapping.select_next_item(),
           ["<C-Up>"] = cmp.mapping.select_prev_item(),
+          ["<C-j>"] = cmp.mapping.select_next_item(),
+          ["<C-k>"] = cmp.mapping.select_prev_item(),
           ["<C-Left>"] = cmp.mapping.scroll_docs(-4),
           ["<C-Right>"] = cmp.mapping.scroll_docs(4),
+          ["<C-h>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-l>"] = cmp.mapping.scroll_docs(4),
 
           ["<C-CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<C-f>"] = cmp.mapping.confirm({ select = true }),
 
           ["<C-Space>"] = cmp.mapping.complete({}),
           ["<C-e>"] = cmp.mapping.abort(),
@@ -170,17 +176,56 @@ return {
 
         sources = {
           { name = "nvim_lsp" },
-          { name = "nvim_lsp_signature_help" },
           { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
         },
 
         window = {
-          documentation = cmp.config.window.bordered(),
-          completion = cmp.config.window.bordered(),
+          documentation = {
+            border = "rounded",
+          },
+          completion = {
+            border = "rounded",
+            col_offset = -3,
+            side_padding = 0,
+            completeopt = "menu,menuone,noinsert",
+          },
+        },
+
+        experimental = {
+          ghost_text = true,
+        },
+
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, vim_item)
+            local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+            return kind
+          end,
         },
       })
+    end,
+  },
+
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {
+      bind = true,
+      floating_window = true,
+      hint_enable = false,
+      handler_opts = {
+        border = "rounded",
+      },
+      always_trigger = true,
+    },
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
     end,
   },
 }
