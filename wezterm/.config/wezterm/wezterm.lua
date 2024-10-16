@@ -6,7 +6,9 @@ config.default_cursor_style = "SteadyBar"
 config.audible_bell = "Disabled"
 config.enable_tab_bar = false
 
-local ansi_colors = {
+config.window_background_opacity = 0.8
+
+local colors = {
 	"#121212", -- Black
 	"#ff6961", -- Red
 	"#77dd77", -- Green
@@ -17,17 +19,26 @@ local ansi_colors = {
 	"#faf8f6", -- White
 }
 
-config.window_background_opacity = 0.8
 config.colors = {
 	foreground = "white",
 	background = "black",
 	selection_fg = "white",
 	selection_bg = "#121212",
 
-	ansi = ansi_colors,
-	brights = ansi_colors,
+	cursor_bg = "white",
+
+	ansi = colors,
+	brights = colors,
 }
 
 config.font_size = 14
+
+config.keys = {
+	{
+		key = "phys:Space",
+		mods = "SHIFT|CTRL",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+}
 
 return config
