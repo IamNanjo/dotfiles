@@ -110,7 +110,7 @@ return {
                     },
                 },
                 filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-                root_dir = lspconfig.util.root_pattern("tsconfig.json", ".git"),
+                root_dir = lspconfig.util.root_pattern("tsconfig.json", "package.json", ".git"),
             })
             lspconfig.volar.setup({})
 
@@ -129,7 +129,7 @@ return {
                         local server = servers[server_name] or {}
                         server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 
-                        server.root_dir = vim.loop.cwd
+                        server.root_dir = vim.loop.cwd()
 
                         require("lspconfig")[server_name].setup(server)
                     end,
