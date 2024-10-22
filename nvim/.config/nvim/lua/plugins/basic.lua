@@ -1,11 +1,6 @@
 return {
   "tpope/vim-sleuth", -- Automatically set indent sizes
 
-  { -- "gc" to comment visual regions/lines
-    "numToStr/Comment.nvim",
-    opts = {},
-  },
-
   {
     "folke/todo-comments.nvim",
     event = "VimEnter",
