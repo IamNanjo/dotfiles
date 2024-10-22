@@ -22,9 +22,6 @@ vim.wo.wrap = false
 -- Enable mouse for all modes
 vim.opt.mouse = "a"
 
--- Don"t show the mode, since it"s already in the status line
-vim.opt.showmode = false
-
 -- Sync clipboard with OS
 -- vim.opt.clipboard = "unnamedplus"
 
