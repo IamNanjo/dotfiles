@@ -6,6 +6,7 @@ config.default_cursor_style = "SteadyBar"
 config.audible_bell = "Disabled"
 config.enable_tab_bar = false
 
+config.window_decorations = "NONE"
 config.window_background_opacity = 0.8
 
 config.colors = {
