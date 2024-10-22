@@ -9,6 +9,9 @@ config.enable_tab_bar = false
 config.window_decorations = "NONE"
 config.window_background_opacity = 0.8
 
+config.front_end = "WebGpu"
+config.webgpu_power_preference = "HighPerformance"
+
 config.colors = {
 	foreground = "white",
 	background = "black",
