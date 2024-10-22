@@ -11,6 +11,11 @@ vim.g.loaded_netrw = 1
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Hide statusline
+vim.opt.laststatus = 0
+vim.opt.showmode = false
+vim.opt.ruler = false
+
 -- Line wrapping
 vim.wo.wrap = false
 
