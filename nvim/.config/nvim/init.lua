@@ -29,19 +29,9 @@ vim.opt.mouse = "a"
 vim.opt.breakindent = true
 
 -- Indentations
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 vim.opt.smartindent = true
-
--- Indent with Tab
-vim.keymap.set("n", "<Tab>", ">>", { remap = true, silent = true })
-vim.keymap.set("v", "<Tab>", ">gv", { remap = true, silent = true })
-vim.keymap.set("i", "<S-Tab>", "<nop>", { remap = true, silent = true })
-
--- Outdent with Shift+Tab
-vim.keymap.set("n", "<S-Tab>", "<<", { remap = true, silent = true })
-vim.keymap.set("v", "<S-Tab>", "<gv", { remap = true, silent = true })
-vim.keymap.set("i", "<S-Tab>", "<nop>", { remap = true, silent = true })
 
 -- Line swaps
 vim.keymap.set("n", "<A-Up>", "<Up>ddp<Up>", { remap = false, desc = "Move line up", silent = true })
@@ -56,10 +46,6 @@ vim.keymap.set("i", "<A-S-Up>", "<Esc>yyp<Up>", { remap = false, desc = "Duplica
 
 vim.keymap.set("n", "<A-S-Down>", "yyp", { remap = false, desc = "Duplicate line down", silent = true })
 vim.keymap.set("i", "<A-S-Down>", "<Esc>yyp", { remap = false, desc = "Duplicate line down", silent = true })
-
--- Terminal
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-vim.keymap.set("n", "<A-i>", ":ToggleTerm<CR>", { remap = false, desc = "Toggle terminal window", silent = true })
 
 -- Buffer navigation
 vim.keymap.set("n", "<C-Tab>", ":bnext<CR>", { remap = true, desc = "Next buffer", silent = true })
@@ -80,7 +66,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 100
 
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 250
+vim.opt.timeoutlen = 200
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -100,9 +86,6 @@ vim.opt.scrolloff = 5
 -- Fill chars
 vim.opt.fillchars = { eob = " " }
 
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -116,6 +99,7 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 
+-- Reset cursor style on exit
 vim.api.nvim_create_autocmd("VimLeave", {
   pattern = "*",
   callback = function()
