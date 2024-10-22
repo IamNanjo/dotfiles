@@ -1,6 +1,4 @@
 return {
-  "tpope/vim-sleuth", -- Automatically set indent sizes
-
   {
     "folke/todo-comments.nvim",
     event = "VimEnter",
