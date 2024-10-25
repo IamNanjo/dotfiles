@@ -33,6 +33,20 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.smartindent = true
 
+-- Delete to void register
+vim.api.nvim_set_keymap("n", "d", '"_d', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "d", '"_d', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Del>", '"_x', { noremap = true, silent = true })
+
+-- Cut with leader+d
+vim.api.nvim_set_keymap("n", "<leader>d", '"+d', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<leader>d", '"+y"_d', { noremap = true, silent = true })
+
+-- Yank to system clipboard
+vim.api.nvim_set_keymap("n", "<leader>y", '"+y', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<leader>y", '"+y', { noremap = true, silent = true })
+
 -- Line swaps
 vim.keymap.set("n", "<A-Up>", "<Up>ddp<Up>", { remap = false, desc = "Move line up", silent = true })
 vim.keymap.set("i", "<A-Up>", "<Esc><Up>ddp<Up>", { remap = false, desc = "Move line up", silent = true })
