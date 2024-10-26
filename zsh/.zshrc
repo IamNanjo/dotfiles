@@ -4,6 +4,8 @@ ZSH_THEME="simple"
 
 zstyle ":omz:update" mode reminder  # just remind me to update when it"s time
 
+unsetopt autocd
+
 DISABLE_AUTO_TITLE="true"
 
 COMPLETION_WAITING_DOTS="true"
