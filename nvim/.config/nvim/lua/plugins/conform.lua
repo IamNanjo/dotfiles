@@ -18,6 +18,8 @@ return {
             formatters_by_ft = {
                 lua = { "stylua" },
                 javascript = { "prettier" },
+                typescript = { "prettier" },
+                vue = { "prettier" },
                 css = { "prettier" },
             },
         },
