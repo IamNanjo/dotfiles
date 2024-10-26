@@ -7,7 +7,7 @@ config.audible_bell = "Disabled"
 config.enable_tab_bar = false
 
 config.window_decorations = "NONE"
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.9
 
 config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
