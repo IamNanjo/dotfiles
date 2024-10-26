@@ -76,10 +76,11 @@ return {
             --  - filetypes (table): Override the default list of associated filetypes for the server
             --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
             --  - settings (table): Override the default settings passed when initializing the server.
+            local lspconfig = require("lspconfig")
             local servers = {
                 html = {},
                 emmet_language_server = {
-                    filetypes = { "css", "html", "javascript", "javascriptreact", "less", "sass", "scss", "php" },
+                    filetypes = { "css", "html", "javascript", "javascriptreact", "less", "sass", "scss", "php", "vue" },
                 },
                 cssls = {},
                 css_variables = {},
@@ -93,26 +94,24 @@ return {
                         },
                     },
                 },
-            }
-
-            local vue_language_server_path = require("mason-registry")
-                .get_package("vue-language-server")
-                :get_install_path() .. "/node_modules/@vue/language-server"
-            local lspconfig = require("lspconfig")
-            lspconfig.ts_ls.setup({
-                init_options = {
-                    plugins = {
-                        {
-                            name = "@vue/typescript-plugin",
-                            location = vue_language_server_path,
-                            languages = { "vue" },
+                ts_ls = {
+                    init_options = {
+                        plugins = {
+                            {
+                                name = "@vue/typescript-plugin",
+                                location = require("mason-registry")
+                                    .get_package("vue-language-server")
+                                    :get_install_path()
+                                    .. "/node_modules/@vue/language-server",
+                                languages = { "vue" },
+                            },
                         },
                     },
+                    filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+                    root_dir = lspconfig.util.root_pattern("tsconfig.json", "package.json", ".git"),
                 },
-                filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-                root_dir = lspconfig.util.root_pattern("tsconfig.json", "package.json", ".git"),
-            })
-            lspconfig.volar.setup({})
+                volar = {},
+            }
 
             require("mason").setup()
 
