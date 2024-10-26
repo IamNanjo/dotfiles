@@ -1,30 +1,32 @@
 return {
     {
-        "marko-cerovac/material.nvim",
+        "catppuccin/nvim",
+        name = "catppuccin",
         priority = 1000,
         config = function()
-            require("material").setup({
-                disable = {
-                    background = true,
-                    eob_lines = true,
+            require("catppuccin").setup({
+                flavour = "macchiato",
+                background = {
+                    light = "latte",
+                    dark = "mocha",
                 },
-                high_visibility = {
-                    darker = true,
+                transparent_background = true,
+                show_end_of_buffer = false,
+                term_colors = false,
+                styles = {
+                    comments = { "italic" },
+                },
+                integrations = {
+                    cmp = true,
+                    gitsigns = true,
+                    nvimtree = true,
+                    treesitter = true,
                 },
             })
         end,
         init = function()
             vim.opt.termguicolors = true
-            vim.g.material_style = "darker"
-
-            vim.cmd([[colorscheme material]])
-
-            vim.cmd([[highlight Normal guibg=NONE ctermbg=NONE]])
-            vim.cmd([[highlight NonText guibg=NONE ctermbg=NONE]])
-            vim.cmd([[highlight SpecialKey guibg=NONE ctermbg=NONE]])
-            vim.cmd([[highlight String guibg=NONE ctermbg=NONE]])
-            vim.cmd([[highlight NormalNC guibg=NONE ctermbg=NONE]])
-            vim.cmd([[highlight EndOfBuffer guibg=NONE ctermbg=NONE]])
+            vim.cmd([[colorscheme catppuccin]])
         end,
     },
 }
