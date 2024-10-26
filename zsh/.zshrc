@@ -12,7 +12,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 HIST_STAMPS="dd.mm.yyyy"
 
-plugins=(gitfast npm nvm bun command-not-found docker docker-compose golang ssh)
+plugins=(gitfast npm bun docker docker-compose golang ssh mise)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -61,4 +61,9 @@ export PATH=$PATH:/usr/local/go/bin
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
     alias cd=z
+fi
+
+# mise
+if command -v mise &> /dev/null; then
+	eval "$(mise activate zsh)"
 fi
