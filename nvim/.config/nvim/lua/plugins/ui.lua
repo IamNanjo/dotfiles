@@ -29,7 +29,7 @@ return {
                     always_show_bufferline = true,
                     offsets = {
                         {
-                            filetype = "neo-tree",
+                            filetype = "NvimTree",
                             text = "",
                             text_align = "center",
                             separator = false,
@@ -50,7 +50,27 @@ return {
             { "<leader>e", ":NvimTreeOpen<CR>", { desc = "Open NvimTree" } },
         },
         config = function()
-            require("nvim-tree").setup({})
+            require("nvim-tree").setup({
+                view = {
+                    width = {
+                        min = 40,
+                        max = -1,
+                        padding = 2,
+                    },
+                },
+                renderer = {
+                    group_empty = false,
+                    indent_width = 2,
+                },
+                filters = {
+                    enable = false,
+                },
+                diagnostics = {
+                    enable = true,
+                    show_on_dirs = true,
+                    show_on_open_dirs = false,
+                },
+            })
         end,
     },
 }
