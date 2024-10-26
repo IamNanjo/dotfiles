@@ -22,9 +22,6 @@ vim.wo.wrap = false
 -- Enable mouse for all modes
 vim.opt.mouse = "a"
 
--- Sync clipboard with OS
--- vim.opt.clipboard = "unnamedplus"
-
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -34,37 +31,37 @@ vim.opt.tabstop = 4
 vim.opt.smartindent = true
 
 -- Delete to void register
-vim.api.nvim_set_keymap("n", "d", '"_d', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "d", '"_d', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Del>", '"_x', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "d", '"_d', { noremap = true, silent = true, desc = "Delete" })
+vim.api.nvim_set_keymap("v", "d", '"_d', { noremap = true, silent = true, desc = "Delete" })
+vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true, silent = true, desc = "Delete" })
+vim.api.nvim_set_keymap("n", "<Del>", '"_x', { noremap = true, silent = true, desc = "Delete" })
 
--- Cut with leader+d
-vim.api.nvim_set_keymap("n", "<leader>d", '"+d', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<leader>d", '"+y"_d', { noremap = true, silent = true })
+-- Cut
+vim.api.nvim_set_keymap("n", "<leader>d", "d", { noremap = true, silent = true, desc = "Cut" })
+vim.api.nvim_set_keymap("v", "<leader>d", "d", { noremap = true, silent = true, desc = "Cut" })
 
 -- Yank to system clipboard
-vim.api.nvim_set_keymap("n", "<leader>y", '"+y', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<leader>y", '"+y', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Copy to system clipboard" })
+vim.api.nvim_set_keymap("v", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Copy to system clipboard" })
 
 -- Line swaps
-vim.keymap.set("n", "<A-Up>", "<Up>ddp<Up>", { remap = false, desc = "Move line up", silent = true })
-vim.keymap.set("i", "<A-Up>", "<Esc><Up>ddp<Up>", { remap = false, desc = "Move line up", silent = true })
+vim.keymap.set("n", "<A-Up>", "<Up>ddp<Up>", { remap = false, silent = true, desc = "Move line up" })
+vim.keymap.set("i", "<A-Up>", "<Esc><Up>ddp<Up>", { remap = false, silent = true, desc = "Move line up" })
 
-vim.keymap.set("i", "<A-Down>", "<Esc>ddpA", { remap = false, desc = "Move line up", silent = true })
-vim.keymap.set("n", "<A-Down>", "ddp", { remap = false, desc = "Move line up", silent = true })
+vim.keymap.set("i", "<A-Down>", "<Esc>ddpA", { remap = false, silent = true, desc = "Move line down" })
+vim.keymap.set("n", "<A-Down>", "ddp", { remap = false, silent = true, desc = "Move line down" })
 
 -- Line duplicate
-vim.keymap.set("n", "<A-S-Up>", "yyp<Up>", { remap = false, desc = "Duplicate line up", silent = true })
-vim.keymap.set("i", "<A-S-Up>", "<Esc>yyp<Up>", { remap = false, desc = "Duplicate line up", silent = true })
+vim.keymap.set("n", "<A-S-Up>", "yyp<Up>", { remap = false, silent = true, desc = "Duplicate line up" })
+vim.keymap.set("i", "<A-S-Up>", "<Esc>yyp<Up>", { remap = false, silent = true, desc = "Duplicate line up" })
 
-vim.keymap.set("n", "<A-S-Down>", "yyp", { remap = false, desc = "Duplicate line down", silent = true })
-vim.keymap.set("i", "<A-S-Down>", "<Esc>yyp", { remap = false, desc = "Duplicate line down", silent = true })
+vim.keymap.set("n", "<A-S-Down>", "yyp", { remap = false, silent = true, desc = "Duplicate line down" })
+vim.keymap.set("i", "<A-S-Down>", "<Esc>yyp", { remap = false, silent = true, desc = "Duplicate line down" })
 
 -- Buffer navigation
-vim.keymap.set("n", "<C-Tab>", ":bnext<CR>", { remap = true, desc = "Next buffer", silent = true })
-vim.keymap.set("n", "<C-S-Tab>", ":bprevious<CR>", { remap = true, desc = "Previous buffer", silent = true })
-vim.keymap.set("n", "<leader>x", ":bdelete<CR>", { remap = true, desc = "Delete buffer", silent = true })
+vim.keymap.set("n", "<C-Tab>", ":bnext<CR>", { remap = true, silent = true, desc = "Next buffer" })
+vim.keymap.set("n", "<C-S-Tab>", ":bprevious<CR>", { remap = true, silent = true, desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>x", ":bdelete<CR>", { remap = true, silent = true, desc = "Delete buffer" })
 
 -- Save undo history
 vim.opt.undofile = true
