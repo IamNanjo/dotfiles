@@ -5,7 +5,7 @@ return {
         priority = 1000,
         config = function()
             require("catppuccin").setup({
-                flavour = "macchiato",
+                flavour = "mocha",
                 background = {
                     light = "latte",
                     dark = "mocha",
@@ -19,8 +19,12 @@ return {
                 integrations = {
                     cmp = true,
                     gitsigns = true,
+                    mason = true,
+                    neogit = true,
                     nvimtree = true,
+                    telescope = true,
                     treesitter = true,
+                    which_key = true,
                 },
             })
         end,
