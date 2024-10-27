@@ -36,6 +36,12 @@ vim.api.nvim_set_keymap("v", "d", '"_d', { noremap = true, silent = true, desc =
 vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true, silent = true, desc = "Delete" })
 vim.api.nvim_set_keymap("n", "<Del>", '"_x', { noremap = true, silent = true, desc = "Delete" })
 
+-- Substitute and change to void register
+vim.api.nvim_set_keymap("n", "s", '"_s', { noremap = true, silent = true, desc = "Substitute" })
+vim.api.nvim_set_keymap("n", "S", '"_S', { noremap = true, silent = true, desc = "Substitute" })
+vim.api.nvim_set_keymap("n", "c", '"_c', { noremap = true, silent = true, desc = "Change" })
+vim.api.nvim_set_keymap("n", "C", '"_C', { noremap = true, silent = true, desc = "Change" })
+
 -- Cut
 vim.api.nvim_set_keymap("n", "<leader>d", "d", { noremap = true, silent = true, desc = "Cut" })
 vim.api.nvim_set_keymap("v", "<leader>d", "d", { noremap = true, silent = true, desc = "Cut" })
