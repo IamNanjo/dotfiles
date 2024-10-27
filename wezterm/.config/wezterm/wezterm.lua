@@ -21,24 +21,24 @@ config.colors = {
 	cursor_bg = "white",
 
 	ansi = {
-		"#000000", -- Black
-		"#ff0000", -- Red
-		"#00ff00", -- Green
-		"#ffff00", -- Yellow
-		"#0000ff", -- Blue
-		"#ff00ff", -- Magenta
-		"#00ffff", -- Cyan
-		"#faf8f6", -- White
+		"#494d64", -- Black
+		"#ff6961", -- Red
+		"#a6da95", -- Green
+		"#eed49f", -- Yellow
+		"#8aadf4", -- Blue
+		"#f5bde6", -- Magenta
+		"#8bd5ca", -- Cyan
+		"#b8c0e0", -- White
 	},
 	brights = {
-		"#121212", -- Black
+		"#5b6078", -- Black
 		"#ff6961", -- Red
-		"#77dd77", -- Green
-		"#fffacd", -- Yellow
-		"#42a5f5", -- Blue
-		"#f49ac2", -- Magenta
-		"#b4fffa", -- Cyan
-		"#ffffff", -- White
+		"#a6da95", -- Green
+		"#eed49f", -- Yellow
+		"#8aadf4", -- Blue
+		"#f5bde6", -- Magenta
+		"#8bd5ca", -- Cyan
+		"#a5adcb", -- White
 	},
 }
 
