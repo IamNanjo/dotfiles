@@ -14,7 +14,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 HIST_STAMPS="dd.mm.yyyy"
 
-plugins=(gitfast npm bun docker docker-compose golang ssh mise)
+plugins=(gitfast npm bun docker docker-compose golang ssh mise fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
