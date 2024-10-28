@@ -43,6 +43,10 @@ config.colors = {
 }
 
 config.font_size = 14
+config.font = wezterm.font({
+	family = "JetBrainsMono Nerd Font",
+	harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
+})
 
 config.disable_default_key_bindings = true
 
