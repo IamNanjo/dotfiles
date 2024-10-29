@@ -124,8 +124,6 @@ vim.keymap.set("n", "<leader>/", "gcc", { desc = "comment toggle", remap = true 
 vim.keymap.set("v", "<leader>/", "gc", { desc = "comment toggle", remap = true })
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 
 -- Reset cursor style on exit
