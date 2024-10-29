@@ -42,12 +42,8 @@ return {
                 completion = { completeopt = "menu,menuone,noinsert" },
 
                 mapping = {
-                    ["<C-Down>"] = cmp.mapping.select_next_item(),
-                    ["<C-Up>"] = cmp.mapping.select_prev_item(),
                     ["<C-j>"] = cmp.mapping.select_next_item(),
                     ["<C-k>"] = cmp.mapping.select_prev_item(),
-                    ["<C-Left>"] = cmp.mapping.scroll_docs(-4),
-                    ["<C-Right>"] = cmp.mapping.scroll_docs(4),
                     ["<C-h>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-l>"] = cmp.mapping.scroll_docs(4),
 
