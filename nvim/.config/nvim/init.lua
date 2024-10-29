@@ -58,18 +58,21 @@ vim.api.nvim_set_keymap("n", "<leader>y", '"+y', { noremap = true, silent = true
 vim.api.nvim_set_keymap("v", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Copy to system clipboard" })
 
 -- Line swaps
-vim.keymap.set("n", "<A-Up>", "<Up>ddp<Up>", { remap = false, silent = true, desc = "Move line up" })
-vim.keymap.set("i", "<A-Up>", "<Esc><Up>ddp<Up>", { remap = false, silent = true, desc = "Move line up" })
+vim.keymap.set("n", "<A-k>", ":move .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
+vim.keymap.set("n", "<A-k>", ":move .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
+vim.keymap.set("i", "<A-k>", "<Esc>:move .-2<CR>==a", { noremap = true, silent = true, desc = "Move line up" })
+vim.keymap.set("v", "<A-k>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move line down" })
 
-vim.keymap.set("i", "<A-Down>", "<Esc>ddpA", { remap = false, silent = true, desc = "Move line down" })
-vim.keymap.set("n", "<A-Down>", "ddp", { remap = false, silent = true, desc = "Move line down" })
+vim.keymap.set("n", "<A-j>", ":move .+1<CR>==", { noremap = true, silent = true, desc = "Move line down" })
+vim.keymap.set("i", "<A-j>", "<Esc>:move .+1<CR>==a", { noremap = true, silent = true, desc = "Move line down" })
+vim.keymap.set("v", "<A-j>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move line up" })
 
 -- Line duplicate
-vim.keymap.set("n", "<A-S-Up>", "yyp<Up>", { remap = false, silent = true, desc = "Duplicate line up" })
-vim.keymap.set("i", "<A-S-Up>", "<Esc>yyp<Up>", { remap = false, silent = true, desc = "Duplicate line up" })
+vim.keymap.set("n", "<A-S-k>", "mzyyp`z", { noremap = true, silent = true, desc = "Duplicate line up" })
+vim.keymap.set("i", "<A-S-k>", "<Esc>mzyyp`za", { noremap = true, silent = true, desc = "Duplicate line up" })
 
-vim.keymap.set("n", "<A-S-Down>", "yyp", { remap = false, silent = true, desc = "Duplicate line down" })
-vim.keymap.set("i", "<A-S-Down>", "<Esc>yyp", { remap = false, silent = true, desc = "Duplicate line down" })
+vim.keymap.set("n", "<A-S-j>", "mzyyp`zj", { noremap = true, silent = true, desc = "Duplicate line down" })
+vim.keymap.set("i", "<A-S-j>", "<Esc>mzyyp`zja", { noremap = true, silent = true, desc = "Duplicate line down" })
 
 -- Buffer navigation
 vim.keymap.set("n", "<C-Tab>", ":bnext<CR>", { remap = true, silent = true, desc = "Next buffer" })
