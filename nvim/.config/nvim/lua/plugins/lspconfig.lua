@@ -37,6 +37,12 @@ return {
                     map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
                     map("<C-S-Space>", vim.lsp.buf.hover, "Hover Documentation")
                     map("K", vim.lsp.buf.hover, "Hover Documentation")
+                    vim.keymap.set(
+                        "i",
+                        "<C-h>",
+                        vim.lsp.buf.signature_help,
+                        { buffer = event.buf, desc = "LSP: Signature help" }
+                    )
                     map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
                     -- The following two autocommands are used to highlight references of the
