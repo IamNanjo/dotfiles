@@ -9,8 +9,7 @@ return {
                 opts = {
                     background_colour = "#000000",
                     render = "default",
-                    stages = "slide",
-                    fps = 60,
+                    fps = 240,
                     timeout = 1500,
                 },
             },
