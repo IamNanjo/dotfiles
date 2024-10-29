@@ -70,9 +70,11 @@ vim.keymap.set("v", "<A-j>", ":move '>+1<CR>gv=gv", { noremap = true, silent = t
 -- Line duplicate
 vim.keymap.set("n", "<A-S-k>", "mzyyp`z", { noremap = true, silent = true, desc = "Duplicate line up" })
 vim.keymap.set("i", "<A-S-k>", "<Esc>mzyyp`za", { noremap = true, silent = true, desc = "Duplicate line up" })
+vim.keymap.set("v", "<A-S-k>", "ygv'><Esc>pgv", { noremap = true, silent = true, desc = "Duplicate selection up" })
 
 vim.keymap.set("n", "<A-S-j>", "mzyyp`zj", { noremap = true, silent = true, desc = "Duplicate line down" })
 vim.keymap.set("i", "<A-S-j>", "<Esc>mzyyp`zja", { noremap = true, silent = true, desc = "Duplicate line down" })
+vim.keymap.set("v", "<A-S-j>", "ykpgv", { noremap = true, silent = true, desc = "Duplicate selection down" })
 
 -- Buffer navigation
 vim.keymap.set("n", "<C-Tab>", ":bnext<CR>", { remap = true, silent = true, desc = "Next buffer" })
