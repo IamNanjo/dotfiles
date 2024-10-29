@@ -16,6 +16,9 @@ vim.opt.laststatus = 0
 vim.opt.showmode = false
 vim.opt.ruler = false
 
+-- Hide cmdline when not in use
+vim.opt.cmdheight = 0
+
 -- Line wrapping
 vim.wo.wrap = false
 
@@ -87,7 +90,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 100
 
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 200
+vim.opt.timeoutlen = 0
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
