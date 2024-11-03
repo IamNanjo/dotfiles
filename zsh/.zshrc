@@ -46,19 +46,6 @@ if [ -d $HOME/.dotfiles/.local/bin ]; then
         export PATH=$PATH:$HOME/.dotfiles/.local/bin
 fi
 
-# yarn
-export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
-
-# Rust / Cargo
-export PATH=$HOME/.cargo/bin:$PATH
-
-# bun
-export BUN_INSTALL=$HOME/.bun
-export PATH=$BUN_INSTALL/bin:$PATH
-
-# go
-export PATH=$PATH:/usr/local/go/bin
-
 # zoxide
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
