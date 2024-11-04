@@ -9,7 +9,7 @@ return {
                 opts = {
                     background_colour = "#000000",
                     render = "default",
-                    fps = 240,
+                    fps = 60,
                     timeout = 1500,
                 },
             },
