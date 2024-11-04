@@ -24,7 +24,6 @@ return {
                 },
                 progress = {
                     enabled = true,
-                    throttle = 100,
                 },
             },
             presets = {
