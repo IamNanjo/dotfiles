@@ -6,9 +6,6 @@ config.default_cursor_style = "SteadyBar"
 config.audible_bell = "Disabled"
 config.enable_tab_bar = false
 
-config.max_fps = 240
-config.animation_fps = 240
-
 config.window_decorations = "NONE"
 config.window_background_opacity = 0.9
 
