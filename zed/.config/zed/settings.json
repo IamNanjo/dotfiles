@@ -1,0 +1,45 @@
+{
+    "terminal": {
+        "dock": "right"
+    },
+    "vim_mode": true,
+    "relative_line_numbers": true,
+    "ui_font_size": 16,
+    "buffer_font_size": 16,
+    "auto_indent_on_paste": true,
+    "auto_signature_help": true,
+    "autosave": "on_focus_change",
+    "ui_font_family": "JetBrainsMono Nerd Font",
+    "buffer_font_family": "JetBrainsMono Nerd Font",
+    "base_keymap": "VSCode",
+    "use_auto_surround": true,
+    "theme": {
+        "mode": "dark",
+        "light": "Catppuccin Mocha",
+        "dark": "Catppuccin Mocha"
+    },
+    "experimental.theme_overrides": {
+        "syntax": {
+            "comment": { "font_style": "italic" },
+            "comment.doc": { "font_style": "italic" }
+        },
+        "background.appearance": "transparent",
+        "background": "#000000E6",
+        "editor.background": "#00000000",
+        "scrollbar.thumb.background": "#7f7f7f",
+        "scrollbar.track.background": "#000",
+        "panel.background": "#00000000",
+        "title_bar.background": "#000000E6",
+        "title_bar.inactive_background": "#00000000",
+        "tab_bar.background": "#00000000",
+        "tab.active_background": "#00000000",
+        "tab.inactive_background": "#00000000",
+        "editor.gutter.background": "#00000000",
+        "toolbar.background": "#00000000",
+        "status_bar.background": "#000000E6",
+        "terminal.background": "#00000000",
+        "border": "#7f7f7f",
+        "border.variant": "#7f7f7f",
+        "border.transparent": "#7f7f7fE6"
+    }
+}
