@@ -21,6 +21,19 @@ return {
                 typescript = { "prettier" },
                 vue = { "prettier" },
                 css = { "prettier" },
+                php = { "php" },
+                python = { "autopep8" },
+            },
+            formatters = {
+                php = {
+                    command = "php-cs-fixer",
+                    args = {
+                        "fix",
+                        "--rules=@PSR12",
+                        "$FILENAME",
+                    },
+                    stdin = false,
+                },
             },
         },
     },
