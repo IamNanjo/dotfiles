@@ -63,6 +63,12 @@
         - .config/zed
       ansible.builtin.command: "mkdir -p $HOME/{{ item }}"
 
+    - name: Delete conflicting files
+      loop:
+        - .bashrc
+        - .zshrc
+      ansible.builtin.command: rm $HOME/{{ item }}
+
     - name: Set up symlinks using GNU Stow
       register: result
       changed_when: 'result.stderr is search("LINK: ")'
