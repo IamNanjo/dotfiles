@@ -1,0 +1,80 @@
+- name: Set up dotfiles
+  hosts: localhost
+  any_errors_fatal: true
+
+  tasks:
+    - name: Install mise
+      ansible.builtin.command: curl https://mise.run | sh
+
+    - name: Install mise tools
+      ansible.builtin.command: mise use -g -y usage node bun go rust python php ruby perl lua@5.1
+
+    - name: Install packages for Arch
+      become: true
+      when: ansible_distribution == "Arch"
+      community.general.pacman:
+        name:
+          - base
+          - base-devel
+          - git
+          - curl
+          - wget
+          - zsh
+          - stow
+          - neovim
+    
+    - name: Install packages for Ubuntu
+      become: true
+      when: ansible_distribution == "Ubuntu"
+      ansible.builtin.apt:
+        name:
+          - git
+          - curl
+          - wget
+          - zsh
+          - stow
+        state: latest
+
+    - name: Install oh-my-zsh
+      ansible.builtin.command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    - name: Install fast-syntax-highlighting for zsh
+      ansible.builtin.command: >
+        git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git
+        ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+
+    - name: Install Neovim
+      become: true
+      when: ansible_distribution != "Arch"
+      ansible.builtin.command: >
+        curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz &&
+        sudo rm -rf /opt/nvim &&
+        sudo tar -C /opt -xzf nvim-linux64.tar.gz &&
+        echo 'export PATH="$PATH:/opt/nvim-linux64/bin"' >> $HOME/.env
+
+    - name: Add Neovim to path
+      when: ansible_distribution != "Arch"
+
+    - name: Prepare directories for symlinks
+      loop:
+        - .local/bin
+        - .config/gtk-3.0
+        - .config/hypr
+        - .config/zed
+      ansible.builtin.command: "mkdir -p $HOME/{{ item }}"
+
+    - name: Set up symlinks using GNU Stow
+      register: result
+      changed_when: 'result.stderr is search("LINK: ")'
+      loop:
+        - basic
+        - hyprland
+        - nvim
+        - scripts
+        - wezterm
+        - zed
+        - zsh
+      ansible.builtin.command: "stow {{ item }} --target $HOME --verbose=2"
+
+    - name: Use catppuccin theme for zsh fast-syntax-highlighting
+      ansible.builtin.command: fast-theme XDG:catppuccin-mocha
