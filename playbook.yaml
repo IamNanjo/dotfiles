@@ -128,4 +128,10 @@
       ansible.builtin.command: chsh -s /usr/bin/zsh {{ ansible_env.USER }}
 
     - name: Install tree-sitter-cli
-      ansible.builtin.shell: "{{ ansible_env.HOME }}/.local/bin/mise x rust -- cargo install tree-sitter-cli"
+      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x rust -- cargo install tree-sitter-cli"
+
+    - name: Install Neovim npm package
+      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x node -- npm i -g neovim@latest"
+
+    - name: Install Neovim pip package
+      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x python -- pip install neovim"
