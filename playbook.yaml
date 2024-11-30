@@ -24,7 +24,10 @@
       ansible.builtin.apt:
         name:
           - build-essential
+          # == Ruby dependencies ==
           - zlib1g-dev
+          - libffi-dev
+          # =======================
           - git
           - curl
           - wget
