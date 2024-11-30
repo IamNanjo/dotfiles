@@ -133,3 +133,6 @@
     - name: Set default shell to zsh
       become: true
       ansible.builtin.command: chsh -s /usr/bin/zsh {{ ansible_env.USER }}
+
+    - name: Install tree-sitter-cli
+      ansible.builtin.shell: "{{ ansible_env.HOME }}/.local/bin/mise x rust -- cargo install tree-sitter-cli"
