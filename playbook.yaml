@@ -98,6 +98,7 @@
         path: "{{ ansible_env.HOME }}/.env"
         line: export PATH="$PATH:/opt/nvim-linux64/bin"
         state: present
+        create: true
 
     - name: Prepare directories for symlinks
       loop:
