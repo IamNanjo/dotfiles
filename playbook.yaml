@@ -131,13 +131,19 @@
       become: true
       ansible.builtin.command: chsh -s /usr/bin/zsh {{ ansible_env.USER }}
 
+    - name: Update npm
+      ignore_errors: true
+      environment:
+        NODE_NO_WARNINGS: "1"
+      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x node -- npm i -g npm@latest --no-warnings"
+
     - name: Install tree-sitter-cli
       ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x rust -- cargo install tree-sitter-cli"
 
     - name: Install Neovim npm package
       environment:
         NODE_NO_WARNINGS: "1"
-      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x node -- npm i -g npm@latest neovim@latest --no-warnings"
+      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x node -- npm i -g neovim@latest --no-warnings"
 
     - name: Install Neovim pip package
       ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x python -- pip install neovim"
