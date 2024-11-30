@@ -23,15 +23,10 @@
       when: ansible_distribution == "Ubuntu"
       ansible.builtin.apt:
         name:
+          # == Lua build dependencies ==
           - build-essential
-          # == Mise tool build dependencies ==
-          # Ruby
-          - zlib1g-dev
-          - libffi-dev
-          - libyaml-dev
-          # Lua
           - libreadline-dev
-          # ==================================
+          # ============================
           - unzip
           - git
           - curl
@@ -58,8 +53,6 @@
         - go
         - rust
         - python
-        - ruby
-        - perl
         - lua@5.1
       ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise use -g -y {{ item }}"
 
