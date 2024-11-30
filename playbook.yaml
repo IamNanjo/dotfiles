@@ -72,10 +72,16 @@
       when: not omz_installed.stat.exists
       ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+    - name: Check if fast-syntax-highlighting is installed
+      register: fsh_installed
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.oh-my-zsh/plugins/fast-syntax-highlighting"
+
     - name: Install fast-syntax-highlighting for zsh
+      when: not fsh_installed.stat.exists
       ansible.builtin.shell: >
         git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git
-        ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+        $HOME/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
 
     - name: Install Neovim
       become: true
