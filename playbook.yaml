@@ -33,7 +33,7 @@
       ansible.builtin.shell: curl https://mise.run | sh
 
     - name: Install mise tools
-      ansible.builtin.shell: mise use -g -y usage node bun go rust python php ruby perl lua@5.1
+      ansible.builtin.shell: $HOME/.local/bin/mise use -g -y usage node bun go rust python php ruby perl lua@5.1
 
     - name: Install oh-my-zsh
       ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
