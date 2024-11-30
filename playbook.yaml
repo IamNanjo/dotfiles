@@ -27,6 +27,7 @@
           # == Ruby dependencies ==
           - zlib1g-dev
           - libffi-dev
+          - libyaml-0-2
           # =======================
           - git
           - curl
