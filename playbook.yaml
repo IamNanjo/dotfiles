@@ -133,6 +133,7 @@
 
     - name: Update npm
       ignore_errors: true
+      failed_when: false
       environment:
         NODE_NO_WARNINGS: "1"
       ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x node -- npm i -g npm@latest --no-warnings"
