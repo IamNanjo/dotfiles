@@ -24,6 +24,7 @@
       ansible.builtin.apt:
         name:
           - build-essential
+          - zlib1g-dev
           - git
           - curl
           - wget
