@@ -122,6 +122,3 @@
         - zed
         - zsh
       ansible.builtin.shell: "stow {{ item }} --target $HOME --verbose=2"
-
-    - name: Use catppuccin theme for zsh fast-syntax-highlighting
-      ansible.builtin.shell: fast-theme XDG:catppuccin-mocha
