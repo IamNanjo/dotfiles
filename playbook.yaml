@@ -3,12 +3,6 @@
   any_errors_fatal: true
 
   tasks:
-    - name: Install mise
-      ansible.builtin.command: curl https://mise.run | sh
-
-    - name: Install mise tools
-      ansible.builtin.command: mise use -g -y usage node bun go rust python php ruby perl lua@5.1
-
     - name: Install packages for Arch
       become: true
       when: ansible_distribution == "Arch"
@@ -34,6 +28,12 @@
           - zsh
           - stow
         state: latest
+
+    - name: Install mise
+      ansible.builtin.command: curl https://mise.run | sh
+
+    - name: Install mise tools
+      ansible.builtin.command: mise use -g -y usage node bun go rust python php ruby perl lua@5.1
 
     - name: Install oh-my-zsh
       ansible.builtin.command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
