@@ -70,7 +70,7 @@
 
     - name: Install oh-my-zsh
       when: not omz_installed.stat.exists
-      ansible.builtin.command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      ansible.builtin.shell: curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 
     - name: Check if fast-syntax-highlighting is installed
       register: fsh_installed
