@@ -10,7 +10,6 @@
         name:
           - base
           - base-devel
-          - gcc
           - git
           - curl
           - wget
@@ -24,7 +23,7 @@
       when: ansible_distribution == "Ubuntu"
       ansible.builtin.apt:
         name:
-          - gcc
+          - build-essential
           - git
           - curl
           - wget
