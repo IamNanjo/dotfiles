@@ -33,7 +33,13 @@
           - stow
         state: latest
 
+    - name: Check if mise is installed
+      register: mise_installed
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.local/bin/mise"
+
     - name: Install mise
+      when: not mise_installed.stat.exists
       ansible.builtin.shell: curl https://mise.run | sh
 
     - name: Install mise tools
