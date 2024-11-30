@@ -135,7 +135,9 @@
       ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x rust -- cargo install tree-sitter-cli"
 
     - name: Install Neovim npm package
-      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x node -- npm i -g npm@latest neovim"
+      environment:
+        NODE_NO_WARNINGS: "1"
+      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x node -- npm i -g npm@latest neovim@latest --no-warnings"
 
     - name: Install Neovim pip package
       ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x python -- pip install neovim"
