@@ -83,12 +83,19 @@
         git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git
         {{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
 
+    - name: Check if Neovim is installed
+      when: ansible_distribution != "Archlinux"
+      register: nvim_installed
+      ansible.builtin.stat:
+        path: /opt/nvim-linux64
+
     - name: Install Neovim
       become: true
-      when: ansible_distribution != "Archlinux"
+      when:
+        - ansible_distribution != "Archlinux"
+        - not nvim_installed.stat.exists
       ansible.builtin.shell: >
         curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz &&
-        rm -rf /opt/nvim &&
         tar -C /opt -xzf nvim-linux64.tar.gz &&
         rm nvim-linux64.tar.gz
 
@@ -111,8 +118,8 @@
       ansible.builtin.command: rm {{ ansible_env.HOME }}/{{ item }}
 
     - name: Set up symlinks using GNU Stow
-      register: result
-      changed_when: 'result.stderr is search("LINK: ")'
+      register: stow_result
+      changed_when: 'stow_result.stderr is search("LINK: ")'
       loop:
         - basic
         - hyprland
