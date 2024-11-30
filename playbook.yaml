@@ -24,11 +24,14 @@
       ansible.builtin.apt:
         name:
           - build-essential
-          # == Ruby build dependencies ==
+          # == Mise tool build dependencies ==
+          # Ruby
           - zlib1g-dev
           - libffi-dev
           - libyaml-dev
-          # =======================
+          # Lua
+          - libreadline-dev
+          # ==================================
           - git
           - curl
           - wget
