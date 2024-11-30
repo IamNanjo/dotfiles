@@ -30,30 +30,30 @@
         state: latest
 
     - name: Install mise
-      ansible.builtin.command: curl https://mise.run | sh
+      ansible.builtin.shell: curl https://mise.run | sh
 
     - name: Install mise tools
-      ansible.builtin.command: mise use -g -y usage node bun go rust python php ruby perl lua@5.1
+      ansible.builtin.shell: mise use -g -y usage node bun go rust python php ruby perl lua@5.1
 
     - name: Install oh-my-zsh
-      ansible.builtin.command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
     - name: Install fast-syntax-highlighting for zsh
-      ansible.builtin.command: >
+      ansible.builtin.shell: >
         git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git
         ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 
     - name: Install Neovim
       become: true
       when: ansible_distribution != "Arch"
-      ansible.builtin.command: >
+      ansible.builtin.shell: >
         curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz &&
         sudo rm -rf /opt/nvim &&
         sudo tar -C /opt -xzf nvim-linux64.tar.gz &&
 
     - name: Add Neovim to path
       when: ansible_distribution != "Arch"
-      ansible.builtin.command: echo 'export PATH="$PATH:/opt/nvim-linux64/bin"' >> $HOME/.env
+      ansible.builtin.shell: echo 'export PATH="$PATH:/opt/nvim-linux64/bin"' >> $HOME/.env
 
     - name: Prepare directories for symlinks
       loop:
@@ -61,13 +61,13 @@
         - .config/gtk-3.0
         - .config/hypr
         - .config/zed
-      ansible.builtin.command: "mkdir -p $HOME/{{ item }}"
+      ansible.builtin.shell: "mkdir -p $HOME/{{ item }}"
 
     - name: Delete conflicting files
       loop:
         - .bashrc
         - .zshrc
-      ansible.builtin.command: rm $HOME/{{ item }}
+      ansible.builtin.shell: rm $HOME/{{ item }}
 
     - name: Set up symlinks using GNU Stow
       register: result
@@ -80,7 +80,7 @@
         - wezterm
         - zed
         - zsh
-      ansible.builtin.command: "stow {{ item }} --target $HOME --verbose=2"
+      ansible.builtin.shell: "stow {{ item }} --target $HOME --verbose=2"
 
     - name: Use catppuccin theme for zsh fast-syntax-highlighting
-      ansible.builtin.command: fast-theme XDG:catppuccin-mocha
+      ansible.builtin.shell: fast-theme XDG:catppuccin-mocha
