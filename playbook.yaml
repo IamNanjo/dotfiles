@@ -48,7 +48,7 @@
 
     - name: Install mise
       when: not mise_installed.stat.exists
-      ansible.builtin.shell: curl https://mise.run | sh
+      ansible.builtin.command: sh -c "$(curl https://mise.run)"
 
     - name: Install mise tools
       loop:
@@ -61,7 +61,7 @@
         - ruby
         - perl
         - lua@5.1
-      ansible.builtin.shell: $HOME/.local/bin/mise use -g -y {{ item }}
+      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise use -g -y {{ item }}"
 
     - name: Check if oh-my-zsh is installed
       register: omz_installed
@@ -70,7 +70,7 @@
 
     - name: Install oh-my-zsh
       when: not omz_installed.stat.exists
-      ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      ansible.builtin.command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
     - name: Check if fast-syntax-highlighting is installed
       register: fsh_installed
@@ -79,9 +79,9 @@
 
     - name: Install fast-syntax-highlighting for zsh
       when: not fsh_installed.stat.exists
-      ansible.builtin.shell: >
+      ansible.builtin.command: >
         git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git
-        $HOME/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
+        {{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
 
     - name: Install Neovim
       become: true
@@ -102,13 +102,13 @@
         - .config/gtk-3.0
         - .config/hypr
         - .config/zed
-      ansible.builtin.shell: "mkdir -p $HOME/{{ item }}"
+      ansible.builtin.command: mkdir -p {{ ansible_env.HOME }}/{{ item }}
 
     - name: Delete conflicting files
       loop:
         - .bashrc
         - .zshrc
-      ansible.builtin.shell: rm $HOME/{{ item }}
+      ansible.builtin.command: rm {{ ansible_env.HOME }}/{{ item }}
 
     - name: Set up symlinks using GNU Stow
       register: result
@@ -121,4 +121,8 @@
         - wezterm
         - zed
         - zsh
-      ansible.builtin.shell: "stow {{ item }} --target $HOME --verbose=2"
+      ansible.builtin.command: stow {{ item }} --target {{ ansible_env.HOME }} --verbose=2
+
+    - name: Set default shell to zsh
+      become: true
+      ansible.builtin.command: chsh -s /usr/bin/zsh {{ ansible_env.USER }}
