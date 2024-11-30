@@ -63,7 +63,13 @@
         - lua@5.1
       ansible.builtin.shell: $HOME/.local/bin/mise use -g -y {{ item }}
 
+    - name: Check if oh-my-zsh is installed
+      register: omz_installed
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.oh-my-zsh"
+
     - name: Install oh-my-zsh
+      when: not omz_installed.stat.exists
       ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
     - name: Install fast-syntax-highlighting for zsh
