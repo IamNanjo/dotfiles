@@ -48,7 +48,7 @@
 
     - name: Install mise
       when: not mise_installed.stat.exists
-      ansible.builtin.command: sh -c "$(curl https://mise.run)"
+      ansible.builtin.shell: curl https://mise.run | sh
 
     - name: Install mise tools
       loop:
