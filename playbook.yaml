@@ -94,7 +94,10 @@
 
     - name: Add Neovim to path
       when: ansible_distribution != "Archlinux"
-      ansible.builtin.shell: echo 'export PATH="$PATH:/opt/nvim-linux64/bin"' >> $HOME/.env
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_env.HOME }}/.env"
+        line: export PATH="$PATH:/opt/nvim-linux64/bin"
+        state: present
 
     - name: Prepare directories for symlinks
       loop:
