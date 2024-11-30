@@ -5,7 +5,7 @@
   tasks:
     - name: Install packages for Arch
       become: true
-      when: ansible_distribution == "Arch"
+      when: ansible_distribution == "Archlinux"
       community.general.pacman:
         name:
           - base
@@ -85,7 +85,7 @@
 
     - name: Install Neovim
       become: true
-      when: ansible_distribution != "Arch"
+      when: ansible_distribution != "Archlinux"
       ansible.builtin.shell: >
         curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz &&
         rm -rf /opt/nvim &&
@@ -93,7 +93,7 @@
         rm nvim-linux64.tar.gz
 
     - name: Add Neovim to path
-      when: ansible_distribution != "Arch"
+      when: ansible_distribution != "Archlinux"
       ansible.builtin.shell: echo 'export PATH="$PATH:/opt/nvim-linux64/bin"' >> $HOME/.env
 
     - name: Prepare directories for symlinks
