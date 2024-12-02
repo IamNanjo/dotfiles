@@ -70,76 +70,27 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export NVM_DIR=$HOME/.nvm
-[ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh  # This loads nvm
-[ -s $NVM_DIR/bash_completion ] && \. $NVM_DIR/bash_completion  # This loads nvm bash_completion
-
 export EDITOR=nvim
 export SYSTEMD_EDITOR=nvim
 
-if locale -a |grep -i ^en_FI.utf8 &> /dev/null ; then
+if command -v locale &> /dev/null && locale -a |grep -i ^en_FI.utf8 &> /dev/null ; then
   export LANGUAGE="en_FI.utf8"
   export LC_ALL="en_FI.utf8"
 fi
 
 if [ -d $HOME/.local/bin ]; then
 	export PATH=$PATH:$HOME/.local/bin
-fi
-
-if [ -d $HOME/.dotfiles/.local/bin ]; then
+elif [ -d $HOME/.dotfiles/.local/bin ]; then
 	export PATH=$PATH:$HOME/.dotfiles/.local/bin
 fi
-
-COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
-COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
-export COMP_WORDBREAKS
-
-if type complete &>/dev/null; then
-  _pm2_completion () {
-    local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           pm2 completion -- "${COMP_WORDS[@]}" \
-                           2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  complete -o default -F _pm2_completion pm2
-elif type compctl &>/dev/null; then
-  _pm2_completion () {
-    local cword line point words si
-    read -Ac words
-    read -cn cword
-    let cword-=1
-    read -l line
-    read -ln point
-    si="$IFS"
-    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       pm2 completion -- "${words[@]}" \
-                       2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  compctl -K _pm2_completion + -f + pm2
-fi
-
-# yarn
-export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
-
-# bun
-export BUN_INSTALL=$HOME/.bun
-export PATH=$BUN_INSTALL/bin:$PATH
-
-# go
-export PATH=$PATH:/usr/local/go/bin
-
-. $HOME/.cargo/env
-
-. "$HOME/.cargo/env"
 
 # Zoxide
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init bash)"
     alias cd=z
+fi
+
+# Mise
+if [ -f ~/.local/bin/mise ]; then
+	echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
 fi
