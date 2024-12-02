@@ -91,6 +91,6 @@ if command -v zoxide &> /dev/null; then
 fi
 
 # Mise
-if [ -f ~/.local/bin/mise ]; then
-	echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
+if command -v mise &> /dev/null; then
+	eval "$(~/.local/bin/mise activate bash)"
 fi
