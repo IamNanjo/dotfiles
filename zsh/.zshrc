@@ -40,9 +40,7 @@ fi
 
 if [ -d $HOME/.local/bin ]; then
         export PATH=$PATH:$HOME/.local/bin
-fi
-
-if [ -d $HOME/.dotfiles/.local/bin ]; then
+elif [ -d $HOME/.dotfiles/.local/bin ]; then
         export PATH=$PATH:$HOME/.dotfiles/.local/bin
 fi
 
