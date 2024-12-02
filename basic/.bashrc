@@ -24,10 +24,6 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-if [ "$TERM" = "xterm-kitty" ]; then 
-  export TERM=xterm-256color
-fi
-
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
