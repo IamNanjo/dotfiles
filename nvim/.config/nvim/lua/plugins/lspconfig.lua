@@ -83,6 +83,7 @@ return {
             --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
             --  - settings (table): Override the default settings passed when initializing the server.
             local lspconfig = require("lspconfig")
+            local mason_registry = require("mason-registry")
             local servers = {
                 html = {},
                 emmet_language_server = {
@@ -101,23 +102,28 @@ return {
                     },
                 },
                 ts_ls = {
-                    init_options = {
-                        plugins = {
-                            {
-                                name = "@vue/typescript-plugin",
-                                location = require("mason-registry")
-                                    .get_package("vue-language-server")
-                                    :get_install_path()
-                                    .. "/node_modules/@vue/language-server",
-                                languages = { "vue" },
-                            },
+                    init_options = {},
+                    filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
+                    root_dir = function()
+                        return lspconfig.util.root_pattern("tsconfig.json", "package.json", ".git")() or vim.loop.cwd()
+                    end,
+                },
+            }
+
+            if mason_registry.is_installed("vue-language-server") then
+                servers.ts_ls.init_options = {
+                    plugins = {
+                        {
+                            name = "@vue/typescript-plugin",
+                            location = mason_registry.get_package("vue-language-server"):get_install_path()
+                                .. "/node_modules/@vue/language-server",
+                            languages = { "vue" },
                         },
                     },
-                    filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-                    root_dir = lspconfig.util.root_pattern("tsconfig.json", "package.json", ".git"),
-                },
-                volar = {},
-            }
+                }
+                table.insert(servers.ts_ls.filetypes, "vue")
+                servers.volar = {}
+            end
 
             require("mason").setup()
 
