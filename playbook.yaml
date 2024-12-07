@@ -7,6 +7,8 @@
       become: true
       when: ansible_distribution == "Archlinux"
       community.general.pacman:
+        state: latest
+        update_cache: true
         name:
           - base
           - base-devel
@@ -22,20 +24,27 @@
           - neovim
 
     - name: Download yay
-      register: download_yay
       ansible.builtin.git:
-        repo: https://aur.archlinux.org/yay-bin.git
+        repo: https://aur.archlinux.org/yay.git
         dest: yay
 
-    - name: Install yay
-      register: install_yay
-      changed_when: install_yay.rc == 0
+    - name: Yay makepkg
+      register: yay_makepkg
+      changed_when: yay_makepkg.rc == 0
       when: ansible_distribution == "Archlinux"
-      become: true
-      become_user: "{{ ansible_env.USER }}"
       ansible.builtin.command:
         chdir: ./yay
-        cmd: makepkg -si
+        cmd: makepkg
+
+    - name: Get the correct package filename (excluding debug files)
+      ansible.builtin.set_fact:
+        pkg_filename: "{{ lookup('fileglob', './yay/*.pkg.tar.zst') | select('search', '^yay-(?!bin-debug).*\\.pkg\\.tar\\.zst$') | first }}"
+
+    - name: Install yay
+      become: true
+      community.general.pacman:
+        state: present
+        name: "{{ pkg_filename }}"
 
     - name: Install packages for Ubuntu
       become: true
@@ -88,8 +97,6 @@
         path: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/fast-syntax-highlighting"
 
     - name: Install fast-syntax-highlighting for zsh
-      register: install_fsh
-      changed_when: install_fsh.rc == 0
       when: not fsh_installed.stat.exists
       ansible.builtin.git:
         repo: https://github.com/zdharma-continuum/fast-syntax-highlighting.git
