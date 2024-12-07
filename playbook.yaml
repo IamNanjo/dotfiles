@@ -42,7 +42,7 @@
 
     - name: Filter out debug packages
       set_fact:
-        pkg_filename: "{{ all_pkg_files | selectattr('search', '^yay-[^-]+-.*\\.pkg\\.tar\\.zst$') | first }}"
+        pkg_filename: "{{ all_pkg_files | select('search', '^yay-[^-]+-.*\\.pkg\\.tar\\.zst$') | list | first }}"
 
     - name: Get the correct package filename (excluding debug files)
       ansible.builtin.set_fact:
