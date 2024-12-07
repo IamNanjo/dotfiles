@@ -36,6 +36,14 @@
         chdir: ./yay
         cmd: makepkg -f
 
+    - name: Get all .pkg.tar.zst files
+      set_fact:
+        all_pkg_files: "{{ lookup('fileglob', './yay/*.pkg.tar.zst') }}"
+
+    - name: Filter out debug packages
+      set_fact:
+        pkg_filename: "{{ all_pkg_files | selectattr('search', '^yay-[^-]+-.*\\.pkg\\.tar\\.zst$') | first }}"
+
     - name: Get the correct package filename (excluding debug files)
       ansible.builtin.set_fact:
         pkg_filename: "{{ lookup('fileglob', './yay/yay-*.pkg.tar.zst') | reject('search', 'debug') }}"
