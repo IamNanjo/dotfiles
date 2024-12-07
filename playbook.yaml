@@ -43,7 +43,8 @@
       ansible.builtin.find:
         paths: ./yay
         file_type: file
-        patterns: 'yay-\d.*\.pkg.tar.zst'
+        patterns: '^yay-\d.*\.pkg.tar.zst$'
+        use_regex: true
         limit: 1
 
     - name: Install yay
