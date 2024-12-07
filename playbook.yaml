@@ -24,6 +24,7 @@
       register: download_yay
       ansible.builtin.git:
         repo: https://aur.archlinux.org/yay.git
+        dest: yay
 
     - name: Install yay
       register: install_yay
