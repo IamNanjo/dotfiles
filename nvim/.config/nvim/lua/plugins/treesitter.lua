@@ -6,6 +6,16 @@ return {
             auto_install = true,
             highlight = { enable = true },
             indent = { enable = true },
+            ensure_installed = {
+                "gitcommit",
+                "gitignore",
+                "git_config",
+                "git_rebase",
+                "comment",
+                "markdown",
+                "markdown_inline",
+                "regex",
+            },
         },
         config = function(_, opts)
             require("nvim-treesitter.install").prefer_git = true
