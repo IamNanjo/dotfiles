@@ -38,7 +38,7 @@
 
     - name: Get the correct package filename (excluding debug files)
       ansible.builtin.set_fact:
-        pkg_filename: "{{ lookup('fileglob', './yay/yay-*.pkg.tar.zst') | reject('search', 'debug') | list | first }}"
+        pkg_filename: "{{ lookup('fileglob', './yay/yay-*.pkg.tar.zst') | reject('search', 'debug') | first }}"
 
     - name: Install yay
       become: true
