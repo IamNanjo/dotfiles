@@ -1,67 +1,79 @@
 // -*- mode: jsonc -*-
 {
+	"layer": "top",
+	"position": "top", // Waybar position (top|bottom|left|right)
+	"height": 32, 
+	"modules-left": [
+		"hyprland/workspaces"
+	],
+	"modules-center": [
+		"hyprland/window"
+	],
+	"modules-right": [
+		"tray",
+		"pulseaudio",
+		"battery",
+		"network",
+		"clock"
+	],
 
-  "layer": "top",
-  "position": "top", // Waybar position (top|bottom|left|right)
-  "height": 28, 
-  "modules-left": [],
-  "modules-center": [],
-  "modules-right": [
-    "tray",
-    "pulseaudio",
-    "battery",
-    "network",
-    "clock"
-  ],
+	"hyprland/workspaces": {
+		"disable-scroll": true,
+		"warp-on-scroll": false,
+	},
 
-  "tray": {
-    "spacing": 10
-  },
+	"hyprland/window": {
+		"separate-outputs": true
+	},
 
-  "pulseaudio": {
-    "scroll-step": 5, 
-    "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": "  {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": " ",
-    "format-icons": {
-      "default": [" ", " ", " "]
-    },
-    "on-click": "pavucontrol"
-  },
+	"tray": {
+		"spacing": 10
+	},
 
-  "battery": {
-    "format": "{capacity}% {icon}",
-    "format-icons": [
-      " ",
-      " ",
-      " ",
-      " ",
-      " ",
-    ]
-  },
+	"pulseaudio": {
+		"scroll-step": 5, 
+		"format": "{volume}% {icon} {format_source}",
+		"format-bluetooth": "{volume}% {icon} {format_source}",
+		"format-bluetooth-muted": " {icon} {format_source}",
+		"format-muted": "  {format_source}",
+		"format-source": "{volume}% ",
+		"format-source-muted": " ",
+		"format-icons": {
+			"default": [" ", " ", " "]
+		},
+		"on-click": "pavucontrol"
+	},
 
-  "network": {
-    "format-ethernet": " ",
-    "format-wifi": " ",
-    "tooltip-format-ethernet": "{ifname}: {ipaddr}",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%): {ipaddr}"
-  },
+	"battery": {
+		"format": "{capacity}% {icon}",
+		"format-icons": [
+			" ",
+			" ",
+			" ",
+			" ",
+			" ",
+		]
+	},
 
-  "clock": {
-    "format": "{:%Od.%Om.%EY %H:%M}",
-    "tooltip-format": "<tt>{calendar}</tt>",
-    "on-click": "",
-    "calendar": {
-      "mode": "year",
-      "mode-mon-col": 4,
-      "weeks-pos": "left",
-      "format": {
-        "today": "<b><u><span color='#ff6961'>{}</span></u></b>"
-      }
-    }
-  }
+	"network": {
+		"format-ethernet": " ",
+		"format-wifi": " ",
+		"tooltip-format-ethernet": "{ifname}: {ipaddr}",
+		"tooltip-format-wifi": "{essid} ({signalStrength}%): {ipaddr}"
+	},
+
+	"clock": {
+		"format": "{:%Od.%Om.%EY %H:%M}",
+		"tooltip-format": "<tt>{calendar}</tt>",
+		"on-click": "",
+		"calendar": {
+			"mode": "year",
+			"mode-mon-col": 4,
+			"weeks-pos": "left",
+			"format": {
+				"today": "<b><span color='#ff6961'>{}</span></b>"
+			}
+		}
+	}
 
 }
