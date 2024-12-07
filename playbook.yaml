@@ -24,17 +24,16 @@
     - name: Download yay
       register: download_yay
       ansible.builtin.git:
-        repo: https://aur.archlinux.org/yay.git
+        repo: https://aur.archlinux.org/yay-bin.git
         dest: yay
 
     - name: Install yay
       register: install_yay
       changed_when: install_yay.rc == 0
       when: ansible_distribution == "Archlinux"
-      become_method: sudo
       ansible.builtin.command:
         chdir: ./yay
-        cmd: makepkg -si
+        cmd: makepkg -i
 
     - name: Install packages for Ubuntu
       become: true
