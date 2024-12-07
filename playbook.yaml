@@ -10,6 +10,7 @@
         name:
           - base
           - base-devel
+          - go
           - git
           - curl
           - wget
