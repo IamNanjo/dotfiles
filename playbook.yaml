@@ -31,7 +31,6 @@
       register: install_yay
       changed_when: install_yay.rc == 0
       when: ansible_distribution == "Archlinux"
-      become: true
       become_method: sudo
       ansible.builtin.command:
         chdir: ./yay
