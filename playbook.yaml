@@ -71,10 +71,13 @@
         path: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/fast-syntax-highlighting"
 
     - name: Install fast-syntax-highlighting for zsh
+      register: install_fsh
+      changed_when: install_fsh.rc == 0
       when: not fsh_installed.stat.exists
-      ansible.builtin.command: >
-        git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git
-        {{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
+      ansible.builtin.git:
+        repo: https://github.com/zdharma-continuum/fast-syntax-highlighting.git
+        dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/fast-syntax-highlighting"
+
 
     - name: Check if Neovim is installed
       when: ansible_distribution != "Archlinux"
