@@ -22,8 +22,6 @@
 
     - name: Download yay
       register: download_yay
-      changed_when: download_yay.rc == 0
-      when: ansible_distribution == "Archlinux"
       ansible.builtin.git:
         repo: https://aur.archlinux.org/yay.git
 
