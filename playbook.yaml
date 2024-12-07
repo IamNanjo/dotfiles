@@ -31,9 +31,11 @@
       register: install_yay
       changed_when: install_yay.rc == 0
       when: ansible_distribution == "Archlinux"
+      become: true
+      become_user: "{{ ansible_env.USER }}"
       ansible.builtin.command:
         chdir: ./yay
-        cmd: makepkg -i
+        cmd: makepkg -si
 
     - name: Install packages for Ubuntu
       become: true
