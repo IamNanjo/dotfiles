@@ -36,16 +36,15 @@
         chdir: ./yay
         cmd: makepkg -f
 
-
     - name: Find correct pkg file to install
       register: pkg_filename
       when: ansible_distribution == "Archlinux"
       failed_when: pkg_filename.matched == 0
       ansible.builtin.find:
-      paths: ./yay
-      file_type: file
-      patterns: 'yay-\d.*\.pkg.tar.zst'
-      limit: 1
+        paths: ./yay
+        file_type: file
+        patterns: 'yay-\d.*\.pkg.tar.zst'
+        limit: 1
 
     - name: Install yay
       become: true
