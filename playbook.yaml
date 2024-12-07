@@ -14,10 +14,12 @@
           - curl
           - wget
           - zsh
+          - ripgrep
+          - fzf
           - plocate
           - stow
           - neovim
-    
+
     - name: Install packages for Ubuntu
       become: true
       when: ansible_distribution == "Ubuntu"
