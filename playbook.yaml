@@ -29,7 +29,6 @@
     - name: Install yay
       register: install_yay
       changed_when: install_yay.rc == 0
-      become: true
       when: ansible_distribution == "Archlinux"
       ansible.builtin.command:
         chdir: ./yay
