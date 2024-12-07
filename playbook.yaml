@@ -34,7 +34,7 @@
       when: ansible_distribution == "Archlinux"
       ansible.builtin.command:
         chdir: ./yay
-        cmd: makepkg
+        cmd: makepkg -f
 
     - name: Get the correct package filename (excluding debug files)
       ansible.builtin.set_fact:
