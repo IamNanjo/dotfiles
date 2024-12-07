@@ -36,23 +36,22 @@
         chdir: ./yay
         cmd: makepkg -f
 
-    - name: Get all .pkg.tar.zst files
-      set_fact:
-        all_pkg_files: "{{ lookup('fileglob', './yay/*.pkg.tar.zst') }}"
 
-    - name: Filter out debug packages
-      set_fact:
-        pkg_filename: "{{ all_pkg_files | select('search', '^yay-[^-]+-.*\\.pkg\\.tar\\.zst$') | list | first }}"
-
-    - name: Get the correct package filename (excluding debug files)
-      ansible.builtin.set_fact:
-        pkg_filename: "{{ lookup('fileglob', './yay/yay-*.pkg.tar.zst') | reject('search', 'debug') }}"
+    - name: Find correct pkg file to install
+      register: pkg_filename
+      when: ansible_distribution == "Archlinux"
+      failed_when: pkg_filename.matched == 0
+      ansible.builtin.find:
+      paths: ./yay
+      file_type: file
+      patterns: 'yay-\d.*\.pkg.tar.zst'
+      limit: 1
 
     - name: Install yay
       become: true
       community.general.pacman:
         state: present
-        name: "{{ pkg_filename }}"
+        name: "{{ pkg_filename.files[0].path }}"
 
     - name: Install packages for Ubuntu
       become: true
