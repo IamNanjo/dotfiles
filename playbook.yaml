@@ -45,18 +45,14 @@
 
     - name: Install mise
       when: not mise_installed.stat.exists
-      ansible.builtin.shell: curl https://mise.run | sh
+      register: install_mise
+      changed_when: install_mise.rc == 0
+      ansible.builtin.shell: set -o pipefail && curl https://mise.run | sh
 
     - name: Install mise tools
-      loop:
-        - usage
-        - node
-        - bun
-        - go
-        - rust
-        - python
-        - lua@5.1
-      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise use -g -y {{ item }}"
+      register: install_mise_tools
+      changed_when: install_mise_tools.rc == 0
+      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise use -g -y usage node bun go rust python lua@5.1"
 
     - name: Check if oh-my-zsh is installed
       register: omz_installed
@@ -64,8 +60,10 @@
         path: "{{ ansible_env.HOME }}/.oh-my-zsh"
 
     - name: Install oh-my-zsh
+      register: install_omz
+      changed_when: install_omz.rc == 0
       when: not omz_installed.stat.exists
-      ansible.builtin.shell: curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+      ansible.builtin.shell: set -o pipefail && curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 
     - name: Check if fast-syntax-highlighting is installed
       register: fsh_installed
