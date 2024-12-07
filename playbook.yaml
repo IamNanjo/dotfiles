@@ -20,6 +20,22 @@
           - stow
           - neovim
 
+    - name: Download yay
+      register: download_yay
+      changed_when: download_yay.rc == 0
+      when: ansible_distribution == "Archlinux"
+      ansible.builtin.git:
+        repo: https://aur.archlinux.org/yay.git
+
+    - name: Install yay
+      register: install_yay
+      changed_when: install_yay.rc == 0
+      become: true
+      when: ansible_distribution == "Archlinux"
+      ansible.builtin.command:
+        chdir: ./yay
+        cmd: makepkg -si
+
     - name: Install packages for Ubuntu
       become: true
       when: ansible_distribution == "Ubuntu"
