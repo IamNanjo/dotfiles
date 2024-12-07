@@ -90,20 +90,31 @@
       when:
         - ansible_distribution != "Archlinux"
         - not nvim_installed.stat.exists
-      ansible.builtin.shell: >
-        curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz &&
-        tar -C /opt -xzf nvim-linux64.tar.gz &&
-        rm nvim-linux64.tar.gz
+      ansible.builtin.unarchive:
+        src: https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+        dest: /opt/nvim-linux64
+        remote_src: true
+
+    - name: Remove Neovim tarball
+      register: remove_neovim_tarball
+      changed_when: remove_neovim_tarball.rc == 0
+      when:
+        - ansible_distribution != "Archlinux"
+        - not nvim_installed.stat.exists
+      ansible.builtin.command: rm nvim-linux64.tar.gz
 
     - name: Add Neovim to path
       when: ansible_distribution != "Archlinux"
       ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.env"
-        line: export PATH="$PATH:/opt/nvim-linux64/bin"
+        line: 'export PATH=$PATH:/opt/nvim-linux64/bin'
         state: present
         create: true
+        mode: "700"
 
     - name: Prepare directories for symlinks
+      register: symlink_prep
+      changed_when: symlink_prep.rc == 0
       loop:
         - .local/bin
         - .config/gtk-3.0
