@@ -20,10 +20,19 @@
           - ripgrep
           - fzf
           - plocate
+          - unzip
           - stow
           - neovim
 
+    - name: Yay already installed
+      register: yay_installed
+      ansible.builtin.stat:
+        path: /usr/bin/yay
+
     - name: Download yay
+      when:
+        - ansible_distribution == "Archlinux"
+        - not yay_installed.stat.exists
       ansible.builtin.git:
         repo: https://aur.archlinux.org/yay.git
         dest: yay
@@ -31,14 +40,18 @@
     - name: Yay makepkg
       register: yay_makepkg
       changed_when: yay_makepkg.rc == 0
-      when: ansible_distribution == "Archlinux"
+      when:
+        - ansible_distribution == "Archlinux"
+        - not yay_installed.stat.exists
       ansible.builtin.command:
         chdir: ./yay
         cmd: makepkg -f
 
     - name: Find correct pkg file to install
       register: pkg_filename
-      when: ansible_distribution == "Archlinux"
+      when:
+        - ansible_distribution == "Archlinux"
+        - not yay_installed.stat.exists
       failed_when: pkg_filename.matched == 0
       ansible.builtin.find:
         paths: ./yay
@@ -49,6 +62,9 @@
 
     - name: Install yay
       become: true
+      when:
+        - ansible_distribution == "Archlinux"
+        - not yay_installed.stat.exists
       community.general.pacman:
         state: present
         name: "{{ pkg_filename.files[0].path }}"
