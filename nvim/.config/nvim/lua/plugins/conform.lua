@@ -12,7 +12,7 @@ return {
                 desc = "Format buffer",
             },
         },
-        setup = function()
+        init = function()
             local mason_registry = require("mason-registry")
 
             local opts = {
