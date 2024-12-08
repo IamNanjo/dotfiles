@@ -36,6 +36,7 @@ return {
             vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
             vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
             vim.keymap.set("n", "<leader>sg", builtin.git_files, { desc = "[S]earch [G]it" })
+            vim.keymap.set("n", "<leader>sG", builtin.live_grep, { desc = "[S]earch [G]rep" })
             vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 
             -- Slightly advanced example of overriding default behavior and theme
