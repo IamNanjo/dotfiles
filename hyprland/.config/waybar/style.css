@@ -35,10 +35,13 @@ label:focus {
     background-color: #000000;
 }
 
+#workspaces button {
+    border-radius: 6px;
+}
+
 #workspaces button.active {
     background-color: #121212;
     color: #ff6961;
-    border-radius: 6px;
 }
 
 #tray > .passive {
