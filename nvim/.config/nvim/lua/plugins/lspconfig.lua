@@ -1,151 +1,149 @@
 return {
-    { -- LSP Configuration & Plugins
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            { "williamboman/mason.nvim", config = true },
-            "williamboman/mason-lspconfig.nvim",
-            "WhoIsSethDaniel/mason-tool-installer.nvim",
-            {
-                "j-hui/fidget.nvim",
-                opts = {
-                    notification = {
-                        filter = vim.log.levels.WARN,
-                    },
-                },
-            },
-            { "folke/neodev.nvim", opts = {} },
-        },
-        config = function()
-            vim.api.nvim_create_autocmd("LspAttach", {
-                group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-                callback = function(event)
-                    local map = function(keys, func, desc)
-                        vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-                    end
+	{ -- LSP Configuration & Plugins
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			{ "williamboman/mason.nvim", config = true },
+			"williamboman/mason-lspconfig.nvim",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			{
+				"j-hui/fidget.nvim",
+				opts = {
+					notification = {
+						filter = vim.log.levels.WARN,
+					},
+				},
+			},
+			{ "folke/neodev.nvim",       opts = {} },
+		},
+		config = function()
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+				callback = function(event)
+					local map = function(keys, func, desc)
+						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+					end
 
-                    map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-                    map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-                    map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-                    map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-                    map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-                    map(
-                        "<leader>ws",
-                        require("telescope.builtin").lsp_dynamic_workspace_symbols,
-                        "[W]orkspace [S]ymbols"
-                    )
-                    map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-                    map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-                    map("<C-S-Space>", vim.lsp.buf.hover, "Hover Documentation")
-                    map("K", vim.lsp.buf.hover, "Hover Documentation")
-                    vim.keymap.set(
-                        "i",
-                        "<C-h>",
-                        vim.lsp.buf.signature_help,
-                        { buffer = event.buf, desc = "LSP: Signature help" }
-                    )
-                    map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+					map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+					map(
+						"<leader>ws",
+						require("telescope.builtin").lsp_dynamic_workspace_symbols,
+						"[W]orkspace [S]ymbols"
+					)
+					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+					map("<C-S-Space>", vim.lsp.buf.hover, "Hover Documentation")
+					map("K", vim.lsp.buf.hover, "Hover Documentation")
+					vim.keymap.set(
+						"i",
+						"<C-h>",
+						vim.lsp.buf.signature_help,
+						{ buffer = event.buf, desc = "LSP: Signature help" }
+					)
+					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-                    -- The following two autocommands are used to highlight references of the
-                    -- word under your cursor when your cursor rests there for a little while.
-                    -- When you move your cursor, the highlights will be cleared (the second autocommand).
-                    local client = vim.lsp.get_client_by_id(event.data.client_id)
-                    if client and client.server_capabilities.documentHighlightProvider then
-                        local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
-                        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-                            buffer = event.buf,
-                            group = highlight_augroup,
-                            callback = vim.lsp.buf.document_highlight,
-                        })
+					-- The following two autocommands are used to highlight references of the
+					-- word under your cursor when your cursor rests there for a little while.
+					-- When you move your cursor, the highlights will be cleared (the second autocommand).
+					local client = vim.lsp.get_client_by_id(event.data.client_id)
+					if client and client.server_capabilities.documentHighlightProvider then
+						local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+							buffer = event.buf,
+							group = highlight_augroup,
+							callback = vim.lsp.buf.document_highlight,
+						})
 
-                        vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-                            buffer = event.buf,
-                            group = highlight_augroup,
-                            callback = vim.lsp.buf.clear_references,
-                        })
+						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+							buffer = event.buf,
+							group = highlight_augroup,
+							callback = vim.lsp.buf.clear_references,
+						})
 
-                        vim.api.nvim_create_autocmd("LspDetach", {
-                            group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
-                            callback = function(event2)
-                                vim.lsp.buf.clear_references()
-                                vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
-                            end,
-                        })
-                    end
-                end,
-            })
+						vim.api.nvim_create_autocmd("LspDetach", {
+							group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+							callback = function(event2)
+								vim.lsp.buf.clear_references()
+								vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
+							end,
+						})
+					end
+				end,
+			})
 
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-            --  Add any additional override configuration in the following tables. Available keys are:
-            --  - cmd (table): Override the default command used to start the server
-            --  - filetypes (table): Override the default list of associated filetypes for the server
-            --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-            --  - settings (table): Override the default settings passed when initializing the server.
-            local lspconfig = require("lspconfig")
-            local mason_registry = require("mason-registry")
-            local servers = {
-                html = {},
-                emmet_language_server = {
-                    filetypes = { "css", "html", "javascript", "javascriptreact", "less", "sass", "scss", "php", "vue" },
-                },
-                cssls = {},
-                css_variables = {},
-                lua_ls = {
-                    settings = {
-                        Lua = {
-                            completion = {
-                                callSnippet = "Replace",
-                            },
-                            diagnostics = { disable = { "missing-fields" } },
-                        },
-                    },
-                },
-                ts_ls = {
-                    init_options = {},
-                    filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
-                    root_dir = function()
-                        return lspconfig.util.root_pattern("tsconfig.json", "package.json", ".git")() or vim.loop.cwd()
-                    end,
-                },
-            }
+			--  Add any additional override configuration in the following tables. Available keys are:
+			--  - cmd (table): Override the default command used to start the server
+			--  - filetypes (table): Override the default list of associated filetypes for the server
+			--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
+			--  - settings (table): Override the default settings passed when initializing the server.
+			local lspconfig = require("lspconfig")
+			local mason_registry = require("mason-registry")
+			local servers = {
+				html = {},
+				emmet_language_server = {
+					filetypes = { "css", "html", "javascript", "javascriptreact", "less", "sass", "scss", "php", "vue" },
+				},
+				cssls = {},
+				css_variables = {},
+				lua_ls = {
+					settings = {
+						Lua = {
+							completion = { callSnippet = "Replace" },
+							diagnostics = { disable = { "missing-fields" } },
+						},
+					},
+				},
+				ts_ls = {
+					init_options = {},
+					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
+					root_dir = function()
+						return lspconfig.util.root_pattern("tsconfig.json", "package.json", ".git")() or vim.loop.cwd()
+					end,
+				},
+			}
 
-            if mason_registry.is_installed("vue-language-server") then
-                servers.ts_ls.init_options = {
-                    plugins = {
-                        {
-                            name = "@vue/typescript-plugin",
-                            location = mason_registry.get_package("vue-language-server"):get_install_path()
-                                .. "/node_modules/@vue/language-server",
-                            languages = { "vue" },
-                        },
-                    },
-                }
-                table.insert(servers.ts_ls.filetypes, "vue")
-                servers.volar = {}
-            end
+			if mason_registry.is_installed("vue-language-server") then
+				servers.ts_ls.init_options = {
+					plugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = mason_registry.get_package("vue-language-server"):get_install_path()
+								.. "/node_modules/@vue/language-server",
+							languages = { "vue" },
+						},
+					},
+				}
+				table.insert(servers.ts_ls.filetypes, "vue")
+				servers.volar = {}
+			end
 
-            require("mason").setup()
+			require("mason").setup()
 
-            local ensure_installed = vim.tbl_keys(servers or {})
-            vim.list_extend(ensure_installed, {
-                "stylua",
-                "prettier",
-            })
-            require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+			local ensure_installed = vim.tbl_keys(servers or {})
+			vim.list_extend(ensure_installed, {
+				"stylua",
+				"prettier",
+			})
+			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-            require("mason-lspconfig").setup({
-                handlers = {
-                    function(server_name)
-                        local server = servers[server_name] or {}
-                        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+			require("mason-lspconfig").setup({
+				handlers = {
+					function(server_name)
+						local server = servers[server_name] or {}
+						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 
-                        server.root_dir = vim.loop.cwd()
+						server.root_dir = vim.loop.cwd()
 
-                        require("lspconfig")[server_name].setup(server)
-                    end,
-                },
-            })
-        end,
-    },
+						require("lspconfig")[server_name].setup(server)
+					end,
+				},
+			})
+		end,
+	},
 }
