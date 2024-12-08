@@ -1,9 +1,5 @@
 #!/bin/bash
 
-run_reset() {
-	rm -rfv $HOME/.local/share/nvim $HOME/.local/state/nvim $HOME/.cache/nvim
-}
-
 if [ -z "$HOME" ]; then
 	echo '$HOME environment variable not set'
 	exit 1
@@ -12,5 +8,11 @@ fi
 read -p "Are you sure you want to reset your nvim state? [y/n]: " input
 
 if [[ "$input" =~ ^[Yy]$ ]]; then
-	run_reset
+	rm -rfv $HOME/.local/share/nvim $HOME/.local/state/nvim $HOME/.cache/nvim
+fi
+
+read -p "Do you also want to delete lazy-lock.json? [y/n]: " input
+
+if [[ "$input" =~ ^[Yy]$ ]]; then
+	rm -fv $HOME/.config/nvim/lazy-lock.json
 fi
