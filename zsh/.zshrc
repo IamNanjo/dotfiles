@@ -44,6 +44,10 @@ elif [ -d $HOME/.dotfiles/.local/bin ]; then
         export PATH=$PATH:$HOME/.dotfiles/.local/bin
 fi
 
+if [ -d $HOME/.bun/bin ]; then
+	export PATH=$PATH:$HOME/.bun/bin
+fi
+
 # zoxide
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
