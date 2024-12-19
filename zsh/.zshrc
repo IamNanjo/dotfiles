@@ -23,6 +23,12 @@ if locale -a |grep -i ^en_FI.utf8 &> /dev/null ; then
   export LC_ALL="en_FI.utf8"
 fi
 
+# Set tab indentation size to 4 spaces if possible
+if command -v tabs &>/dev/null; then
+    tabs 4
+fi
+
+
 export EDITOR="nvim"
 export SYSTEMD_EDITOR="nvim"
 
