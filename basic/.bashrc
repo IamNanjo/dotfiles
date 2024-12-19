@@ -73,10 +73,26 @@ fi
 export EDITOR=nvim
 export SYSTEMD_EDITOR=nvim
 
-if command -v locale &> /dev/null && locale -a |grep -i ^en_FI.utf8 &> /dev/null ; then
-  export LANGUAGE="en_FI.utf8"
-  export LC_ALL="en_FI.utf8"
+if command -v locale &> /dev/null; then
+	available_locales=$(locale -a)
+
+	if echo $available_locales | grep -q "^en_FI"; then
+		export LANGUAGE="en_FI.UTF-8"
+		export LC_ALL="en_FI.UTF-8"
+	elif echo $available_locales | grep -q "^en_GB"; then
+		export LANGUAGE="en_GB.UTF-8"
+		export LC_ALL="en_GB.UTF-8"
+	elif echo $available_locales | grep -q "^en_US"; then
+		export LANGUAGE="en_US.UTF-8"
+		export LC_ALL="en_US.UTF-8"
+	fi
 fi
+
+# Set tab indentation size to 4 spaces if possible
+if command -v tabs &>/dev/null; then
+    tabs 4
+fi
+
 
 if [ -d $HOME/.local/bin ]; then
 	export PATH=$PATH:$HOME/.local/bin
