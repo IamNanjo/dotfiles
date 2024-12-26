@@ -33,6 +33,10 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.smartindent = true
 
+-- Ignore shift+space
+vim.api.nvim_set_keymap("", "<S-space>", "<space>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<S-space>", "<space>", { noremap = true, silent = true })
+
 -- Center cursor on scroll
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true, desc = "Scroll down" })
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true, desc = "Scroll up" })
@@ -117,6 +121,9 @@ vim.opt.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
+
+-- Cursor shape
+vim.opt.guicursor = "n-v-c:block,i-ci-ve-t:ver25,r-cr:hor20,o:hor50"
 
 -- Fill chars
 vim.opt.fillchars = { eob = " " }
