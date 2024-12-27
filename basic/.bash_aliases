@@ -13,3 +13,4 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
 alias bat="bat -p"
+alias ssh="TERM=xterm-256color ssh"
