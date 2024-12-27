@@ -1,0 +1,29 @@
+theme = catppuccin-mocha
+background-opacity = 0.9
+background = 000000
+foreground = ffffff
+bold-is-bright = true
+
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+
+keybind=clear
+
+mouse-hide-while-typing = true
+mouse-shift-capture = true
+
+scrollback-limit = 100000
+
+window-decoration = false
+window-save-state = always
+
+clipboard-read = allow
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+
+image-storage-limit = 4294967295
+
+quick-terminal-screen = mouse
+quick-terminal-animation-duration = 0.3
+quick-terminal-autohide = false
+
