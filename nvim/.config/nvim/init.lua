@@ -193,7 +193,7 @@ require("lazy").setup("plugins", {
     },
     dev = {
         path = vim.fn.stdpath("config") .. "/dev",
-        fallback = false,
+        fallback = true,
     },
     ui = {
         wrap = false,
