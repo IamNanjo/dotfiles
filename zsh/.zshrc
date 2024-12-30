@@ -1,5 +1,6 @@
 # Ghostty shell integration
-if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
+: ${GHOSTTY_RESOURCES_DIR:=/usr/share/ghostty}
+if [ -n "$GHOSTTY_RESOURCES_DIR" ] && [ -d "$GHOSTTY_RESOURCES_DIR" ]; then
     builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 fi
 
