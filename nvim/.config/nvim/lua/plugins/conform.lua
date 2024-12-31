@@ -8,7 +8,6 @@ return {
                 function()
                     require("conform").format({ async = true, lsp_fallback = true })
                 end,
-                mode = "",
                 desc = "Format buffer",
             },
         },
@@ -29,6 +28,37 @@ return {
                 for _, lang in ipairs(prettier_langs) do
                     opts.formatters_by_ft[lang] = prettier
                 end
+
+                opts.formatters.prettier = {
+                    command = "prettier",
+                    stdin = true,
+                    -- Default config if no local .prettierrc file is found
+                    -- {
+                    --     "useTabs": false,
+                    --     "tabWidth": 4,
+                    --     "semi": true,
+                    --     "singleQuote": false,
+                    --     "jsxSingleQuote": false,
+                    --     "bracketSpacing": true,
+                    --     "bracketSameLine": false,
+                    --     "quoteProps": "consistent",
+                    --     "trailingComma": "all",
+                    --     "arrowParens": "always"
+                    --     "vueIndentScriptAndStyle": false
+                    -- }
+                    args = function()
+                        return {
+                            "--stdin-filepath",
+                            vim.fn.expand("%:p"),
+                            "--config-precedence",
+                            "file-override",
+                            "--tab-width",
+                            "4",
+                            "--quote-props",
+                            "consistent",
+                        }
+                    end,
+                }
             end
 
             if mason_registry.is_installed("pyright") then
