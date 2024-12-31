@@ -32,7 +32,7 @@ return {
             end
 
             if mason_registry.is_installed("pyright") then
-                if mason_registry.is_installed("autopep8") then
+                if not mason_registry.is_installed("autopep8") then
                     mason_registry.get_package("autopep8"):install()
                 end
 
@@ -40,7 +40,7 @@ return {
             end
 
             if mason_registry.is_installed("phpactor") then
-                if mason_registry.is_installed("php-cs-fixer") then
+                if not mason_registry.is_installed("php-cs-fixer") then
                     mason_registry.get_package("php-cs-fixer"):install()
                 end
 
