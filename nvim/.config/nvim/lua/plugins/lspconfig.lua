@@ -87,7 +87,18 @@ return {
             local servers = {
                 html = {},
                 emmet_language_server = {
-                    filetypes = { "css", "html", "javascript", "javascriptreact", "less", "sass", "scss", "php", "vue" },
+                    filetypes = {
+                        "css",
+                        "html",
+                        "javascript",
+                        "javascriptreact",
+                        "less",
+                        "sass",
+                        "scss",
+                        "php",
+                        "vue",
+                        "templ",
+                    },
                 },
                 cssls = {},
                 css_variables = {},
