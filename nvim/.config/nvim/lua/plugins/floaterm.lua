@@ -1,16 +1,19 @@
 return {
     {
-        url = "https://github.com/IamNanjo/floaterm.nvim",
+        "IamNanjo/floaterm.nvim",
         name = "floaterm",
         dev = true,
         event = "VeryLazy",
         keys = {
             {
                 "<space>tt",
-                ":Floaterminal<CR>",
+                ":Floaterm<CR>",
                 desc = "Toggle floating terminal",
             },
         },
         opts = {},
+        config = function(_, opts)
+            require("floaterm").setup({})
+        end,
     },
 }
