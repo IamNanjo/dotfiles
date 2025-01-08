@@ -7,6 +7,9 @@ return {
             "sindrets/diffview.nvim",
             "nvim-telescope/telescope.nvim",
         },
+        keys = {
+            { "<leader>g", ":Neogit<CR>", desc = "Open neogit" },
+        },
         config = function()
             require("neogit").setup({
                 disable_hint = true,
