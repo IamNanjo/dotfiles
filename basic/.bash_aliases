@@ -14,7 +14,7 @@ alias egrep="egrep --color=auto"
 
 if command -v batcat &> /dev/null; then
 	alias bat="batcat -p"
-else if command -v bat &> /dev/null
+elif command -v bat &> /dev/null; then
 	alias bat="bat -p"
 fi
 
