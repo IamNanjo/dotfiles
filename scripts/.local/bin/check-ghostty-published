@@ -1,9 +1,0 @@
-#!/bin/bash
-
-status_code=$(curl -s -o /dev/null -w "%{http_code}" https://api.github.com/repos/ghostty-org/ghostty)
-
-if [ "$status_code" == "200" ]; then
-	echo "Ghostty has been published"
-else
-	echo "Ghostty has not yet been published"
-fi
