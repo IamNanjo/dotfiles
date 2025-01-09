@@ -76,8 +76,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export EDITOR=nvim
-export SYSTEMD_EDITOR=nvim
+editors=("nvim" "vim" "pico" "nano")
+
+for editor in "${editors[@]}"; do
+	if command -v "$editor" &> /dev/null; then
+		export EDITOR=$editor
+		export SYSTEMD_EDITOR=$editor
+		break
+	fi
+done
 
 if command -v locale &> /dev/null; then
 	available_locales=$(locale -a)

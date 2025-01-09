@@ -34,9 +34,15 @@ if command -v tabs &>/dev/null; then
     tabs 4
 fi
 
+editors=("nvim" "vim" "pico" "nano")
 
-export EDITOR="nvim"
-export SYSTEMD_EDITOR="nvim"
+for editor in "${editors[@]}"; do
+	if command -v "$editor" &> /dev/null; then
+		export EDITOR=$editor
+		export SYSTEMD_EDITOR=$editor
+		break
+	fi
+done
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
