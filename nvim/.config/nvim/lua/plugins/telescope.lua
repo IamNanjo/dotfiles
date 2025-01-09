@@ -1,5 +1,5 @@
 return {
-    { -- Fuzzy Finder (files, lsp, etc)
+    {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         keys = {
@@ -30,7 +30,6 @@ return {
                 },
             })
 
-            -- Enable Telescope extensions if they are installed
             pcall(require("telescope").load_extension, "fzf")
             pcall(require("telescope").load_extension, "ui-select")
         end,
