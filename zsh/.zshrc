@@ -34,6 +34,10 @@ if command -v tabs &>/dev/null; then
     tabs 4
 fi
 
+if [ -d /opt/nvim ]; then
+	export PATH="/opt/nvim/bin:$PATH"
+fi
+
 editors=("nvim" "vim" "pico" "nano")
 
 for editor in "${editors[@]}"; do
