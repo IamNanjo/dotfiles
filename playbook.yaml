@@ -103,29 +103,6 @@
       changed_when: install_mise_tools.rc == 0
       ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise use -g -y usage node bun go rust python lua@5.1"
 
-    - name: Check if oh-my-zsh is installed
-      register: omz_installed
-      ansible.builtin.stat:
-        path: "{{ ansible_env.HOME }}/.oh-my-zsh"
-
-    - name: Install oh-my-zsh
-      register: install_omz
-      changed_when: install_omz.rc == 0
-      when: not omz_installed.stat.exists
-      ansible.builtin.shell: set -o pipefail && curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
-
-    - name: Check if fast-syntax-highlighting is installed
-      register: fsh_installed
-      ansible.builtin.stat:
-        path: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/fast-syntax-highlighting"
-
-    - name: Install fast-syntax-highlighting for zsh
-      when: not fsh_installed.stat.exists
-      ansible.builtin.git:
-        repo: https://github.com/zdharma-continuum/fast-syntax-highlighting.git
-        dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/fast-syntax-highlighting"
-
-
     - name: Check if Neovim is installed
       when: ansible_distribution != "Archlinux"
       register: nvim_installed
