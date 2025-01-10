@@ -6,6 +6,23 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
+# Ensure oh-my-zsh is installed
+if ! [ -d "$ZSH/.git" ]; then
+	echo "Installing Oh My Zsh"
+	rm -rf "$ZSH"
+	tmpfile="/tmp/omz-install-$RANDOM.sh"
+	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o $tmpfile
+	sh $tmpfile --unattended --keep-zshrc
+	rm $tmpfile
+	stow -d ~/.dotfiles -t ~ -S zsh
+fi
+
+# Ensure fast-syntax-highlighting is installed
+if ! [ -d "$ZSH/custom/plugins/fast-syntax-highlighting" ]; then
+	echo "Installing fast syntax highlighting"
+	git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH/custom/plugins/fast-syntax-highlighting
+fi
+
 ZSH_THEME="simple"
 
 zstyle ":omz:update" mode reminder  # just remind me to update when it"s time
@@ -13,16 +30,15 @@ zstyle ":omz:update" mode reminder  # just remind me to update when it"s time
 unsetopt autocd
 
 DISABLE_AUTO_TITLE="true"
-
 COMPLETION_WAITING_DOTS="true"
-
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-
 HIST_STAMPS="dd.mm.yyyy"
 
 plugins=(gitfast gh npm bun docker docker-compose golang ssh fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+command -v fast-theme &> /dev/null && fast-theme -q XDG:catppuccin-mocha
 
 if locale -a |grep -i ^en_FI.utf8 &> /dev/null ; then
   export LANGUAGE="en_FI.utf8"
