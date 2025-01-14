@@ -4,6 +4,8 @@ background = 000000
 foreground = ffffff
 bold-is-bright = true
 
+cursor-style = bar
+
 font-family = JetBrainsMono Nerd Font
 font-size = 14
 
@@ -12,7 +14,7 @@ keybind = super+shift+r=reload_config
 keybind = ctrl+shift+c=copy_to_clipboard
 keybind = ctrl+shift+v=paste_from_clipboard
 
-shell-integration-features = true
+shell-integration-features = no-cursor
 
 mouse-hide-while-typing = true
 mouse-shift-capture = true
