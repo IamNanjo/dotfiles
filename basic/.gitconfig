@@ -1,6 +1,11 @@
 [user]
 	email = 48948888+IamNanjo@users.noreply.github.com
 	name = IamNanjo
+	signingkey = A6212F07FC2497F8
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
 [init]
 	defaultBranch = main
 [core]
