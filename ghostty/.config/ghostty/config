@@ -21,7 +21,8 @@ mouse-shift-capture = true
 
 scrollback-limit = 100000
 
-window-decoration = false
+window-decoration = auto
+gtk-adwaita = false
 window-save-state = always
 
 clipboard-read = allow
