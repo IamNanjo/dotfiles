@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec[]
 return {
     {
         "IamNanjo/floaterm.nvim",

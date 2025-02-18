@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec[]
 return {
     { -- Autoformat
         "stevearc/conform.nvim",
