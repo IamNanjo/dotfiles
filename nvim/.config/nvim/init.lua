@@ -7,10 +7,15 @@ vim.g.have_nerd_font = true
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
--- Window title
--- :h statusline
+-- Dynamic window title ([Modified flag][read-only flag][filetype] - File path without protocol)
+-- :h titlestring
 vim.opt.title = true
-vim.opt.titlestring = "%m%r%y - " .. string.gsub(vim.fn.expand("%:p"), "^.*://", "")
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*",
+    callback = function()
+        vim.opt.titlestring = "%m%r%y - " .. string.gsub(vim.fn.expand("%:p#"), "^.*://", "")
+    end,
+})
 
 -- Line numbers
 vim.opt.number = true
