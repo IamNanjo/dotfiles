@@ -43,7 +43,10 @@ HIST_STAMPS="dd.mm.yyyy"
 HISTSIZE=5000
 HISTDUP="erase"
 
-plugins=(gitfast gh npm bun docker docker-compose golang ssh fast-syntax-highlighting)
+zstyle ":completion:*" matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
+
+plugins=(fzf gitfast gh npm bun docker docker-compose golang ssh fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
