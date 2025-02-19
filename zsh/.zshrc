@@ -25,14 +25,23 @@ fi
 
 ZSH_THEME="simple"
 
-zstyle ":omz:update" mode reminder  # just remind me to update when it"s time
+zstyle ":omz:update" mode reminder
 
 unsetopt autocd
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
 
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="dd.mm.yyyy"
+HISTSIZE=5000
+HISTDUP="erase"
 
 plugins=(gitfast gh npm bun docker docker-compose golang ssh fast-syntax-highlighting)
 
