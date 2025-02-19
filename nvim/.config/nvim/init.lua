@@ -7,6 +7,11 @@ vim.g.have_nerd_font = true
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
+-- Window title
+-- :h statusline
+vim.opt.title = true
+vim.opt.titlestring = "%m%r%y - " .. string.gsub(vim.fn.expand("%:p"), "^.*://", "")
+
 -- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
