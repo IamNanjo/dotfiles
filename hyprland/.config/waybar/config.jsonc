@@ -55,7 +55,7 @@
             "mode-mon-col": 4,
             "weeks-pos": "left",
             "format": {
-                "today": "<b><span color='#ff6961'>{}</span></b>",
+                "today": "<b><span color='#f38ba8'>{}</span></b>",
             },
         },
     },

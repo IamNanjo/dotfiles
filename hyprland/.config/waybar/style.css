@@ -1,11 +1,13 @@
+@import "./mocha.css";
+
 * {
-    font-family: JetBrainsMonoNF, Roboto, sans-serif;
+    font-family: JetBrainsMonoNF, monospace;
     font-size: 16px;
 }
 
 window#waybar {
     background-color: rgba(0, 0, 0, 0.9);
-    color: #ffffff;
+    color: @text;
 }
 
 window#waybar.hidden {
@@ -13,26 +15,30 @@ window#waybar.hidden {
 }
 
 button {
-    box-shadow: inset 0 -3px transparent;
     border: none;
     border-radius: 0;
 }
 
-.module {
-    padding: 0 8px;
-    color: #ffffff;
-    text-shadow: 1px 1px 1px black;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
+tooltip {
+    background-color: @crust;
 }
 
 label:focus {
     background-color: #000000;
+}
+
+.module {
+    padding: 0 8px;
+    text-shadow: 1px 1px 1px black;
+}
+
+#tray,
+#pulseaudio,
+#battery,
+#network,
+#clock {
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
 #workspaces button {
@@ -40,8 +46,12 @@ label:focus {
 }
 
 #workspaces button.active {
-    background-color: #121212;
-    color: #ff6961;
+    background-color: @crust;
+    color: @red;
+}
+
+#window {
+    color: @red;
 }
 
 #tray > .passive {
@@ -50,10 +60,25 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #ff6961;
+    background-color: @red;
 }
 
-#pulseaudio > * {
-    padding-left: 2px;
-    padding-right: 2px;
+#pulseaudio {
+    color: @green;
+}
+
+#battery,
+#battery.charging {
+    color: @green;
+}
+#battery.warning:not(.charging) {
+    color: @red;
+}
+
+#network {
+    color: @blue;
+}
+
+#clock {
+    color: @mauve;
 }
