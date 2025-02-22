@@ -66,7 +66,7 @@ if [ -d /opt/nvim ]; then
 	export PATH="/opt/nvim/bin:$PATH"
 fi
 
-editors=("nvim" "vim" "pico" "nano")
+editors=("nvim" "vim" "pico")
 
 for editor in "${editors[@]}"; do
 	if command -v "$editor" &> /dev/null; then
@@ -88,14 +88,8 @@ elif [ -f $HOME/.bash_aliases ]; then
     source $HOME/.bash_aliases
 fi
 
-if [ -d $HOME/.local/bin ]; then
-        export PATH=$PATH:$HOME/.local/bin
-elif [ -d $HOME/.dotfiles/.local/bin ]; then
-        export PATH=$PATH:$HOME/.dotfiles/.local/bin
-fi
-
-if [ -d $HOME/.bun/bin ]; then
-	export PATH=$PATH:$HOME/.bun/bin
+if [ -f $HOME/.env-path ]; then
+	source $HOME/.env-path
 fi
 
 # zoxide

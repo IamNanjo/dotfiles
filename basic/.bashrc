@@ -106,11 +106,8 @@ if command -v tabs &>/dev/null; then
     tabs 4
 fi
 
-
-if [ -d $HOME/.local/bin ]; then
-	export PATH=$PATH:$HOME/.local/bin
-elif [ -d $HOME/.dotfiles/.local/bin ]; then
-	export PATH=$PATH:$HOME/.dotfiles/.local/bin
+if [ -f $HOME/.env-path ]; then
+	source $HOME/.env-path
 fi
 
 # Zoxide
