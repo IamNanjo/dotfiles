@@ -13,18 +13,27 @@
           - base
           - base-devel
           - go
+          - rust
+          - nodejs-lts-jod
+          - npm
+          - python
+          - mise
           - git
+          - net-tools
+          - bind
           - curl
           - wget
           - zsh
           - ripgrep
           - fzf
+          - fd
           - plocate
           - unzip
           - stow
           - neovim
 
     - name: Yay already installed
+      when: ansible_distribution == "Archlinux"
       register: yay_installed
       ansible.builtin.stat:
         path: /usr/bin/yay
@@ -38,21 +47,21 @@
         dest: yay
 
     - name: Yay makepkg
-      register: yay_makepkg
-      changed_when: yay_makepkg.rc == 0
       when:
         - ansible_distribution == "Archlinux"
         - not yay_installed.stat.exists
+      changed_when: yay_makepkg.rc == 0
+      register: yay_makepkg
       ansible.builtin.command:
         chdir: ./yay
         cmd: makepkg -f
 
     - name: Find correct pkg file to install
-      register: pkg_filename
       when:
         - ansible_distribution == "Archlinux"
         - not yay_installed.stat.exists
       failed_when: pkg_filename.matched == 0
+      register: pkg_filename
       ansible.builtin.find:
         paths: ./yay
         file_type: file
@@ -74,10 +83,6 @@
       when: ansible_distribution == "Ubuntu"
       ansible.builtin.apt:
         name:
-          # == Lua build dependencies ==
-          - build-essential
-          - libreadline-dev
-          # ============================
           - unzip
           - git
           - curl
@@ -88,20 +93,30 @@
         state: present
 
     - name: Check if mise is installed
+      when: ansible_distribution == "Ubuntu"
       register: mise_installed
       ansible.builtin.stat:
         path: "{{ ansible_env.HOME }}/.local/bin/mise"
 
     - name: Install mise
-      when: not mise_installed.stat.exists
+      when:
+        - ansible_distribution == "Ubuntu"
+        - mise_installed.stat.exists
       register: install_mise
       changed_when: install_mise.rc == 0
       ansible.builtin.shell: set -o pipefail && curl https://mise.run | sh
 
-    - name: Install mise tools
-      register: install_mise_tools
-      changed_when: install_mise_tools.rc == 0
-      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise use -g -y usage node bun go rust python lua@5.1"
+    - name: Install mise tools on Arch
+      when: ansible_distribution == "Archlinux"
+      register: install_mise_tools_arch
+      changed_when: install_mise_tools_arch.rc == 0
+      ansible.builtin.command: "/usr/bin/mise use -g -y usage bun"
+
+    - name: Install mise tools on Ubuntu
+      when: ansible_distribution == "Ubuntu"
+      register: install_mise_tools_ubuntu
+      changed_when: install_mise_tools_ubuntu.rc == 0
+      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise use -g -y usage node bun go rust python"
 
     - name: Check if Neovim is installed
       when: ansible_distribution != "Archlinux"
@@ -141,7 +156,6 @@
       changed_when: symlink_prep.rc == 0
       loop:
         - .local/bin
-        - .config/gtk-3.0
         - .config/hypr
         - .config/zed
       ansible.builtin.command: mkdir -p {{ ansible_env.HOME }}/{{ item }}
@@ -172,27 +186,3 @@
       changed_when: default_shell_zsh.rc == 0
       become: true
       ansible.builtin.command: chsh -s /usr/bin/zsh {{ ansible_env.USER }}
-
-    - name: Update npm
-      changed_when: false
-      failed_when: false
-      environment:
-        NODE_NO_WARNINGS: "1"
-      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x node -- npm i -g npm@latest --no-warnings"
-
-    - name: Install tree-sitter-cli
-      register: install_tree_sitter_cli
-      changed_when: install_tree_sitter_cli.rc == 0
-      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x rust -- cargo install tree-sitter-cli"
-
-    - name: Install Neovim npm package
-      register: install_neovim_npm_provider
-      changed_when: install_neovim_npm_provider.rc == 0
-      environment:
-        NODE_NO_WARNINGS: "1"
-      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x node -- npm i -g neovim@latest --no-warnings"
-
-    - name: Install Neovim pip package
-      register: install_neovim_python_provider
-      changed_when: install_neovim_python_provider.rc == 0
-      ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/mise x python -- pip install neovim"
