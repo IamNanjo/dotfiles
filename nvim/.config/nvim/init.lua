@@ -101,6 +101,10 @@ vim.keymap.set("n", "<C-Tab>", ":bnext<CR>", { remap = true, silent = true, desc
 vim.keymap.set("n", "<C-S-Tab>", ":bprevious<CR>", { remap = true, silent = true, desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>x", ":bdelete<CR>", { remap = true, silent = true, desc = "Delete buffer" })
 
+-- Quicklist navigation
+vim.keymap.set("n", "<C-j>", ":cnext<CR>", { noremap = true, silent = true, desc = "Next quicklist item" })
+vim.keymap.set("n", "<C-k>", ":cprevious<CR>", { noremap = true, silent = true, desc = "Previous quicklist item" })
+
 -- Save undo history
 vim.opt.undofile = true
 
