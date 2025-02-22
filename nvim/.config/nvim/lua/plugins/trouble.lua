@@ -7,25 +7,31 @@ return {
         ---@type trouble.Config
         opts = {
             auto_close = true,
+            auto_open = false,
+            auto_preview = true,
+            auto_refresh = true,
             auto_jump = true,
             focus = true,
+            restore = true,
+            follow = true,
+            indent_guides = false,
+            max_items = 50,
+            multiline = false,
+            pinned = false,
+            warn_no_results = false,
+            open_no_results = false,
         },
         cmd = "Trouble",
         keys = {
             {
                 "[d",
-                "<cmd>Trouble diagnostics prev<cr>",
+                "<CMD>Trouble diagnostics prev<CR>",
                 desc = "Go to previous [D]iagnostic message",
             },
             {
                 "]d",
-                "<cmd>Trouble diagnostics next<cr>",
+                "<CMD>Trouble diagnostics next<CR>",
                 desc = "Go to next [D]iagnostic message",
-            },
-            {
-                "<leader>cx",
-                "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)",
             },
         },
     },
