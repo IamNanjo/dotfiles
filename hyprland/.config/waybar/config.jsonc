@@ -49,14 +49,17 @@
     "clock": {
         "format": "{:%Od.%Om.%EY %H:%M}",
         "tooltip-format": "<tt>{calendar}</tt>",
-        "on-click": "",
         "calendar": {
-            "mode": "year",
+            "mode": "month",
             "mode-mon-col": 4,
             "weeks-pos": "left",
+            "on-click": "mode",
             "format": {
                 "today": "<b><span color='#f38ba8'>{}</span></b>",
             },
+        },
+        "actions": {
+            "on-click": "mode",
         },
     },
 }
