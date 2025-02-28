@@ -3,7 +3,7 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
+        branch = "master",
         keys = {
             { "<leader>sf", require("telescope.builtin").find_files, desc = "[S]earch [F]iles" },
             { "<leader>ss", require("telescope.builtin").builtin, desc = "[S]earch [S]elect Telescope" },
