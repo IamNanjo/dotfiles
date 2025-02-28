@@ -160,8 +160,26 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>/", "gcc", { desc = "comment toggle", remap = true })
 vim.keymap.set("v", "<leader>/", "gc", { desc = "comment toggle", remap = true })
 
--- Diagnostic keymaps
+-- Diagnostics
 vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+vim.diagnostic.config({
+    virtual_text = {
+        prefix = function(diagnostic)
+            local icons = {
+                [vim.diagnostic.severity.ERROR] = " ",
+                [vim.diagnostic.severity.WARN] = " ",
+                [vim.diagnostic.severity.INFO] = " ",
+                [vim.diagnostic.severity.HINT] = " ",
+            }
+
+            return icons[diagnostic.severity] or "● "
+        end,
+        spacing = 0,
+    },
+    float = {
+        border = "rounded",
+    },
+})
 
 -- Reset cursor style on exit
 vim.api.nvim_create_autocmd("VimLeave", {
