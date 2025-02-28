@@ -42,6 +42,10 @@ vim.opt.breakindent = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.smartindent = true
+vim.keymap.set("n", "<Tab>", ">>", { noremap = true, silent = true })
+vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true })
+vim.keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true })
+vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
 
 -- Ignore shift+space
 vim.api.nvim_set_keymap("", "<S-space>", "<space>", { noremap = true, silent = true })
