@@ -4,6 +4,8 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        ---@module "nvim-treesitter.configs"
+        ---@type TSConfig
         opts = {
             auto_install = true,
             highlight = { enable = true },
@@ -17,6 +19,9 @@ return {
                 "markdown",
                 "markdown_inline",
                 "regex",
+                "javascript",
+                "typescript",
+                "jsdoc",
             },
         },
         config = function(_, opts)
