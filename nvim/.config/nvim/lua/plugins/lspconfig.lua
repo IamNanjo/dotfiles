@@ -143,8 +143,8 @@ return {
                 "stylua",
                 "prettier",
             })
-            require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+            require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
             require("mason-lspconfig").setup({
                 handlers = {
                     function(server_name)
@@ -153,7 +153,7 @@ return {
 
                         server.root_dir = server.root_dir or vim.loop.cwd()
 
-                        require("lspconfig")[server_name].setup(server)
+                        lspconfig[server_name].setup(server)
                     end,
                 },
             })
