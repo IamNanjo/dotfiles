@@ -2,36 +2,96 @@
 ---@type LazyPluginSpec[]
 return {
     {
-        "abecodes/tabout.nvim",
-        event = "InsertCharPre",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            { "L3MON4D3/LuaSnip", keys = {} },
-            "hrsh7th/nvim-cmp",
+        "lilibyte/tabhula.nvim",
+        opts = {
+            tabkey = "<Tab>",
+            backward_tabkey = "<S-Tab>",
+            evil_tabkey = "",
+            evil_backward_tabkey = "",
+            completion = nil,
+            range = nil,
+            forward_characters = {
+                ["("] = function()
+                    return 1
+                end,
+                [")"] = function()
+                    return 1
+                end,
+                ["["] = function()
+                    return 1
+                end,
+                ["]"] = function()
+                    return 1
+                end,
+                ["{"] = function()
+                    return 1
+                end,
+                ["}"] = function()
+                    return 1
+                end,
+                ['"'] = function()
+                    return 1
+                end,
+                ["'"] = function()
+                    return 1
+                end,
+                ["`"] = function()
+                    return 1
+                end,
+                ["<"] = function()
+                    return 1
+                end,
+                [">"] = function()
+                    return 1
+                end,
+                [","] = function()
+                    return 1
+                end,
+                [";"] = function()
+                    return 1
+                end,
+            },
+            backward_characters = {
+                ["("] = function()
+                    return 1
+                end,
+                [")"] = function()
+                    return 1
+                end,
+                ["["] = function()
+                    return 1
+                end,
+                ["]"] = function()
+                    return 1
+                end,
+                ["{"] = function()
+                    return 1
+                end,
+                ["}"] = function()
+                    return 1
+                end,
+                ['"'] = function()
+                    return 1
+                end,
+                ["'"] = function()
+                    return 1
+                end,
+                ["`"] = function()
+                    return 1
+                end,
+                ["<"] = function()
+                    return 1
+                end,
+                [">"] = function()
+                    return 1
+                end,
+                [","] = function()
+                    return 1
+                end,
+                [";"] = function()
+                    return 1
+                end,
+            },
         },
-        config = function()
-            require("tabout").setup({
-                tabkey = "<Tab>",
-                backwards_tabkey = "<S-Tab>",
-                act_as_tab = true,
-                act_as_shift_tab = false,
-                default_tab = "<C-t>",
-                default_shift_tab = "<C-d>",
-                enable_backwards = true,
-                completion = false,
-                tabouts = {
-                    { open = "(", close = ")" },
-                    { open = "[", close = "]" },
-                    { open = "{", close = "}" },
-                    { open = "'", close = "'" },
-                    { open = '"', close = '"' },
-                    { open = "`", close = "`" },
-                    { open = "<", close = ">" },
-                    { open = ";", close = ";" },
-                },
-                ignore_beginning = true,
-                exclude = {},
-            })
-        end,
     },
 }
