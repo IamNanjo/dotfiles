@@ -52,9 +52,19 @@ source $ZSH/oh-my-zsh.sh
 
 command -v fast-theme &> /dev/null && fast-theme -q XDG:catppuccin-mocha
 
-if locale -a |grep -i ^en_FI.utf8 &> /dev/null ; then
-  export LANGUAGE="en_FI.utf8"
-  export LC_ALL="en_FI.utf8"
+if command -v locale &> /dev/null; then
+	available_locales=$(locale -a)
+
+	if echo $available_locales | grep -qE "^en_FI\.(utf8|UTF-8)$"; then
+		export LANG="en_FI.UTF-8"
+		export LC_ALL="en_FI.UTF-8"
+	elif echo $available_locales | grep -qE "^en_GB\.(utf8|UTF-8)$"; then
+		export LANG="en_GB.UTF-8"
+		export LC_ALL="en_GB.UTF-8"
+	elif echo $available_locales | grep -qE "^en_US\.(utf8|UTF-8)$"; then
+		export LANG="en_US.UTF-8"
+		export LC_ALL="en_US.UTF-8"
+	fi
 fi
 
 # Set tab indentation size to 4 spaces if possible

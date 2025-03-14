@@ -89,14 +89,14 @@ done
 if command -v locale &> /dev/null; then
 	available_locales=$(locale -a)
 
-	if echo $available_locales | grep -q "^en_FI"; then
-		export LANGUAGE="en_FI.UTF-8"
+	if echo $available_locales | grep -qE "^en_FI\.(utf8|UTF-8)$"; then
+		export LANG="en_FI.UTF-8"
 		export LC_ALL="en_FI.UTF-8"
-	elif echo $available_locales | grep -q "^en_GB"; then
-		export LANGUAGE="en_GB.UTF-8"
+	elif echo $available_locales | grep -qE "^en_GB\.(utf8|UTF-8)$"; then
+		export LANG="en_GB.UTF-8"
 		export LC_ALL="en_GB.UTF-8"
-	elif echo $available_locales | grep -q "^en_US"; then
-		export LANGUAGE="en_US.UTF-8"
+	elif echo $available_locales | grep -qE "^en_US\.(utf8|UTF-8)$"; then
+		export LANG="en_US.UTF-8"
 		export LC_ALL="en_US.UTF-8"
 	fi
 fi
