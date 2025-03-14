@@ -23,6 +23,12 @@ if ! [ -d "$ZSH/custom/plugins/fast-syntax-highlighting" ]; then
 	git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH/custom/plugins/fast-syntax-highlighting
 fi
 
+# Ensure Zig completions are installed
+if ! [ -d "$ZSH/custom/plugins/zig-shell-completions" ]; then
+	echo "Installing Zig completions"
+	git clone https://github.com/ziglang/shell-completions $ZSH/custom/plugins/zig-shell-completions
+fi
+
 ZSH_THEME="simple"
 
 zstyle ":omz:update" mode reminder
@@ -46,7 +52,7 @@ HISTDUP="erase"
 zstyle ":completion:*" matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
 
-plugins=(fzf gitfast gh npm bun docker docker-compose golang ssh fast-syntax-highlighting)
+plugins=(fzf gitfast npm docker docker-compose golang zig-shell-completions ssh fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
