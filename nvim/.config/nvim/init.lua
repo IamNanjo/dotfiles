@@ -13,7 +13,32 @@ vim.opt.title = true
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*",
     callback = function()
+        -- Update title
         vim.opt.titlestring = "%m%r%y - " .. string.gsub(vim.fn.expand("%:p#"), "^.*://", "")
+
+        -- Fix filetype
+        local current_filename = vim.fn.expand("%:t")
+        local filetypes = {
+            ["yaml.docker-compose"] = {
+                "docker-compose.yaml",
+                "docker-compose.yml",
+                "compose.yaml",
+                "compose.yml",
+            },
+            ["yaml.ansible"] = {
+                "playbook.yaml",
+                "playbook.yml",
+            },
+        }
+        for filetype, filenames in pairs(filetypes) do
+            for _, filename in ipairs(filenames) do
+                if current_filename == filename then
+                    print(filetype, current_filename)
+                    vim.bo.filetype = filetype
+                    return
+                end
+            end
+        end
     end,
 })
 
