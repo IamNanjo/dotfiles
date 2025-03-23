@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker inspect $1 | jq -r '.[].Spec.TaskTemplate.ContainerSpec.Env'
