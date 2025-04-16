@@ -36,7 +36,8 @@ label:focus {
 #pulseaudio,
 #battery,
 #network,
-#clock {
+#clock,
+#custom-notification {
     margin-left: 4px;
     margin-right: 4px;
 }
@@ -81,4 +82,9 @@ label:focus {
 
 #clock {
     color: @mauve;
+}
+
+#custom-notification {
+    color: @peach;
+    font-size: 20px;
 }
