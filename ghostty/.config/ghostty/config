@@ -1,7 +1,6 @@
 theme = catppuccin-mocha
 background-opacity = 0.9
 background = 000000
-foreground = ffffff
 bold-is-bright = true
 
 cursor-style = bar
