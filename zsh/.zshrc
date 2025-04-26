@@ -64,6 +64,9 @@ if command -v locale &> /dev/null; then
 	if echo $available_locales | grep -qE "^en_FI\.(utf8|UTF-8)$"; then
 		export LANG="en_FI.UTF-8"
 		export LC_ALL="en_FI.UTF-8"
+		xcomposefile=/usr/share/X11/locale/fi_FI.UTF-8/Compose
+		[ -r "$xcomposefile" ] && export XCOMPOSEFILE="$xcomposefile"
+		unset -v xcomposefile
 	elif echo $available_locales | grep -qE "^en_GB\.(utf8|UTF-8)$"; then
 		export LANG="en_GB.UTF-8"
 		export LC_ALL="en_GB.UTF-8"
