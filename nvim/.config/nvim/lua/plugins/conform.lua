@@ -57,7 +57,7 @@ return {
                             "--stdin-filepath",
                             vim.fn.expand("%:p"),
                             "--config-precedence",
-                            "file-override",
+                            "prefer-file",
                             "--tab-width",
                             "4",
                             "--quote-props",
