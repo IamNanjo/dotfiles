@@ -13,9 +13,7 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
 if command -v batcat &> /dev/null; then
-	alias bat="batcat -p"
-elif command -v bat &> /dev/null; then
-	alias bat="bat -p"
+	alias bat="batcat"
 fi
 
 alias ssh="TERM=xterm-256color ssh"
