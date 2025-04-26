@@ -86,6 +86,8 @@ for editor in "${editors[@]}"; do
 	fi
 done
 
+unset editors
+
 if command -v locale &> /dev/null; then
 	available_locales=$(locale -a)
 
