@@ -10,3 +10,5 @@
 	defaultBranch = main
 [core]
 	autocrlf = input
+[credential]
+	helper = store
