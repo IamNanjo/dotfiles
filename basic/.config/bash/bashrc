@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+case $- in
+    *i*) ;;
+    *) return;;
+esac
+
+# Ghostty shell integration
+: ${GHOSTTY_RESOURCES_DIR:=/usr/share/ghostty}
+if [ -n "$GHOSTTY_RESOURCES_DIR" ] && [ -d "$GHOSTTY_RESOURCES_DIR" ]; then
+    builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/bash/ghostty.bash"
+fi
+
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+if [ -f $HOME/.env ]; then
+    source $HOME/.env
+fi
+
+if [ -f ~/.dotfiles/.bash_aliases ]; then
+    . ~/.dotfiles/.bash_aliases
+elif [ -f $HOME/.bash_aliases ]; then
+    source $HOME/.bash_aliases
+fi
+
+if ! shopt -oq posix; then
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+	. /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+	. /etc/bash_completion
+    fi
+fi
+
+if [ -f $HOME/.env-path ]; then
+    source $HOME/.env-path
+fi
+
+# Zoxide
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init bash)"
+    alias cd=z
+fi
+
+# Mise
+if command -v mise &> /dev/null && [ -x ~/.local/bin/mise ]; then
+    eval "$(~/.local/bin/mise activate bash)"
+fi
