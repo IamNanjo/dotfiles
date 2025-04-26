@@ -115,6 +115,6 @@ if command -v zoxide &> /dev/null; then
 fi
 
 # mise
-if command -v mise &> /dev/null; then
+if command -v mise &> /dev/null && [ -x ~/.local/bin/mise ]; then
 	eval "$(mise activate zsh)"
 fi
