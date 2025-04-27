@@ -30,7 +30,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
         for filetype, filename_patterns in pairs(filetypes) do
             for _, filename_pattern in ipairs(filename_patterns) do
-                print(current_filename:match(filename_pattern))
                 if current_filename:match(filename_pattern) then
                     vim.bo.filetype = filetype
                     return
