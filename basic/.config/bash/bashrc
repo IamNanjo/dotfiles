@@ -54,6 +54,6 @@ if command -v zoxide &> /dev/null; then
 fi
 
 # Mise
-if command -v mise &> /dev/null && [ -x ~/.local/bin/mise ]; then
-    eval "$(~/.local/bin/mise activate bash)"
+if command -v mise &> /dev/null; then
+    eval "$(mise activate bash)"
 fi

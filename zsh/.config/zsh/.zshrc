@@ -72,6 +72,6 @@ if command -v tabs &>/dev/null; then
 fi
 
 # mise
-if command -v mise &> /dev/null && [ -x ~/.local/bin/mise ]; then
+if command -v mise &> /dev/null; then
 	eval "$(mise activate zsh)"
 fi
