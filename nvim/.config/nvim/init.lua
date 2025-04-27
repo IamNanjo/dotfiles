@@ -20,20 +20,18 @@ vim.api.nvim_create_autocmd("BufEnter", {
         local current_filename = vim.fn.expand("%:t")
         local filetypes = {
             ["yaml.docker-compose"] = {
-                "docker-compose.yaml",
-                "docker-compose.yml",
-                "compose.yaml",
-                "compose.yml",
+                "docker%-compose.*%.ya?ml",
+                "compose%.ya?ml",
             },
             ["yaml.ansible"] = {
-                "playbook.yaml",
-                "playbook.yml",
+                "playbook%.ya?ml",
             },
         }
-        for filetype, filenames in pairs(filetypes) do
-            for _, filename in ipairs(filenames) do
-                if current_filename == filename then
-                    print(filetype, current_filename)
+
+        for filetype, filename_patterns in pairs(filetypes) do
+            for _, filename_pattern in ipairs(filename_patterns) do
+                print(current_filename:match(filename_pattern))
+                if current_filename:match(filename_pattern) then
                     vim.bo.filetype = filetype
                     return
                 end
