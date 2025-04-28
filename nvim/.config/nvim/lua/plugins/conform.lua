@@ -29,7 +29,7 @@ return {
 
             if mason_registry.is_installed("prettier") then
                 local prettier = { "prettier" }
-                local prettier_langs = { "json", "jsonc", "javascript", "typescript", "vue", "html", "css" }
+                local prettier_langs = { "json", "jsonc", "javascript", "typescript", "vue", "html", "css", "scss" }
 
                 for _, lang in ipairs(prettier_langs) do
                     opts.formatters_by_ft[lang] = prettier
