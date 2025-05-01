@@ -35,10 +35,16 @@ label:focus {
 #tray,
 #pulseaudio,
 #battery,
-#network,
 #clock,
 #custom-notification {
     margin-left: 4px;
+    margin-right: 4px;
+}
+
+#network {
+    margin-left: 4px;
+}
+#custom-nmvpn {
     margin-right: 4px;
 }
 
@@ -76,8 +82,13 @@ label:focus {
     color: @red;
 }
 
-#network {
+#network,
+#custom-nmvpn {
     color: @blue;
+}
+
+#custom-nmvpn.error {
+    color: @red;
 }
 
 #clock {

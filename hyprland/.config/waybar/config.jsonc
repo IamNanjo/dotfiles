@@ -1,15 +1,16 @@
 // -*- mode: jsonc -*-
 {
     "layer": "top",
-    "position": "top", // Waybar position (top|bottom|left|right)
+    "position": "top",
     "height": 32,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
     "modules-right": [
         "tray",
         "pulseaudio",
-        "battery",
         "network",
+        "custom/nmvpn",
+        "battery",
         "clock",
         "custom/notification",
     ],
@@ -41,16 +42,26 @@
         "on-click": "pavucontrol",
     },
 
-    "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": [" ", " ", " ", " ", " "],
-    },
-
     "network": {
         "format-ethernet": " ",
         "format-wifi": " ",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}",
         "tooltip-format-wifi": "{essid} ({signalStrength}%): {ipaddr}",
+    },
+
+    "custom/nmvpn": {
+        "format": "{icon}",
+        "return-type": "json",
+        "exec": "$GOPATH/bin/waybar-nmvpn",
+        "format-icons": {
+            "connected": "󰦝 ",
+            "error": " ",
+        },
+    },
+
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-icons": [" ", " ", " ", " ", " "],
     },
 
     "clock": {
