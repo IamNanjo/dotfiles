@@ -47,7 +47,7 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#45475a \
 --color=border:#313244,label:#cdd6f4"
 
-plugins=(fzf gitfast npm docker docker-compose golang zig-shell-completions ssh fast-syntax-highlighting)
+plugins=(fzf gitfast npm docker docker-compose golang zsh-autosuggestions zig-shell-completions ssh fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
