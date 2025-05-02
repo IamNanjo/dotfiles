@@ -37,15 +37,15 @@ label:focus {
 #battery,
 #clock,
 #custom-notification {
-    margin-left: 4px;
-    margin-right: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 #network {
-    margin-left: 4px;
+    padding-left: 12px;
 }
 #custom-nmvpn {
-    margin-right: 4px;
+    padding-right: 8px;
 }
 
 #workspaces button {
