@@ -19,6 +19,7 @@ create_dirs "$HOME_DIR"
 read -p "Do you also want to edit /etc/skel directory? (y/N) " answer
 
 if [[ "$answer" =~ ^[Yy]$ ]]; then
+	sudo rm -rfv "$SKEL_DIR"/* "$SKEL_DIR"/.*
 	sudo bash -c "$(declare -f create_dirs); create_dirs \"$SKEL_DIR\""
 fi
 
