@@ -70,41 +70,41 @@ vim.keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
 
 -- Add normal space with shift+space
-vim.api.nvim_set_keymap("", "<S-space>", "<space>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<S-space>", "<space>", { noremap = true, silent = true })
+vim.keymap.set("", "<S-space>", "<space>", { noremap = true, silent = true })
+vim.keymap.set("t", "<S-space>", "<space>", { noremap = true, silent = true })
 
 -- Disable indentation with Ctrl+i
-vim.keymap.set("n", "<C-i>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-i>", "<C-i>", { noremap = true, silent = true })
 
 -- Center cursor on scroll
-vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true, desc = "Scroll down" })
-vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true, desc = "Scroll up" })
-vim.api.nvim_set_keymap("n", "<C-f>", "<C-f>zz", { noremap = true, silent = true, desc = "Scroll up" })
-vim.api.nvim_set_keymap("n", "<C-b>", "<C-b>zz", { noremap = true, silent = true, desc = "Scroll up" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true, desc = "Scroll down" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true, desc = "Scroll up" })
+vim.keymap.set("n", "<C-f>", "<C-f>zz", { noremap = true, silent = true, desc = "Scroll up" })
+vim.keymap.set("n", "<C-b>", "<C-b>zz", { noremap = true, silent = true, desc = "Scroll up" })
 
 -- Delete to void register
-vim.api.nvim_set_keymap("n", "d", '"_d', { noremap = true, silent = true, desc = "Delete" })
-vim.api.nvim_set_keymap("v", "d", '"_d', { noremap = true, silent = true, desc = "Delete" })
-vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true, silent = true, desc = "Delete" })
-vim.api.nvim_set_keymap("n", "<Del>", '"_x', { noremap = true, silent = true, desc = "Delete" })
+vim.keymap.set("n", "d", '"_d', { noremap = true, silent = true, desc = "Delete" })
+vim.keymap.set("v", "d", '"_d', { noremap = true, silent = true, desc = "Delete" })
+vim.keymap.set("n", "x", '"_x', { noremap = true, silent = true, desc = "Delete" })
+vim.keymap.set("n", "<Del>", '"_x', { noremap = true, silent = true, desc = "Delete" })
 
 -- Substitute and change to void register
-vim.api.nvim_set_keymap("n", "s", '"_s', { noremap = true, silent = true, desc = "Substitute" })
-vim.api.nvim_set_keymap("n", "S", '"_S', { noremap = true, silent = true, desc = "Substitute" })
-vim.api.nvim_set_keymap("n", "c", '"_c', { noremap = true, silent = true, desc = "Change" })
-vim.api.nvim_set_keymap("n", "C", '"_C', { noremap = true, silent = true, desc = "Change" })
-vim.api.nvim_set_keymap("v", "s", '"_s', { noremap = true, silent = true, desc = "Substitute" })
-vim.api.nvim_set_keymap("v", "S", '"_S', { noremap = true, silent = true, desc = "Substitute" })
-vim.api.nvim_set_keymap("v", "c", '"_c', { noremap = true, silent = true, desc = "Change" })
-vim.api.nvim_set_keymap("v", "C", '"_C', { noremap = true, silent = true, desc = "Change" })
+vim.keymap.set("n", "s", '"_s', { noremap = true, silent = true, desc = "Substitute" })
+vim.keymap.set("n", "S", '"_S', { noremap = true, silent = true, desc = "Substitute" })
+vim.keymap.set("n", "c", '"_c', { noremap = true, silent = true, desc = "Change" })
+vim.keymap.set("n", "C", '"_C', { noremap = true, silent = true, desc = "Change" })
+vim.keymap.set("v", "s", '"_s', { noremap = true, silent = true, desc = "Substitute" })
+vim.keymap.set("v", "S", '"_S', { noremap = true, silent = true, desc = "Substitute" })
+vim.keymap.set("v", "c", '"_c', { noremap = true, silent = true, desc = "Change" })
+vim.keymap.set("v", "C", '"_C', { noremap = true, silent = true, desc = "Change" })
 
 -- Cut
-vim.api.nvim_set_keymap("n", "<leader>d", "d", { noremap = true, silent = true, desc = "Cut" })
-vim.api.nvim_set_keymap("v", "<leader>d", "d", { noremap = true, silent = true, desc = "Cut" })
+vim.keymap.set("n", "<leader>d", "d", { noremap = true, silent = true, desc = "Cut" })
+vim.keymap.set("v", "<leader>d", "d", { noremap = true, silent = true, desc = "Cut" })
 
 -- Yank to system clipboard
-vim.api.nvim_set_keymap("n", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Copy to system clipboard" })
-vim.api.nvim_set_keymap("v", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Copy to system clipboard" })
+vim.keymap.set("n", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Copy to system clipboard" })
+vim.keymap.set("v", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Copy to system clipboard" })
 
 -- Line swaps
 vim.keymap.set("n", "<A-k>", ":move .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
