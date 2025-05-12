@@ -1,0 +1,85 @@
+if vim.g.vscode then
+    return {}
+end
+
+---@module "lazy"
+---@type LazyPluginSpec[]
+return {
+    {
+        "saghen/blink.cmp",
+        version = "1.*",
+
+        ---@module "blink.cmp"
+        ---@type blink.cmp.Config
+        opts = {
+            keymap = {
+                preset = "none",
+
+                ["<C-p>"] = { "select_prev" },
+                ["<C-n>"] = { "select_next" },
+
+                ["<C-space>"] = { "show" },
+                ["<C-e>"] = { "cancel" },
+                ["<C-f>"] = { "select_and_accept" },
+
+                ["<C-h>"] = { "show_signature" },
+            },
+
+            cmdline = {
+                keymap = { preset = "inherit" },
+                completion = { menu = { auto_show = true } },
+            },
+
+            completion = {
+                menu = {
+                    border = "rounded",
+                    draw = {
+                        columns = {
+                            { "kind_icon", "label", "label_description" },
+                            { "kind" },
+                        },
+                        components = {
+                            kind_icon = {
+                                text = function(ctx)
+                                    return " " .. ctx.kind_icon .. "  "
+                                end,
+                            },
+                        },
+                    },
+                },
+                documentation = {
+                    auto_show = true,
+                    auto_show_delay_ms = 0,
+                    window = { border = "rounded" },
+                },
+            },
+
+            signature = {
+                enabled = true,
+                window = {
+                    show_documentation = true,
+                    border = "rounded",
+                },
+            },
+
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer" },
+                providers = {
+                    emmet = {
+                        enabled = true,
+                        name = "emmet_language_server",
+                        module = "blink.cmp.sources.lsp",
+                        kind = "LSP",
+                        score_offset = -1000,
+                    },
+                },
+            },
+
+            fuzzy = {
+                implementation = "prefer_rust",
+                sorts = { "exact", "score", "sort_text" },
+            },
+        },
+        opts_extend = { "sources.default" },
+    },
+}
