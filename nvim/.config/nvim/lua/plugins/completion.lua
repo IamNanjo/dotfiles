@@ -21,8 +21,6 @@ return {
                 ["<C-space>"] = { "show" },
                 ["<C-e>"] = { "cancel" },
                 ["<C-f>"] = { "select_and_accept" },
-
-                ["<C-h>"] = { "show_signature" },
             },
 
             cmdline = {
@@ -54,26 +52,7 @@ return {
                 },
             },
 
-            signature = {
-                enabled = true,
-                window = {
-                    show_documentation = true,
-                    border = "rounded",
-                },
-            },
-
-            sources = {
-                default = { "lsp", "path", "snippets", "buffer" },
-                providers = {
-                    emmet = {
-                        enabled = true,
-                        name = "emmet_language_server",
-                        module = "blink.cmp.sources.lsp",
-                        kind = "LSP",
-                        score_offset = -1000,
-                    },
-                },
-            },
+            sources = { default = { "lsp", "path", "snippets", "buffer" } },
 
             fuzzy = {
                 implementation = "prefer_rust",
