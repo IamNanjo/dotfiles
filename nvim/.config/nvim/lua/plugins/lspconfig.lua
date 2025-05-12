@@ -18,15 +18,6 @@ return {
                 },
             },
             "mason-org/mason-lspconfig.nvim",
-            "WhoIsSethDaniel/mason-tool-installer.nvim",
-            {
-                "j-hui/fidget.nvim",
-                opts = {
-                    notification = {
-                        filter = vim.log.levels.WARN,
-                    },
-                },
-            },
             { "folke/neodev.nvim", opts = {} },
         },
         config = function()
@@ -151,8 +142,8 @@ return {
                 "prettier",
             })
 
-            require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
             require("mason-lspconfig").setup({
+                ensure_installed = ensure_installed,
                 handlers = {
                     function(server_name)
                         local server = servers[server_name] or {}
