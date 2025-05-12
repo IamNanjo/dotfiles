@@ -8,8 +8,8 @@ return {
     { -- LSP Configuration & Plugins
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "williamboman/mason.nvim", config = true },
-            "williamboman/mason-lspconfig.nvim",
+            { "mason-org/mason.nvim", config = true },
+            "mason-org/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
             {
                 "j-hui/fidget.nvim",
@@ -117,7 +117,7 @@ return {
                     },
                 },
                 ts_ls = {
-                    init_options = {},
+                    init_options = { plugins = {} },
                     filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
                     root_dir = function()
                         return lspconfig.util.root_pattern("tsconfig.json", "package.json", ".git")() or vim.loop.cwd()
@@ -126,16 +126,11 @@ return {
             }
 
             if mason_registry.is_installed("vue-language-server") then
-                servers.ts_ls.init_options = {
-                    plugins = {
-                        {
-                            name = "@vue/typescript-plugin",
-                            location = mason_registry.get_package("vue-language-server"):get_install_path()
-                                .. "/node_modules/@vue/language-server",
-                            languages = { "vue" },
-                        },
-                    },
-                }
+                table.insert(servers.ts_ls.init_options.plugins, {
+                    name = "@vue/typescript-plugin",
+                    location = vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/language-server"),
+                    languages = { "vue" },
+                })
                 table.insert(servers.ts_ls.filetypes, "vue")
                 servers.volar = {}
             end
