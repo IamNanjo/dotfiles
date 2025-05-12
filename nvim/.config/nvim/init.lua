@@ -69,9 +69,12 @@ vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true })
 vim.keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
 
--- Ignore shift+space
+-- Add normal space with shift+space
 vim.api.nvim_set_keymap("", "<S-space>", "<space>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<S-space>", "<space>", { noremap = true, silent = true })
+
+-- Disable indentation with Ctrl+i
+vim.keymap.set("n", "<C-i>", { noremap = true, silent = true })
 
 -- Center cursor on scroll
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true, desc = "Scroll down" })
