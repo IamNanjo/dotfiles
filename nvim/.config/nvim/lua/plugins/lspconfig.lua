@@ -8,7 +8,15 @@ return {
     { -- LSP Configuration & Plugins
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "mason-org/mason.nvim", config = true },
+            {
+                "mason-org/mason.nvim",
+                opts = {
+                    ui = {
+                        check_outdated_packages_on_open = false,
+                        border = "rounded",
+                    },
+                },
+            },
             "mason-org/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
             {
