@@ -127,9 +127,6 @@ return {
                         },
                     },
                     filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-                    root_dir = function()
-                        return lspconfig.util.root_pattern("tsconfig.json", "package.json", ".git")() or vim.loop.cwd()
-                    end,
                 },
                 volar = {},
             }
@@ -140,19 +137,11 @@ return {
                 "prettier",
             })
 
-            require("mason-lspconfig").setup({
-                ensure_installed = ensure_installed,
-                handlers = {
-                    function(server_name)
-                        local server = servers[server_name] or {}
-                        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
 
-                        server.root_dir = server.root_dir or vim.loop.cwd()
-
-                        lspconfig[server_name].setup(server)
-                    end,
-                },
-            })
+            for k, v in pairs(servers) do
+                vim.lsp.config(k, v)
+            end
         end,
     },
 }
