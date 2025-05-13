@@ -76,9 +76,7 @@ return {
                         plugins = {
                             {
                                 name = "@vue/typescript-plugin",
-                                location = vim.fn.expand(
-                                    "$MASON/packages/vue-language-server/node_modules/@vue/language-server"
-                                ),
+                                location = "/usr/lib/node_modules/@vue/typescript-plugin",
                                 languages = { "vue" },
                             },
                         },
@@ -88,7 +86,6 @@ return {
             }
 
             local ensure_installed = vim.tbl_keys(servers)
-            vim.list_extend(ensure_installed, { "prettier", "volar" })
 
             for k, v in pairs(servers) do
                 vim.lsp.config(k, v)
