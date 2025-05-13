@@ -5,7 +5,7 @@ end
 ---@module "lazy"
 ---@type LazyPluginSpec[]
 return {
-    { -- LSP Configuration & Plugins
+    {
         "neovim/nvim-lspconfig",
         dependencies = {
             {
@@ -115,7 +115,7 @@ return {
             }
 
             local ensure_installed = vim.tbl_keys(servers)
-            vim.list_extend(ensure_installed, { "prettier", "stylua", "volar" })
+            vim.list_extend(ensure_installed, { "prettier", "volar" })
 
             for k, v in pairs(servers) do
                 vim.lsp.config(k, v)
