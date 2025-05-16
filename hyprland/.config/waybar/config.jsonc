@@ -9,7 +9,6 @@
         "tray",
         "pulseaudio",
         "network",
-        "custom/nmvpn",
         "battery",
         "clock",
         "custom/notification",

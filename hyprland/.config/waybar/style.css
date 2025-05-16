@@ -34,6 +34,7 @@ label:focus {
 
 #tray,
 #pulseaudio,
+#network,
 #battery,
 #clock,
 #custom-notification {
@@ -41,15 +42,8 @@ label:focus {
     padding-right: 8px;
 }
 
-#network {
-    padding-left: 12px;
-}
-#custom-nmvpn {
-    padding-right: 8px;
-}
-
 #workspaces button {
-    border-radius: 6px;
+    border-radius: 4px;
 }
 
 #workspaces button.active {
@@ -82,13 +76,8 @@ label:focus {
     color: @red;
 }
 
-#network,
-#custom-nmvpn {
+#network {
     color: @blue;
-}
-
-#custom-nmvpn.error {
-    color: @red;
 }
 
 #clock {
