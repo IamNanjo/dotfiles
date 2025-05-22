@@ -57,7 +57,6 @@ return {
                         "sass",
                         "scss",
                         "php",
-                        "vue",
                         "templ",
                     },
                 },
