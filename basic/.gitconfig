@@ -10,5 +10,8 @@
 	defaultBranch = main
 [core]
 	autocrlf = input
-[credential]
-	helper = store
+[pull]
+	rebase = true
+	autoStash = true
+[rebase]
+	autoStash = true
