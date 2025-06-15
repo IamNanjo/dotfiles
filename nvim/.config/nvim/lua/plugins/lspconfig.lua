@@ -51,7 +51,6 @@ return {
                     filetypes = {
                         "css",
                         "html",
-                        "javascript",
                         "javascriptreact",
                         "less",
                         "sass",
