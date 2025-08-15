@@ -18,7 +18,6 @@ return {
                 },
             },
             "mason-org/mason-lspconfig.nvim",
-            { "folke/neodev.nvim", opts = {} },
         },
         config = function()
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -74,7 +73,7 @@ return {
                         plugins = {
                             {
                                 name = "@vue/typescript-plugin",
-                                location = "/usr/lib/node_modules/@vue/typescript-plugin",
+                                location = "/usr/lib/node_modules/@vue/language-server",
                                 languages = { "javascript", "typescript", "vue" },
                             },
                         },
