@@ -73,8 +73,10 @@ return {
                         plugins = {
                             {
                                 name = "@vue/typescript-plugin",
-                                location = "/usr/lib/node_modules/@vue/language-server",
-                                languages = { "javascript", "typescript", "vue" },
+                                location = vim.fn.stdpath("data")
+                                    .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+                                languages = { "vue" },
+                                configNamespace = "typescript",
                             },
                         },
                     },
@@ -88,6 +90,7 @@ return {
                         "vue",
                     },
                 },
+                vue_ls = {},
             }
 
             local ensure_installed = vim.tbl_keys(servers)
