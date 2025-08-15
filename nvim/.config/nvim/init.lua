@@ -82,6 +82,10 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true, desc = 
 vim.keymap.set("n", "<C-f>", "<C-f>zz", { noremap = true, silent = true, desc = "Scroll up" })
 vim.keymap.set("n", "<C-b>", "<C-b>zz", { noremap = true, silent = true, desc = "Scroll up" })
 
+-- Center cursor on find next/previous
+vim.keymap.set({ "n", "v" }, "n", "nzz")
+vim.keymap.set({ "n", "v" }, "N", "Nzz")
+
 -- Delete to void register
 vim.keymap.set("n", "d", '"_d', { noremap = true, silent = true, desc = "Delete" })
 vim.keymap.set("v", "d", '"_d', { noremap = true, silent = true, desc = "Delete" })
