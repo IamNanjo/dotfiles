@@ -17,3 +17,7 @@ if command -v batcat &> /dev/null; then
 fi
 
 alias ssh="TERM=xterm-256color ssh"
+
+if command -v tmux &> /dev/null; then
+	alias tmux="tmux -f ~/.config/tmux/tmux.conf"
+fi
