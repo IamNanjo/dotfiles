@@ -68,35 +68,43 @@ return {
                         },
                     },
                 },
-                ts_ls = {
-                    init_options = {
-                        plugins = {
-                            {
-                                name = "@vue/typescript-plugin",
-                                location = vim.fn.stdpath("data")
-                                    .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-                                languages = { "vue" },
-                                configNamespace = "typescript",
+                vtsls = {
+                    settings = {
+                        vtsls = {
+                            tsserver = {
+                                globalPlugins = {
+                                    {
+                                        name = "@vue/typescript-plugin",
+                                        location = vim.fn.stdpath("data")
+                                            .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+                                        languages = { "vue" },
+                                        configNamespace = "typescript",
+                                    },
+                                },
+                            },
+                            filetypes = {
+                                "javascript",
+                                "javascriptreact",
+                                "javascript.jsx",
+                                "typescript",
+                                "typescriptreact",
+                                "typescript.tsx",
+                                "vue",
                             },
                         },
-                    },
-                    filetypes = {
-                        "javascript",
-                        "javascriptreact",
-                        "javascript.jsx",
-                        "typescript",
-                        "typescriptreact",
-                        "typescript.tsx",
-                        "vue",
+                        vue_ls = {},
                     },
                 },
-                vue_ls = {},
             }
 
             local ensure_installed = vim.tbl_keys(servers)
 
+            local next = next
             for k, v in pairs(servers) do
-                vim.lsp.config(k, v)
+                if next(v) ~= nil then
+                    vim.lsp.config(k, v)
+                end
+                vim.lsp.enable(k)
             end
 
             require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
