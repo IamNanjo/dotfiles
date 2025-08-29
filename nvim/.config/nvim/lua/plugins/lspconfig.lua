@@ -82,29 +82,25 @@ return {
                                     },
                                 },
                             },
-                            filetypes = {
-                                "javascript",
-                                "javascriptreact",
-                                "javascript.jsx",
-                                "typescript",
-                                "typescriptreact",
-                                "typescript.tsx",
-                                "vue",
-                            },
                         },
-                        vue_ls = {},
                     },
                 },
+                filetypes = {
+                    "javascript",
+                    "javascriptreact",
+                    "javascript.jsx",
+                    "typescript",
+                    "typescriptreact",
+                    "typescript.tsx",
+                    "vue",
+                },
+                vue_ls = {},
             }
 
             local ensure_installed = vim.tbl_keys(servers)
 
-            local next = next
             for k, v in pairs(servers) do
-                if next(v) ~= nil then
-                    vim.lsp.config(k, v)
-                end
-                vim.lsp.enable(k)
+                vim.lsp.config(k, v)
             end
 
             require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
