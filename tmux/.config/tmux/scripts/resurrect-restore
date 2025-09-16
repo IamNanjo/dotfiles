@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Restore a saved tmux environment by picking from a list
+
+RES_DIR="$HOME/.local/state/tmux/resurrect"
+cd "$RES_DIR" || exit 1
+
+SELECTED="$(ls -tr *.txt 2>/dev/null | fzf --prompt="Restore session > ")"
+
+if [ -z "$SELECTED" ]; then
+	tmux display-message -d 1000 "No session selected"
+	exit 1
+fi
+
+ln -sfv "$RES_DIR/$SELECTED" "$RES_DIR/last"
+
+tmux run-shell "$HOME/.config/tmux/plugins/tmux-resurrect/scripts/restore.sh"
+tmux display-message -d 1000 "Restored session: ${SELECTED%.txt}"

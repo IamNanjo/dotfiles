@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Save session with custom name
+
+NAME="$1"
+if [ -z "$NAME" ]; then
+	echo "Usage: resurrect-save <name>"
+	exit 1
+fi
+
+RES_DIR="$HOME/.local/state/tmux/resurrect"
+mkdir -p "$RES_DIR"
+
+# Run tmux-resurrect's built-in save
+tmux run-shell "$HOME/.config/tmux/plugins/tmux-resurrect/scripts/save.sh"
+
+# Find the most recent save
+LATEST=$(ls -t "$RES_DIR"/tmux_resurrect_*.txt 2>/dev/null | head -1)
+
+if [ -n "$LATEST" ]; then
+	mv -f "$LATEST" "$RES_DIR/$NAME.txt"
+	rm -f "$RES_DIR/last"
+	tmux display-message -d 1000 "Saved session as '$NAME'"
+else
+	tmux display-message -d 1000 "No tmux-resurrect save found"
+fi
