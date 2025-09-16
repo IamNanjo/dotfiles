@@ -60,6 +60,13 @@ vim.opt.mouse = "a"
 -- Enable break indent
 vim.opt.breakindent = true
 
+-- Disable enforcing trailing newline
+vim.opt.fixeol = false
+
+-- Folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 -- Indentations
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
@@ -69,9 +76,10 @@ vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true })
 vim.keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
 
--- Add normal space with shift+space
+-- Prevent weird behavior
 vim.keymap.set("", "<S-space>", "<space>", { noremap = true, silent = true })
 vim.keymap.set("t", "<S-space>", "<space>", { noremap = true, silent = true })
+vim.keymap.set("n", "q:", "<Nop>", { noremap = true, silent = true })
 
 -- Disable indentation with Ctrl+i
 vim.keymap.set("n", "<C-i>", "<C-i>", { noremap = true, silent = true })
@@ -229,6 +237,28 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
     callback = function()
         vim.highlight.on_yank()
+    end,
+})
+
+-- Show macro recording start/stop with statusline disabled
+vim.api.nvim_create_autocmd("RecordingEnter", {
+    callback = function()
+        local reg = vim.fn.reg_recording()
+        if reg ~= "" then
+            vim.notify("Recording macro @" .. reg, vim.log.levels.INFO, { title = "Macro" })
+        else
+            vim.notify("Recording macro", vim.log.levels.INFO, { title = "Macro" })
+        end
+    end,
+})
+vim.api.nvim_create_autocmd("RecordingLeave", {
+    callback = function()
+        local reg = vim.fn.reg_recording()
+        if reg ~= "" then
+            vim.notify("Stopped recording macro @" .. reg, vim.log.levels.INFO, { title = "Macro" })
+        else
+            vim.notify("Stopped recording macro", vim.log.levels.INFO, { title = "Macro" })
+        end
     end,
 })
 
