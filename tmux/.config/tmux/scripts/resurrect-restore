@@ -5,7 +5,7 @@
 RES_DIR="$HOME/.local/state/tmux/resurrect"
 cd "$RES_DIR" || exit 1
 
-SELECTED="$(ls -tr *.txt 2>/dev/null | fzf --no-sort --prompt="Restore session > ")"
+SELECTED="$(ls -t *.txt 2>/dev/null | fzf --no-sort --prompt="Restore session > ")"
 
 if [ -z "$SELECTED" ]; then
 	tmux display-message -d 1000 "No session selected"
