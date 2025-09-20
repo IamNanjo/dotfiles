@@ -1,21 +1,23 @@
 (
     version: "0.1.1",
     state: (
-        active_sources: [],
+        active_sources: [
+            EphemeralNode(79, source),
+        ],
         active_sinks: [
-            EphemeralNode(62, sink),
+            EphemeralNode(74, sink),
         ],
         endpoints: {
-            EphemeralNode(62, sink): (
-                descriptor: EphemeralNode(62, sink),
+            GroupNode(("01K5K976GXGZJM9Z58MYMTRCE5")): (
+                descriptor: GroupNode(("01K5K976GXGZJM9Z58MYMTRCE5")),
                 is_placeholder: false,
-                display_name: "Arctis Nova Pro Wireless Digital Stereo (IEC958)",
+                display_name: "Notifications",
                 custom_name: None,
-                icon_name: "audio-card",
+                icon_name: "",
                 details: [
-                    "alsa:acp:Wireless:4:playback",
+                    "sonusmix",
                 ],
-                volume: 0.12204808,
+                volume: 0.12276299,
                 volume_mixed: true,
                 volume_locked_muted: UnmutedUnlocked,
             ),
@@ -41,7 +43,7 @@
                 details: [
                     "sonusmix",
                 ],
-                volume: 1.0,
+                volume: 0.12276299,
                 volume_mixed: true,
                 volume_locked_muted: UnmutedUnlocked,
             ),
@@ -54,19 +56,43 @@
                 details: [
                     "sonusmix",
                 ],
+                volume: 0.12350599,
+                volume_mixed: false,
+                volume_locked_muted: UnmutedUnlocked,
+            ),
+            EphemeralNode(74, sink): (
+                descriptor: EphemeralNode(74, sink),
+                is_placeholder: false,
+                display_name: "Arctis Nova Pro Wireless Digital Stereo (IEC958)",
+                custom_name: None,
+                icon_name: "audio-card",
+                details: [
+                    "alsa:acp:Wireless:4:playback",
+                ],
                 volume: 1.0,
                 volume_mixed: true,
                 volume_locked_muted: UnmutedUnlocked,
             ),
-            GroupNode(("01K5K976GXGZJM9Z58MYMTRCE5")): (
-                descriptor: GroupNode(("01K5K976GXGZJM9Z58MYMTRCE5")),
+            GroupNode(("01K5KNR7NSPKFCM0NDHK2694AH")): (
+                descriptor: GroupNode(("01K5KNR7NSPKFCM0NDHK2694AH")),
                 is_placeholder: false,
-                display_name: "Notifications",
+                display_name: "Microphone mix",
                 custom_name: None,
                 icon_name: "",
                 details: [
                     "sonusmix",
                 ],
+                volume: 0.125,
+                volume_mixed: true,
+                volume_locked_muted: UnmutedUnlocked,
+            ),
+            EphemeralNode(79, source): (
+                descriptor: EphemeralNode(79, source),
+                is_placeholder: false,
+                display_name: "［Monitor］Easy Effects Source",
+                custom_name: None,
+                icon_name: "preferences-desktop-multimedia",
+                details: [],
                 volume: 1.0,
                 volume_mixed: true,
                 volume_locked_muted: UnmutedUnlocked,
@@ -93,6 +119,46 @@
                 end: EphemeralNode(62, sink),
                 state: ConnectedLocked,
             ),
+            (
+                start: GroupNode(("01K5K94SXFBQJGDFBV39NA8MKN")),
+                end: EphemeralNode(74, sink),
+                state: ConnectedLocked,
+            ),
+            (
+                start: GroupNode(("01K5K94XKTACWP68V7QD1096HE")),
+                end: EphemeralNode(74, sink),
+                state: ConnectedLocked,
+            ),
+            (
+                start: GroupNode(("01K5K95X4AESCYP88S1GKY7H37")),
+                end: EphemeralNode(74, sink),
+                state: ConnectedLocked,
+            ),
+            (
+                start: GroupNode(("01K5K976GXGZJM9Z58MYMTRCE5")),
+                end: EphemeralNode(74, sink),
+                state: ConnectedLocked,
+            ),
+            (
+                start: GroupNode(("01K5KNR7NSPKFCM0NDHK2694AH")),
+                end: EphemeralNode(79, sink),
+                state: ConnectedLocked,
+            ),
+            (
+                start: EphemeralNode(152, source),
+                end: GroupNode(("01K5KNR7NSPKFCM0NDHK2694AH")),
+                state: ConnectedLocked,
+            ),
+            (
+                start: EphemeralNode(79, source),
+                end: GroupNode(("01K5KNR7NSPKFCM0NDHK2694AH")),
+                state: ConnectedLocked,
+            ),
+            (
+                start: GroupNode(("01K5K95X4AESCYP88S1GKY7H37")),
+                end: GroupNode(("01K5KNR7NSPKFCM0NDHK2694AH")),
+                state: ConnectedLocked,
+            ),
         ],
         persistent_nodes: {},
         applications: {},
@@ -113,6 +179,10 @@
             ("01K5K976GXGZJM9Z58MYMTRCE5"): (
                 id: ("01K5K976GXGZJM9Z58MYMTRCE5"),
                 kind: Sink,
+            ),
+            ("01K5KNR7NSPKFCM0NDHK2694AH"): (
+                id: ("01K5KNR7NSPKFCM0NDHK2694AH"),
+                kind: Source,
             ),
         },
     ),
