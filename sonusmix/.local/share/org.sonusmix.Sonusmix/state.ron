@@ -2,22 +2,48 @@
     version: "0.1.1",
     state: (
         active_sources: [
-            EphemeralNode(79, source),
+            EphemeralNode(53, source),
         ],
         active_sinks: [
-            EphemeralNode(74, sink),
+            EphemeralNode(80, sink),
         ],
         endpoints: {
-            GroupNode(("01K5K976GXGZJM9Z58MYMTRCE5")): (
-                descriptor: GroupNode(("01K5K976GXGZJM9Z58MYMTRCE5")),
+            GroupNode(("01K5K94SXFBQJGDFBV39NA8MKN")): (
+                descriptor: GroupNode(("01K5K94SXFBQJGDFBV39NA8MKN")),
                 is_placeholder: false,
-                display_name: "Notifications",
+                display_name: "Default",
                 custom_name: None,
                 icon_name: "",
                 details: [
                     "sonusmix",
                 ],
-                volume: 0.12276299,
+                volume: 0.42866108,
+                volume_mixed: false,
+                volume_locked_muted: UnmutedUnlocked,
+            ),
+            GroupNode(("01K5K95X4AESCYP88S1GKY7H37")): (
+                descriptor: GroupNode(("01K5K95X4AESCYP88S1GKY7H37")),
+                is_placeholder: false,
+                display_name: "Media",
+                custom_name: None,
+                icon_name: "",
+                details: [
+                    "sonusmix",
+                ],
+                volume: 0.42356473,
+                volume_mixed: true,
+                volume_locked_muted: UnmutedUnlocked,
+            ),
+            EphemeralNode(80, sink): (
+                descriptor: EphemeralNode(80, sink),
+                is_placeholder: false,
+                display_name: "Arctis Nova Pro Wireless Digital Stereo (IEC958)",
+                custom_name: None,
+                icon_name: "audio-card",
+                details: [
+                    "alsa:acp:Wireless:4:playback",
+                ],
+                volume: 1.0,
                 volume_mixed: true,
                 volume_locked_muted: UnmutedUnlocked,
             ),
@@ -34,41 +60,13 @@
                 volume_mixed: true,
                 volume_locked_muted: UnmutedUnlocked,
             ),
-            GroupNode(("01K5K94SXFBQJGDFBV39NA8MKN")): (
-                descriptor: GroupNode(("01K5K94SXFBQJGDFBV39NA8MKN")),
+            EphemeralNode(53, source): (
+                descriptor: EphemeralNode(53, source),
                 is_placeholder: false,
-                display_name: "Default",
+                display_name: "［Monitor］Easy Effects Source",
                 custom_name: None,
-                icon_name: "",
-                details: [
-                    "sonusmix",
-                ],
-                volume: 0.12276299,
-                volume_mixed: true,
-                volume_locked_muted: UnmutedUnlocked,
-            ),
-            GroupNode(("01K5K95X4AESCYP88S1GKY7H37")): (
-                descriptor: GroupNode(("01K5K95X4AESCYP88S1GKY7H37")),
-                is_placeholder: false,
-                display_name: "Media",
-                custom_name: None,
-                icon_name: "",
-                details: [
-                    "sonusmix",
-                ],
-                volume: 0.12350599,
-                volume_mixed: false,
-                volume_locked_muted: UnmutedUnlocked,
-            ),
-            EphemeralNode(74, sink): (
-                descriptor: EphemeralNode(74, sink),
-                is_placeholder: false,
-                display_name: "Arctis Nova Pro Wireless Digital Stereo (IEC958)",
-                custom_name: None,
-                icon_name: "audio-card",
-                details: [
-                    "alsa:acp:Wireless:4:playback",
-                ],
+                icon_name: "preferences-desktop-multimedia",
+                details: [],
                 volume: 1.0,
                 volume_mixed: true,
                 volume_locked_muted: UnmutedUnlocked,
@@ -82,18 +80,7 @@
                 details: [
                     "sonusmix",
                 ],
-                volume: 0.125,
-                volume_mixed: true,
-                volume_locked_muted: UnmutedUnlocked,
-            ),
-            EphemeralNode(79, source): (
-                descriptor: EphemeralNode(79, source),
-                is_placeholder: false,
-                display_name: "［Monitor］Easy Effects Source",
-                custom_name: None,
-                icon_name: "preferences-desktop-multimedia",
-                details: [],
-                volume: 1.0,
+                volume: 0.42866108,
                 volume_mixed: true,
                 volume_locked_muted: UnmutedUnlocked,
             ),
@@ -150,7 +137,32 @@
                 state: ConnectedLocked,
             ),
             (
+                start: GroupNode(("01K5K976GXGZJM9Z58MYMTRCE5")),
+                end: EphemeralNode(80, sink),
+                state: ConnectedLocked,
+            ),
+            (
                 start: EphemeralNode(79, source),
+                end: GroupNode(("01K5KNR7NSPKFCM0NDHK2694AH")),
+                state: ConnectedLocked,
+            ),
+            (
+                start: GroupNode(("01K5K94SXFBQJGDFBV39NA8MKN")),
+                end: EphemeralNode(80, sink),
+                state: ConnectedLocked,
+            ),
+            (
+                start: GroupNode(("01K5K94XKTACWP68V7QD1096HE")),
+                end: EphemeralNode(80, sink),
+                state: ConnectedLocked,
+            ),
+            (
+                start: GroupNode(("01K5K95X4AESCYP88S1GKY7H37")),
+                end: EphemeralNode(80, sink),
+                state: ConnectedLocked,
+            ),
+            (
+                start: EphemeralNode(53, source),
                 end: GroupNode(("01K5KNR7NSPKFCM0NDHK2694AH")),
                 state: ConnectedLocked,
             ),
@@ -174,10 +186,6 @@
             ),
             ("01K5K95X4AESCYP88S1GKY7H37"): (
                 id: ("01K5K95X4AESCYP88S1GKY7H37"),
-                kind: Sink,
-            ),
-            ("01K5K976GXGZJM9Z58MYMTRCE5"): (
-                id: ("01K5K976GXGZJM9Z58MYMTRCE5"),
                 kind: Sink,
             ),
             ("01K5KNR7NSPKFCM0NDHK2694AH"): (
