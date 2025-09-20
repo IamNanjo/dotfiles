@@ -1,0 +1,119 @@
+(
+    version: "0.1.1",
+    state: (
+        active_sources: [],
+        active_sinks: [
+            EphemeralNode(62, sink),
+        ],
+        endpoints: {
+            EphemeralNode(62, sink): (
+                descriptor: EphemeralNode(62, sink),
+                is_placeholder: false,
+                display_name: "Arctis Nova Pro Wireless Digital Stereo (IEC958)",
+                custom_name: None,
+                icon_name: "audio-card",
+                details: [
+                    "alsa:acp:Wireless:4:playback",
+                ],
+                volume: 0.12204808,
+                volume_mixed: true,
+                volume_locked_muted: UnmutedUnlocked,
+            ),
+            GroupNode(("01K5K94XKTACWP68V7QD1096HE")): (
+                descriptor: GroupNode(("01K5K94XKTACWP68V7QD1096HE")),
+                is_placeholder: false,
+                display_name: "Chat",
+                custom_name: None,
+                icon_name: "",
+                details: [
+                    "sonusmix",
+                ],
+                volume: 1.0,
+                volume_mixed: true,
+                volume_locked_muted: UnmutedUnlocked,
+            ),
+            GroupNode(("01K5K94SXFBQJGDFBV39NA8MKN")): (
+                descriptor: GroupNode(("01K5K94SXFBQJGDFBV39NA8MKN")),
+                is_placeholder: false,
+                display_name: "Default",
+                custom_name: None,
+                icon_name: "",
+                details: [
+                    "sonusmix",
+                ],
+                volume: 1.0,
+                volume_mixed: true,
+                volume_locked_muted: UnmutedUnlocked,
+            ),
+            GroupNode(("01K5K95X4AESCYP88S1GKY7H37")): (
+                descriptor: GroupNode(("01K5K95X4AESCYP88S1GKY7H37")),
+                is_placeholder: false,
+                display_name: "Media",
+                custom_name: None,
+                icon_name: "",
+                details: [
+                    "sonusmix",
+                ],
+                volume: 1.0,
+                volume_mixed: true,
+                volume_locked_muted: UnmutedUnlocked,
+            ),
+            GroupNode(("01K5K976GXGZJM9Z58MYMTRCE5")): (
+                descriptor: GroupNode(("01K5K976GXGZJM9Z58MYMTRCE5")),
+                is_placeholder: false,
+                display_name: "Notifications",
+                custom_name: None,
+                icon_name: "",
+                details: [
+                    "sonusmix",
+                ],
+                volume: 1.0,
+                volume_mixed: true,
+                volume_locked_muted: UnmutedUnlocked,
+            ),
+        },
+        links: [
+            (
+                start: GroupNode(("01K5K94SXFBQJGDFBV39NA8MKN")),
+                end: EphemeralNode(62, sink),
+                state: ConnectedLocked,
+            ),
+            (
+                start: GroupNode(("01K5K94XKTACWP68V7QD1096HE")),
+                end: EphemeralNode(62, sink),
+                state: ConnectedLocked,
+            ),
+            (
+                start: GroupNode(("01K5K95X4AESCYP88S1GKY7H37")),
+                end: EphemeralNode(62, sink),
+                state: ConnectedLocked,
+            ),
+            (
+                start: GroupNode(("01K5K976GXGZJM9Z58MYMTRCE5")),
+                end: EphemeralNode(62, sink),
+                state: ConnectedLocked,
+            ),
+        ],
+        persistent_nodes: {},
+        applications: {},
+        devices: {},
+        group_nodes: {
+            ("01K5K94SXFBQJGDFBV39NA8MKN"): (
+                id: ("01K5K94SXFBQJGDFBV39NA8MKN"),
+                kind: Sink,
+            ),
+            ("01K5K94XKTACWP68V7QD1096HE"): (
+                id: ("01K5K94XKTACWP68V7QD1096HE"),
+                kind: Sink,
+            ),
+            ("01K5K95X4AESCYP88S1GKY7H37"): (
+                id: ("01K5K95X4AESCYP88S1GKY7H37"),
+                kind: Sink,
+            ),
+            ("01K5K976GXGZJM9Z58MYMTRCE5"): (
+                id: ("01K5K976GXGZJM9Z58MYMTRCE5"),
+                kind: Sink,
+            ),
+        },
+    ),
+)
