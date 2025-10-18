@@ -92,6 +92,8 @@ return {
                         "typescriptreact",
                         "typescript.tsx",
                         "vue",
+                        "json",
+                        "jsonc",
                     },
                 },
                 vue_ls = {},
