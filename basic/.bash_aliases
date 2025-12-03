@@ -7,8 +7,8 @@ alias grep="grep -E --color=auto"
 alias ssh="TERM=xterm-256color ssh"
 
 if command -v eza &> /dev/null; then
-	alias ll="eza -laah --classify --git --total-size --hyperlink"
-	alias tree="eza -lah --tree --classify --git --total-size --hyperlink"
+	alias ll="eza -lgaah --classify --git --hyperlink"
+	alias tree="eza -lgah --tree --classify --git --hyperlink"
 else
 	alias ll="ls -AlFh"
 	alias tree="tree -Fh"
