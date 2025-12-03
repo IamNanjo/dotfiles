@@ -66,6 +66,9 @@ vim.opt.fixeol = false
 -- Folding
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
 
 -- Indentations
 vim.opt.shiftwidth = 4
