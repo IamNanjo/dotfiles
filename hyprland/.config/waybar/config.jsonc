@@ -55,7 +55,7 @@
 
     "clock": {
         "format": "{:%Od.%Om.%EY %H:%M}",
-        "tooltip-format": "<tt>{calendar}</tt>",
+        "tooltip-format": "{calendar}",
         "calendar": {
             "mode": "month",
             "mode-mon-col": 4,
