@@ -58,7 +58,7 @@ return {
         end,
         init = function()
             vim.opt.termguicolors = true
-            vim.cmd([[colorscheme catppuccin]])
+            vim.cmd([[colorscheme catppuccin-mocha]])
         end,
     },
 }

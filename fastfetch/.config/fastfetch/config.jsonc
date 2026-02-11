@@ -3,7 +3,6 @@
     "logo": {
         "padding": { "right": 4 },
     },
-    "general": { "multithreading": true },
     "display": {
         "stat": true,
         "size": { "ndigits": 0 },

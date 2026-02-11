@@ -7,6 +7,7 @@ end
 return {
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "master",
         build = ":TSUpdate",
         ---@module "nvim-treesitter.configs"
         ---@type TSConfig
