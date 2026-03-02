@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if command -v batcat &>/dev/null && command -v col &>/dev/null; then
+	export MANPAGER="sh -c 'col -bx | bat -pl man'"
+	export GROFF_NO_SGR=1
+elif command -v bat &>/dev/null && command -v col &>/dev/null; then
+	export MANPAGER="sh -c 'col -bx | bat -pl man'"
+	export GROFF_NO_SGR=1
+fi

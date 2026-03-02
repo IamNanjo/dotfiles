@@ -63,10 +63,6 @@ elif [ -f $HOME/.bash_aliases ]; then
 	source $HOME/.bash_aliases
 fi
 
-if [ -f $HOME/.env-path ]; then
-	source $HOME/.env-path
-fi
-
 # zoxide
 if command -v zoxide &> /dev/null; then
 	eval "$(zoxide init zsh)"
@@ -76,9 +72,4 @@ fi
 # Set tab indentation size to 4 spaces if possible
 if command -v tabs &>/dev/null; then
 	tabs 4
-fi
-
-# mise
-if command -v mise &> /dev/null; then
-	eval "$(mise activate zsh)"
 fi

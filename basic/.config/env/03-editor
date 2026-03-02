@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+editors=("nvim" "vim" "pico")
+
+for editor in "${editors[@]}"; do
+    if command -v "$editor" &> /dev/null; then
+        export EDITOR=$editor
+        export SYSTEMD_EDITOR=$editor
+        break
+    fi
+done
+
+unset editors
