@@ -1,5 +1,8 @@
 set folder=/tmp
 
+# Adds + marker when wrapping lines
+set markers=no
+
 # Use XDG directories
 set folder="$XDG_DATA_HOME/neomutt"
 set header_cache="$XDG_CACHE_HOME/neomutt/headers"
