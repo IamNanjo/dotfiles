@@ -1,7 +1,7 @@
 [user]
-	email = 48948888+IamNanjo@users.noreply.github.com
-	name = IamNanjo
-	signingkey = A6212F07FC2497F8
+	email = arttu@nanjo.dev
+	name = Arttu Kaipainen
+	signingkey = A2DC876ED41064B62F44AA3CDF1DFBAD1FB4337D
 [commit]
 	gpgsign = true
 [tag]
