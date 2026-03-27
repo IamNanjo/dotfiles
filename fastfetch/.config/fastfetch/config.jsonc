@@ -5,6 +5,7 @@
     },
     "display": {
         "stat": true,
+        "separator": "",
         "size": { "ndigits": 0 },
         "key": { "type": "both", "width": 26 },
         "color": { "keys": "blue", "output": "italic_" },
@@ -26,21 +27,18 @@
         },
     },
     "modules": [
+        { "type": "custom", "format": "\u001b[1;34m󰘚 System & Kernel\u001b[0m" },
         { "type": "os", "format": "{pretty-name} {version-id} {variant}" },
         { "type": "bootmgr", "format": "{name}" },
-        {
-            "type": "kernel",
-            "format": "{sysname} {release} {display-version}",
-        },
+        { "type": "kernel", "format": "{sysname} {release} ({arch})" },
         { "type": "initsystem", "format": "{name}" },
         "uptime",
         "packages",
+        "break",
+
+        { "type": "custom", "format": "\u001b[1;34m󰪚 Desktop Environment & Terminal\u001b[0m" },
         "shell",
         { "type": "editor", "format": "{name} {version}" },
-        {
-            "type": "display",
-            "format": "{width}x{height}@{refresh-rate} - Primary: {is-primary}",
-        },
         "wm",
         "theme",
         "icons",
@@ -48,44 +46,47 @@
         "cursor",
         "terminal",
         "terminalfont",
+        { "type": "display", "format": "{width}x{height}@{refresh-rate} - Primary: {is-primary}" },
+        "break",
+
+        { "type": "custom", "format": "\u001b[1;34m󰠵 Hardware Resources\u001b[0m" },
         {
             "type": "cpu",
             "showPeCoreCount": true,
             "temp": true,
-            "format": "{name} ({cores-physical}) {temperature}",
+            "format": "{name} ({cores-physical}) {temperature}"
         },
         {
             "type": "gpu",
             "driverSpecific": true,
             "temp": true,
-            "format": "{name} ({core-count}) {temperature}",
+            "format": "{name} ({core-count}) {temperature}"
         },
         "memory",
         "swap",
-        {
-            "type": "disk",
-            "format": "{size-used} / {size-total} ({size-percentage})",
-        },
+        { "type": "disk", "format": "{size-used} / {size-total} ({size-percentage})" },
         {
             "type": "physicaldisk",
             "temp": true,
             "key": "{dev-path}",
-            "format": "[{physical-type}] {name}",
+            "format": "[{physical-type}] {name}"
         },
+        { "type": "battery", "temp": true },
+        { "type": "camera", "format": "{name} {width}x{height}" },
+        "break",
+
+        { "type": "custom", "format": "\u001b[1;34m󰛳 Connectivity & Misc\u001b[0m" },
         { "type": "publicip", "timeout": 1000 },
         { "type": "localip", "showSpeed": true },
         "dns",
         "wifi",
-        "locale",
         "bluetooth",
         "bluetoothradio",
-        { "type": "battery", "temp": true },
-        { "type": "camera", "format": "{name} {width}x{height}" },
-        {
-            "type": "datetime",
-            "format": "{day-pretty}.{month-pretty}.{year} {hour}:{minute}:{second}",
-        },
+        "locale",
+        { "type": "datetime", "format": "{day-pretty}.{month-pretty}.{year} {hour}:{minute}:{second}" },
         { "type": "weather", "timeout": 5000 },
-        { "type": "colors", "block": { "width": 6 } },
-    ],
+        "break",
+
+        { "type": "colors", "block": { "width": 6 } }
+    ]
 }
