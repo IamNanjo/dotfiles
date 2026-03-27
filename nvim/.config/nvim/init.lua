@@ -159,6 +159,17 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = "Previous quicklist item" }
 )
 
+-- CodeCompanion
+vim.keymap.set({ "n", "v" }, "<leader>cca", "<cmd>CodeCompanionActions<cr>",
+    { noremap = true, silent = true, desc = "Open CodeCompanion actions menu" }
+)
+vim.keymap.set({ "n", "v" }, "<leader>cci", "<cmd>CodeCompanion<cr>",
+    { noremap = true, silent = true, desc = "CodeCompanion inline prompt" }
+)
+vim.keymap.set({ "n", "v" }, "<leader>ccc", "<cmd>CodeCompanionChat<cr>",
+    { noremap = true, silent = true, desc = "CodeCompanion inline prompt" }
+)
+
 -- Save undo history
 vim.opt.undofile = true
 
