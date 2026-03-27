@@ -53,10 +53,6 @@ source $ZSH/oh-my-zsh.sh
 
 command -v fast-theme &> /dev/null && fast-theme -q XDG:catppuccin-mocha
 
-if [ -f $HOME/.env ]; then
-	source $HOME/.env
-fi
-
 if [ -f $HOME/.dotfiles/.bash_aliases ]; then
 	source $HOME/.dotfiles/.bash_aliases
 elif [ -f $HOME/.bash_aliases ]; then

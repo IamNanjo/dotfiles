@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+BIN_DIRS=(
+	$HOME/.local/bin
+	$HOME/.bun/bin
+	$HOME/.cargo/bin
+	${GOPATH:-$HOME/go}/bin
+	$PNPM_HOME
+)
+
+for bin_dir in "${BIN_DIRS[@]}"; do
+    export PATH="$bin_dir:$PATH"
+done
