@@ -23,7 +23,7 @@ return {
                     comments = { "italic" },
                 },
                 integrations = {
-                    blink_cmp = { style = "bordered" },
+                    cmp = true,
                     gitsigns = true,
                     lsp_trouble = true,
                     mason = true,
