@@ -7,6 +7,9 @@ vim.g.have_nerd_font = true
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
+-- Adjust diff hunk size to be smaller and smarter
+vim.o.diffopt = "filler,anchor,iwhiteall,indent-heuristic,vertical,inline:word,linematch:60,context:2,algorithm:patience"
+
 -- Dynamic window title ([Modified flag][read-only flag][filetype] - File path without protocol)
 -- :h titlestring
 vim.opt.title = true
@@ -216,9 +219,12 @@ vim.keymap.set("n", "<leader>/", "gcc", { desc = "comment toggle", remap = true 
 vim.keymap.set("v", "<leader>/", "gc", { desc = "comment toggle", remap = true })
 
 -- Diagnostics
+vim.highlight.priorities.treesitter = 1000
 vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.diagnostic.config({
     virtual_text = {
+        severity_limit = "Error",
+        spacing = 0,
         prefix = function(diagnostic)
             local icons = {
                 [vim.diagnostic.severity.ERROR] = " ",
@@ -227,14 +233,29 @@ vim.diagnostic.config({
                 [vim.diagnostic.severity.HINT] = "󰘥 ",
             }
 
-            return icons[diagnostic.severity] or "● "
+            return icons[diagnostic.severity] or ""
         end,
-        spacing = 0,
     },
     float = {
+        source = false,
+        header = "",
+        prefix = "",
+        suffix = "",
         border = "rounded",
+        format = function(diagnostic) return string.format("%s", diagnostic.message) end
     },
 })
+-- Set file type to markdown for floating window
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.focus_id = opts.focus_id or "markdown"
+    if not syntax or syntax == "plaintext" then
+        syntax = "markdown"
+    end
+    local winnr, bufnr = orig_util_open_floating_preview(contents, syntax, opts, ...)
+    return winnr, bufnr
+end
 
 -- Reset cursor style on exit
 vim.api.nvim_create_autocmd("VimLeave", {
@@ -298,7 +319,6 @@ require("lazy").setup("plugins", {
                 "matchit",
                 "matchparen",
                 "netrwPlugin",
-                "rplugin",
                 "spell",
                 "spellfile_plugin",
                 "syntax",

@@ -41,7 +41,7 @@ return {
                     -- Default config if no local .prettierrc file is found
                     -- {
                     --     "useTabs": false,
-                    --     "tabWidth": 2,
+                    --     "tabWidth": 4,
                     --     "semi": true,
                     --     "singleQuote": false,
                     --     "jsxSingleQuote": false,
@@ -59,7 +59,7 @@ return {
                             "--config-precedence",
                             "prefer-file",
                             "--tab-width",
-                            "2",
+                            "4",
                             "--quote-props",
                             "consistent",
                         }

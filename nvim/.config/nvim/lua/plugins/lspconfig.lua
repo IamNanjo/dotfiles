@@ -18,6 +18,20 @@ return {
                 },
             },
             "mason-org/mason-lspconfig.nvim",
+            {
+                "enochchau/nvim-pretty-ts-errors",
+                build = "npm install",
+                ft = {
+                    "javascript",
+                    "javascriptreact",
+                    "typescript",
+                    "typescriptreact",
+                    "vue",
+                    "json",
+                    "jsonc"
+                },
+                config = function() end
+            }
         },
         config = function()
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -93,6 +107,23 @@ return {
                         "json",
                         "jsonc",
                     },
+                    handlers = {
+                        ---@param err lsp.ResponseError|nil
+                        ---@param result lsp.PublishDiagnosticsParams
+                        ---@param ctx lsp.HandlerContext
+                        ---@param config vim.diagnostic.Opts | table
+                        ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+                            if result.diagnostics then
+                                for _, diagnostic in ipairs(result.diagnostics) do
+                                    local ok, formatted = pcall(vim.fn.PrettyTsFormat, diagnostic.message)
+                                    if ok then
+                                        diagnostic.message = formatted
+                                    end
+                                end
+                            end
+                            vim.lsp.diagnostic.on_publish_diagnostics(nil, result, ctx)
+                        end,
+                    }
                 },
                 vue_ls = {},
             }
