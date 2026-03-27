@@ -21,3 +21,7 @@ fi
 if command -v tmux &> /dev/null; then
 	alias tmux="tmux -f ~/.config/tmux/tmux.conf"
 fi
+
+if command -v goreportcard-cli &> /dev/null; then
+	alias goreportcard="goreportcard-cli -v | sed '/^gocyclo/,/^ineffasign/{/^gocyclo/b;/^ineffasign/b;d;}'"
+fi
