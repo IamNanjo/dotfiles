@@ -23,5 +23,5 @@ if command -v tmux &> /dev/null; then
 fi
 
 if command -v goreportcard-cli &> /dev/null; then
-	alias goreportcard="goreportcard-cli -v | sed '/^gocyclo/,/^ineffasign/{/^gocyclo/b;/^ineffasign/b;d;}'"
+	alias goreportcard="goreportcard-cli -v | sed '/^gocyclo/,/^ineffassign/{ /^gocyclo/b; /^ineffassign/b; d }'"
 fi
