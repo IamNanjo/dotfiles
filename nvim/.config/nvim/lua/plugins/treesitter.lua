@@ -7,15 +7,17 @@ end
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        branch = "master",
+        branch = "main",
         build = ":TSUpdate",
-        ---@module "nvim-treesitter.configs"
-        ---@type TSConfig
-        opts = {
-            auto_install = true,
-            highlight = { enable = true },
-            indent = { enable = true },
-            ensure_installed = {
+        lazy = false,
+        config = function()
+            local ts = require("nvim-treesitter")
+            ts.setup({
+                auto_install = true,
+                highlight = { enable = true },
+                indent = { enable = true },
+            })
+            ts.install({
                 "bash",
                 "comment",
                 "git_config",
@@ -23,20 +25,20 @@ return {
                 "gitattributes",
                 "gitcommit",
                 "gitignore",
+                "go",
+                "javascript",
+                "jsdoc",
+                "json",
                 "markdown",
                 "markdown_inline",
                 "query",
                 "regex",
-                "javascript",
-                "jsdoc",
+                "sql",
+                "templ",
                 "typescript",
                 "vim",
                 "vimdoc",
-            },
-        },
-        config = function(_, opts)
-            require("nvim-treesitter.install").prefer_git = true
-            require("nvim-treesitter.configs").setup(opts)
+            })
         end,
     },
 }
