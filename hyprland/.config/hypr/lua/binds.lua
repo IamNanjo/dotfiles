@@ -3,6 +3,7 @@ local menu = "rofi -show drun -sort -sorting-method fzf"
 
 -- bind = Control_L Alt_L, T, exec, $terminal
 hl.bind("CONTROL + ALT + T", hl.dsp.exec_cmd(terminal), { desc = "Open terminal" })
+hl.bind("SUPER + SHIFT + Q", hl.dsp.window.close(), { desc = "Close active window" })
 hl.bind("SUPER + Q", hl.dsp.window.kill(), { desc = "Kill active window" })
 hl.bind("SUPER + R", hl.dsp.exec_cmd("hyprland-run"), { desc = "Open hyprland-run menu" })
 hl.bind("SUPER + S", hl.dsp.exec_cmd(menu), { desc = "Open application launcher" })
