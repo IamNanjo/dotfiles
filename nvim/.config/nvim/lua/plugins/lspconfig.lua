@@ -82,6 +82,16 @@ return {
                         },
                     },
                 },
+                tsgo = {
+                    filetypes = {
+                        "javascript",
+                        "javascriptreact",
+                        "typescript",
+                        "typescriptreact",
+                        "json",
+                        "jsonc",
+                    },
+                },
                 vtsls = {
                     settings = {
                         vtsls = {
@@ -98,15 +108,7 @@ return {
                             },
                         },
                     },
-                    filetypes = {
-                        "javascript",
-                        "javascriptreact",
-                        "typescript",
-                        "typescriptreact",
-                        "vue",
-                        "json",
-                        "jsonc",
-                    },
+                    filetypes = { "vue" },
                     handlers = {
                         ---@param err lsp.ResponseError|nil
                         ---@param result lsp.PublishDiagnosticsParams
