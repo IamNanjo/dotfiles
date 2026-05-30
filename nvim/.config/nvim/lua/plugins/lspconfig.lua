@@ -28,10 +28,10 @@ return {
                     "typescriptreact",
                     "vue",
                     "json",
-                    "jsonc"
+                    "jsonc",
                 },
-                config = function() end
-            }
+                config = function() end,
+            },
         },
         config = function()
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -123,7 +123,7 @@ return {
                             end
                             vim.lsp.diagnostic.on_publish_diagnostics(nil, result, ctx)
                         end,
-                    }
+                    },
                 },
                 vue_ls = {},
             }
