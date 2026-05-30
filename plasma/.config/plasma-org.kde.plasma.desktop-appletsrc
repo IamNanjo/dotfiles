@@ -7,6 +7,7 @@ RightButton;NoModifier=org.kde.contextmenu
 
 [Containments][27]
 ItemGeometries-2560x1440=
+ItemGeometries-3440x1440=
 ItemGeometriesHorizontal=
 activityId=fcce7c75-faa0-4717-885e-77b209172e91
 formfactor=0
@@ -65,15 +66,19 @@ plugin=org.kde.plasma.digitalclock
 popupHeight=400
 popupWidth=560
 
-[Containments][3][Applets][4]
+[Containments][3][Applets][32]
 immutability=1
 plugin=org.kde.plasma.kickoff
 
-[Containments][3][Applets][4][Configuration]
-popupHeight=509
-popupWidth=647
+[Containments][3][Applets][32][Configuration]
+popupHeight=493
+popupWidth=625
 
-[Containments][3][Applets][4][Configuration][General]
+[Containments][3][Applets][32][Configuration][ConfigDialog]
+DialogHeight=630
+DialogWidth=810
+
+[Containments][3][Applets][32][Configuration][General]
 favoritesPortedToKAstats=true
 
 [Containments][3][Applets][6]
@@ -184,7 +189,7 @@ knownItems=org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.camerain
 scaleIconsToFit=true
 
 [Containments][3][General]
-AppletOrder=4;6;7;8;22
+AppletOrder=32;6;7;8;22
 
 [ScreenMapping]
 itemsOnDisabledScreens=0,fcce7c75-faa0-4717-885e-77b209172e91,23,desktop:/Desktop/L.A. Noire The VR Case Files.desktop,desktop:/Desktop/Wuthering Waves (WuWa).desktop,desktop:/Desktop/Enshrouded.desktop,desktop:/Desktop/Borderlands 4.desktop,desktop:/Desktop/wine-extension-crt.desktop,desktop:/Desktop/wine-extension-chm.desktop,desktop:/Desktop/Blade & Sorcery.desktop,desktop:/Desktop/wine-extension-msp.desktop,desktop:/Desktop/Beat Saber.desktop,desktop:/locale,desktop:/Desktop/wine-extension-hlp.desktop,desktop:/Desktop/Westworld Awakening.desktop,desktop:/Desktop/Euro Truck Simulator 2.desktop,desktop:/Downloads,desktop:/Desktop,desktop:/Desktop/Warframe.desktop,desktop:/Desktop/SUPERHOT VR.desktop,desktop:/Desktop/wine-extension-vbs.desktop,desktop:/aoc,desktop:/Screenshots,desktop:/Desktop/mimeinfo.cache,desktop:/Desktop/net.local.rofi.desktop,desktop:/Desktop/wine-extension-reg.desktop
