@@ -3,6 +3,9 @@ background-opacity = 0.9
 background = 000000
 bold-is-bright = true
 
+window-width = 160
+window-height = 40
+
 cursor-style = bar
 
 font-family = JetBrainsMono Nerd Font
