@@ -69,3 +69,14 @@ fi
 if command -v tabs &>/dev/null; then
 	tabs 4
 fi
+
+if ! command -v nvm &> /dev/null; then
+	nvm() {
+		local init="/usr/share/nvm/init-nvm.sh"
+		if [ -f "$init" ]; then
+			unset -f nvm
+			source "$init"
+			nvm "$@"
+		fi
+	}
+fi
