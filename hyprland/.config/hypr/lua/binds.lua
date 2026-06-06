@@ -1,5 +1,6 @@
 local terminal = "ghostty"
 local menu = "rofi -show drun -sort -sorting-method fzf"
+local fileManager = "dolphin"
 
 -- bind = Control_L Alt_L, T, exec, $terminal
 hl.bind("CONTROL + ALT + T", hl.dsp.exec_cmd(terminal), { desc = "Open terminal" })
@@ -7,6 +8,7 @@ hl.bind("SUPER + SHIFT + Q", hl.dsp.window.close(), { desc = "Close active windo
 hl.bind("SUPER + Q", hl.dsp.window.kill(), { desc = "Kill active window" })
 hl.bind("SUPER + R", hl.dsp.exec_cmd("hyprland-run"), { desc = "Open hyprland-run menu" })
 hl.bind("SUPER + S", hl.dsp.exec_cmd(menu), { desc = "Open application launcher" })
+hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager), { desc = "Open file manager" })
 
 hl.bind("SUPER + M", hl.dsp.exec_cmd("uwsm stop"), { desc = "Close Hyprland (uwsm)" })
 hl.bind("SUPER + V", hl.dsp.window.float(), { desc = "Toggle float for active window" })

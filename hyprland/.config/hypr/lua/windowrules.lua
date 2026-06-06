@@ -117,3 +117,12 @@ hl.window_rule({
 
 	workspace = "4 silent",
 })
+
+hl.window_rule({
+	name = "dolphin",
+	match = {
+		class = "org.kde.dolphin"
+	},
+
+	float = 1
+})
