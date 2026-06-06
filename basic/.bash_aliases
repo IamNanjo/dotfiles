@@ -25,3 +25,7 @@ fi
 if command -v goreportcard-cli &> /dev/null; then
 	alias goreportcard="goreportcard-cli -v | sed '/^gocyclo/,/^ineffassign/{ /^gocyclo/b; /^ineffassign/b; d }'"
 fi
+
+if command -v fzf &> /dev/null && command -v paru &> /dev/null; then
+	alias parufzf="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S --needed"
+fi
