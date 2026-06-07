@@ -2,29 +2,42 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Widgets
 import Quickshell.Services.SystemTray
+import "../themes"
 
-Row {
+RowLayout {
     id: systemTray
 
-    spacing: 12
+    height: parent.height
 
-    Layout.fillHeight: true
+    spacing: 8
 
     Repeater {
         model: SystemTray.items
 
-        IconImage {
-            id: trayIcon
-            property int size: 22
+        Rectangle {
+            id: trayIconWrapper
+            visible: modelData.icon != ""
 
-            source: modelData.icon
-            width: size
-            height: size
+            color: (trayIconHover.hovered || contextMenu.visible) ? Mocha.surface2 : "transparent"
+            radius: 4
 
-            anchors {
-                verticalCenter: parent.verticalCenter
+            Layout.preferredWidth: height
+            Layout.fillHeight: true
+
+            Image {
+                id: trayIcon
+                source: modelData.icon
+                sourceSize: Qt.size(32, 32)
+
+                anchors.centerIn: parent
+                width: 24
+                height: width
+            }
+
+            HoverHandler {
+                id: trayIconHover
+                cursorShape: Qt.PointingHandCursor
             }
 
             QsMenuAnchor {
@@ -68,4 +81,7 @@ Row {
             }
         }
     }
+
+    // Spacing between last tray item and next module
+    Item {}
 }

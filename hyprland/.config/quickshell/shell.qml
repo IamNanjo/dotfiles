@@ -2,6 +2,7 @@
 //@ pragma UseQApplication
 import Quickshell
 import QtQuick
+import QtQuick.Layouts
 import "components" as Components
 
 Variants {
@@ -63,14 +64,16 @@ Variants {
                     rightMargin: 16
                 }
 
-                height: parent.height
-                spacing: 16
+                Layout.alignment: Qt.AlignCenter | Qt.AlignRight
 
-                Components.SystemTray {
+                height: parent.height
+                spacing: 8
+
+                Components.SystemTray {}
+
+                Components.Battery {
                     anchors {
                         verticalCenter: parent.verticalCenter
-                        margins: 0
-                        rightMargin: 24
                     }
                 }
 

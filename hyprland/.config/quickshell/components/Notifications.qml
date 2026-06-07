@@ -8,9 +8,11 @@ Components.Button {
     id: notifications
     property bool isDnd: false
     property bool hasNotifications: false
+    property int notificationCount: 0
 
     backgroundColor: "transparent"
     iconLeft: isDnd ? "notification-disabled-new-symbolic" : (hasNotifications ? "notification-active-symbolic" : "notification-symbolic")
+    tooltip: notificationCount ? `${notificationCount} notification${notificationCount === 1 ? "" : "s"}` : ""
     onLeftClick: {
         Quickshell.execDetached(["swaync-client", "-t"]);
     }
@@ -41,7 +43,7 @@ Components.Button {
 
                     notifications.isDnd = state.alt.includes("dnd");
                     notifications.hasNotifications = state.alt.includes("notification");
-                    notifications.text = state.text !== "0" ? state.text : "";
+                    notifications.notificationCount = Number(state.text);
                 } catch (e) {}
             }
         }
