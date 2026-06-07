@@ -20,11 +20,11 @@ hl.bind("SUPER + L", hl.dsp.focus({ direction = "r" }), { desc = "Move focus rig
 
 for i = 1, 10 do
 	local key = i % 10
-	hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = key }), { desc = "Focus workspace " .. key })
+	hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }), { desc = "Focus workspace " .. i })
 	hl.bind(
 		"SUPER + SHIFT + " .. key,
-		hl.dsp.window.move({ workspace = key }),
-		{ desc = "Move window to workspace " .. key }
+		hl.dsp.window.move({ workspace = i }),
+		{ desc = "Move window to workspace " .. i }
 	)
 end
 
