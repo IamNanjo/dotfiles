@@ -2,7 +2,7 @@
 
 BIN_DIRS=(
 	$HOME/.local/bin
-	$HOME/.bun/bin
+	$HOME/.cache/.bun/bin
 	$HOME/.cargo/bin
 	${GOPATH:-$HOME/go}/bin
 	$PNPM_HOME
