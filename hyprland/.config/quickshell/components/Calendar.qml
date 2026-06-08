@@ -16,11 +16,6 @@ Rectangle {
     property date currentDate: new Date()
     property date selectedDate: new Date(0)
 
-    onIsVisibleChanged: {
-        selectedDate = new Date(0);
-        currentDate = new Date();
-    }
-
     ColumnLayout {
         anchors {
             fill: parent

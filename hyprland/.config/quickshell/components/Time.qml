@@ -23,6 +23,8 @@ Components.Button {
 
     PopupWindow {
         id: calendarPopup
+        visible: false
+
         anchor {
             item: timeText
             edges: Edges.Bottom | Edges.Right
@@ -30,7 +32,7 @@ Components.Button {
             margins.bottom: -16
         }
 
-        visible: false
+        grabFocus: true
         color: "transparent"
 
         implicitWidth: 500

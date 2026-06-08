@@ -88,6 +88,8 @@ RowLayout {
     PopupWindow {
         id: audioOutputPopup
 
+        grabFocus: true
+
         anchor {
             item: audioOutput
             edges: Edges.Bottom | Edges.Right
@@ -158,7 +160,7 @@ RowLayout {
                             }
 
                             Text {
-                                text: `${Math.round(volumeSlider.value * 100)}%`
+                                text: `${Math.round(audioOutputVolumeSlider.value * 100)}%`
                                 color: Mocha.text
 
                                 font {
@@ -171,7 +173,7 @@ RowLayout {
                         }
 
                         Slider {
-                            id: volumeSlider
+                            id: audioOutputVolumeSlider
                             from: 0
                             to: 1
                             stepSize: 0.05
@@ -196,6 +198,8 @@ RowLayout {
     // Input popup
     PopupWindow {
         id: audioInputPopup
+
+        grabFocus: true
 
         anchor {
             item: audioInput
@@ -254,7 +258,7 @@ RowLayout {
                             }
 
                             Text {
-                                text: `${Math.round(volumeSlider.value * 100)}%`
+                                text: `${Math.round(audioInputVolumeSlider.value * 100)}%`
                                 color: Mocha.text
 
                                 font {
@@ -267,7 +271,7 @@ RowLayout {
                         }
 
                         Slider {
-                            id: volumeSlider
+                            id: audioInputVolumeSlider
                             from: 0
                             to: 1
                             stepSize: 0.05
