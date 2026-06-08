@@ -27,7 +27,7 @@ Components.Button {
             item: timeText
             edges: Edges.Bottom | Edges.Right
             gravity: Edges.Bottom | Edges.Left
-            margins.bottom: -8
+            margins.bottom: -16
         }
 
         visible: false

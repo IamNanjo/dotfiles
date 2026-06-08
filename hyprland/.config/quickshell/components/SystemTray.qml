@@ -8,7 +8,7 @@ import "../themes"
 RowLayout {
     id: systemTray
 
-    height: parent.height
+    Layout.fillHeight: true
 
     spacing: 8
 
@@ -46,10 +46,11 @@ RowLayout {
 
                 anchor {
                     item: trayIcon
-                    edges: Edges.Bottom | Edges.Left
+                    edges: Edges.Bottom
+                    gravity: Edges.Bottom
 
                     margins {
-                        bottom: -8
+                        bottom: -16
                     }
                 }
             }
@@ -82,7 +83,4 @@ RowLayout {
             }
         }
     }
-
-    // Spacing between last tray item and next module
-    Item {}
 }

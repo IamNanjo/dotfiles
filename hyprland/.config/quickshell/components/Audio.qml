@@ -4,7 +4,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Pipewire
-import Quickshell.Widgets
 import "../styles"
 import "../themes"
 import "." as Components
@@ -13,7 +12,7 @@ RowLayout {
     id: audio
     visible: Pipewire.ready
 
-    height: parent.height
+    Layout.fillHeight: true
 
     // Output
     Components.Button {
@@ -93,7 +92,7 @@ RowLayout {
             item: audioOutput
             edges: Edges.Bottom | Edges.Right
             gravity: Edges.Bottom | Edges.Left
-            margins.bottom: -8
+            margins.bottom: -16
         }
 
         color: "transparent"
@@ -122,8 +121,8 @@ RowLayout {
                     }).sort((a, b) => {
                         const priorityOrder = ["virtual_sink_master", "virtual_sink_primary", "virtual_sink_chat", "virtual_sink_media"];
 
-                        let indexA = priorityOrder.indexOf(a.objectName);
-                        let indexB = priorityOrder.indexOf(b.objectName);
+                        let indexA = priorityOrder.indexOf(a.name);
+                        let indexB = priorityOrder.indexOf(b.name);
 
                         if (indexA !== -1 && indexB !== -1) {
                             return indexA - indexB;
@@ -132,7 +131,7 @@ RowLayout {
                         } else if (indexB !== -1) {
                             return 1;
                         } else {
-                            return a.objectName.localeCompare(b.objectName);
+                            return a.name.localeCompare(b.name);
                         }
                     })
 
@@ -202,7 +201,7 @@ RowLayout {
             item: audioInput
             edges: Edges.Bottom | Edges.Right
             gravity: Edges.Bottom | Edges.Left
-            margins.bottom: -8
+            margins.bottom: -16
         }
 
         color: "transparent"

@@ -1,11 +1,12 @@
 // qmllint disable unqualified
 import QtQuick
+import QtQuick.Layouts
 import Quickshell.Hyprland
 import "../themes"
 import "../styles"
 
 Row {
-    height: parent.height
+    Layout.fillHeight: true
 
     Repeater {
         model: Hyprland.workspaces.values.filter(w => w.monitor != null && w.monitor.name == toplevel.screen.name)

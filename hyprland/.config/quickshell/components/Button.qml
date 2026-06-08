@@ -123,9 +123,9 @@ WrapperRectangle {
 
         anchor {
             item: button
-            edges: Edges.Bottom | Edges.Right
-            gravity: Edges.Bottom | Edges.Left
-            margins.bottom: -8
+            edges: Edges.Bottom
+            gravity: Edges.Bottom
+            margins.bottom: -16
         }
 
         color: "transparent"

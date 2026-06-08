@@ -2,7 +2,6 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Widgets
 import Quickshell.Services.UPower
 import "../styles"
 import "../themes"
@@ -11,21 +10,28 @@ RowLayout {
     id: battery
     visible: device.isPresent && device.ready
 
-    height: parent.height
+    Layout.fillHeight: true
+    Layout.preferredWidth: batteryIcon.width
     spacing: 6
 
     // Access the primary system battery
     readonly property UPowerDevice device: UPower.displayDevice
-    readonly property int capacity: device ? Math.round(device.percentage) : 0
+    readonly property int percentage: device ? Math.round(device.percentage * 100) : 0
 
     Image {
         id: batteryIcon
         source: Quickshell.iconPath(battery.device.iconName)
-        property int size: 32
-        sourceSize: Qt.size(size, size)
-        Layout.preferredHeight: 24
+        sourceSize: Qt.size(32, 32)
+
+        Layout.preferredHeight: 26
         Layout.preferredWidth: height
-        Layout.alignment: Qt.AlignVCenter
+        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+
+        transform: Rotation {
+            origin.x: batteryIcon.width / 2
+            origin.y: batteryIcon.height / 2
+            angle: 90
+        }
     }
 
     HoverHandler {
@@ -36,33 +42,52 @@ RowLayout {
         id: batteryPopup
 
         anchor {
-            item: batteryIcon
-            edges: Edges.Bottom | Edges.Right
-            gravity: Edges.Bottom | Edges.Left
-            margins.bottom: -8
+            item: battery
+            edges: Edges.Bottom
+            gravity: Edges.Bottom
+            margins.bottom: -16
         }
 
         visible: batteryHover.hovered
         color: "transparent"
 
-        implicitWidth: batteryPopupContent.width
-        implicitHeight: batteryPopupContent.height
+        implicitWidth: batteryPopupContainer.implicitWidth
+        implicitHeight: batteryPopupContainer.implicitHeight
 
-        WrapperRectangle {
+        Rectangle {
+            id: batteryPopupContainer
+
             color: Mocha.base
             radius: 4
 
+            implicitWidth: batteryPopupContent.implicitWidth + 24
+            implicitHeight: batteryPopupContent.implicitHeight + 24
+
             ColumnLayout {
                 id: batteryPopupContent
-                spacing: 8
+
+                spacing: 0
+                anchors.centerIn: parent
 
                 Text {
+                    text: `Battery level: ${battery.percentage}%`
+                    color: Mocha.text
+
                     Layout.fillWidth: true
                     Layout.preferredHeight: implicitHeight
-                    Layout.margins: 8
 
-                    text: battery.device.timeToFull != 0 ? `Time to full: ${formatTime(battery.device.timeToFull)}` : `Time to empty: ${formatTime(battery.device.timeToEmpty)}`
+                    font {
+                        family: Fonts.mainFont
+                        pixelSize: Fonts.mainFontSize
+                    }
+                }
+                Text {
+                    visible: battery.device.timeToFull !== 0 || battery.device.timeToEmpty !== 0
+                    text: battery.device.timeToFull != 0 ? `Full in ${formatTime(battery.device.timeToFull)}` : `Empty in ${formatTime(battery.device.timeToEmpty)}`
                     color: Mocha.text
+
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: implicitHeight
 
                     function formatTime(seconds) {
                         const hours = Math.floor(seconds / 3600);
@@ -70,11 +95,11 @@ RowLayout {
 
                         let parts = [];
                         if (hours > 0)
-                            parts.push(`${hours}h`);
+                            parts.push(`${hours} hour${hours === 1 ? "" : "s"}`);
                         if (minutes > 0)
-                            parts.push(`${minutes}m`);
+                            parts.push(`${minutes} minute${minutes === 1 ? "" : "s"}`);
 
-                        return parts.length > 0 ? parts.join(" ") : "< 1m";
+                        return parts.length > 0 ? parts.join(" ") : "under 1 minute";
                     }
 
                     font {

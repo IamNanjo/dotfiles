@@ -24,7 +24,6 @@ ShellRoot {
     }
 
     Variants {
-
         model: Quickshell.screens
         delegate: Component {
             PanelWindow {
@@ -54,7 +53,7 @@ ShellRoot {
                 }
 
                 // Left
-                Row {
+                RowLayout {
                     anchors {
                         left: parent.left
                         verticalCenter: parent.verticalCenter
@@ -65,14 +64,13 @@ ShellRoot {
                     spacing: 16
 
                     Components.Workspaces {
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                        }
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignVCenter
                     }
                 }
 
                 // Center
-                Row {
+                RowLayout {
                     anchors {
                         centerIn: parent
                     }
@@ -81,42 +79,48 @@ ShellRoot {
                     spacing: 16
 
                     Components.WindowTitle {
-                        anchors.verticalCenter: parent.verticalCenter
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignVCenter
                     }
                 }
 
                 // Right
-                Row {
+                RowLayout {
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
                         rightMargin: 16
                     }
 
+                    spacing: 8
+
                     Layout.alignment: Qt.AlignCenter | Qt.AlignRight
 
                     height: parent.height
 
-                    Components.SystemTray {}
+                    Components.SystemTray {
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignVCenter
+                    }
 
-                    Components.Audio {}
+                    Components.Audio {
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignVCenter
+                    }
 
                     Components.Battery {
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                        }
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignVCenter
                     }
 
                     Components.Time {
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                        }
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignVCenter
                     }
 
                     Components.Notifications {
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                        }
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignVCenter
                     }
                 }
             }
