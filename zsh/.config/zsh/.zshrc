@@ -80,3 +80,7 @@ if ! command -v nvm &> /dev/null; then
 		fi
 	}
 fi
+
+if [[ -t 0 ]]; then
+	stty -echoctl
+fi
