@@ -1,5 +1,6 @@
 // qmllint disable unqualified
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
@@ -38,13 +39,22 @@ WrapperRectangle {
 
         Image {
             id: buttonIconLeft
-            visible: button.iconLeft !== ""
+            visible: button.iconLeft !== "" && button.foregroundColor === Mocha.text
             source: button.iconLeft ? Quickshell.iconPath(button.iconLeft) : ""
             sourceSize: Qt.size(32, 32)
 
             Layout.preferredWidth: button.iconSize
             Layout.preferredHeight: button.iconSize
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+        }
+        MultiEffect {
+            visible: button.iconLeft !== "" && button.foregroundColor !== Mocha.text
+            source: buttonIconLeft
+            Layout.preferredWidth: button.iconSize
+            Layout.preferredHeight: button.iconSize
+
+            colorization: 1.0
+            colorizationColor: button.foregroundColor
         }
 
         Text {
@@ -63,13 +73,22 @@ WrapperRectangle {
 
         Image {
             id: buttonIconRight
-            visible: button.iconRight !== ""
+            visible: button.iconRight !== "" && button.foregroundColor === Mocha.text
             source: button.iconRight ? Quickshell.iconPath(button.iconRight) : ""
             sourceSize: Qt.size(32, 32)
 
             Layout.preferredWidth: button.iconSize
             Layout.preferredHeight: button.iconSize
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+        }
+        MultiEffect {
+            visible: button.iconRight !== "" && button.foregroundColor !== Mocha.text
+            source: buttonIconRight
+            Layout.preferredWidth: button.iconSize
+            Layout.preferredHeight: button.iconSize
+
+            colorization: 1.0
+            colorizationColor: button.foregroundColor
         }
     }
 

@@ -1,91 +1,122 @@
 // qmllint disable unqualified
 //@ pragma UseQApplication
 import Quickshell
+import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 import "components" as Components
 
-Variants {
-    model: Quickshell.screens
-    delegate: Component {
-        PanelWindow {
-            id: toplevel
+ShellRoot {
+    id: root
 
-            required property var modelData
+    signal toggleVisibility(string screenName)
 
-            screen: modelData
+    GlobalShortcut {
+        name: "toggle_panel"
+        description: "Toggle visibility of QuickShell panel on current monitor"
 
-            anchors {
-                top: true
-                left: true
-                right: true
+        onPressed: {
+            if (!Hyprland.focusedMonitor) {
+                return;
             }
+            root.toggleVisibility(Hyprland.focusedMonitor.name);
+        }
+    }
 
-            implicitHeight: 32
-            color: "#E6000000"
+    Variants {
 
-            // Left
-            Row {
+        model: Quickshell.screens
+        delegate: Component {
+            PanelWindow {
+                id: toplevel
+
+                required property var modelData
+
+                screen: modelData
+
                 anchors {
-                    left: parent.left
-                    verticalCenter: parent.verticalCenter
-                    leftMargin: 16
+                    top: true
+                    left: true
+                    right: true
                 }
 
-                height: parent.height
-                spacing: 16
+                implicitHeight: 32
+                color: "#E6000000"
 
-                Components.Workspaces {
-                    anchors {
-                        verticalCenter: parent.verticalCenter
-                    }
-                }
-            }
+                Connections {
+                    target: root
 
-            // Center
-            Row {
-                anchors {
-                    centerIn: parent
-                }
-
-                height: parent.height
-                spacing: 16
-
-                Components.WindowTitle {
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-            }
-
-            // Right
-            Row {
-                anchors {
-                    right: parent.right
-                    verticalCenter: parent.verticalCenter
-                    rightMargin: 16
-                }
-
-                Layout.alignment: Qt.AlignCenter | Qt.AlignRight
-
-                height: parent.height
-                spacing: 8
-
-                Components.SystemTray {}
-
-                Components.Battery {
-                    anchors {
-                        verticalCenter: parent.verticalCenter
+                    function onToggleVisibility(screenName) {
+                        if (toplevel.screen.name === screenName) {
+                            toplevel.visible = !toplevel.visible;
+                        }
                     }
                 }
 
-                Components.Time {
+                // Left
+                Row {
                     anchors {
+                        left: parent.left
                         verticalCenter: parent.verticalCenter
+                        leftMargin: 16
+                    }
+
+                    height: parent.height
+                    spacing: 16
+
+                    Components.Workspaces {
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                        }
                     }
                 }
 
-                Components.Notifications {
+                // Center
+                Row {
                     anchors {
+                        centerIn: parent
+                    }
+
+                    height: parent.height
+                    spacing: 16
+
+                    Components.WindowTitle {
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                }
+
+                // Right
+                Row {
+                    anchors {
+                        right: parent.right
                         verticalCenter: parent.verticalCenter
+                        rightMargin: 16
+                    }
+
+                    Layout.alignment: Qt.AlignCenter | Qt.AlignRight
+
+                    height: parent.height
+
+                    Components.SystemTray {}
+
+                    Components.Audio {}
+
+                    Components.Battery {
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                        }
+                    }
+
+                    Components.Time {
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                        }
+                    }
+
+                    Components.Notifications {
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                        }
                     }
                 }
             }

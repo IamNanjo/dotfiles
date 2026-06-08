@@ -2,6 +2,7 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import "../themes"
 import "." as Components
 
 Components.Button {
@@ -11,6 +12,7 @@ Components.Button {
     property int notificationCount: 0
 
     backgroundColor: "transparent"
+    foregroundColor: Mocha.yellow
     iconLeft: isDnd ? "notification-disabled-new-symbolic" : (hasNotifications ? "notification-active-symbolic" : "notification-symbolic")
     tooltip: notificationCount ? `${notificationCount} notification${notificationCount === 1 ? "" : "s"}` : ""
     onLeftClick: {

@@ -134,3 +134,5 @@ hl.bind(
 
 hl.bind("SUPER + minus", hl.dsp.exec_cmd("wtype '–'"), { desc = "Type en dash" })
 hl.bind("SUPER + SHIFT + minus", hl.dsp.exec_cmd("wtype '—'"), { desc = "Type em dash" })
+
+hl.bind("SUPER + B", hl.dsp.global("quickshell:toggle_panel"), {desc = "Toggle visibility of QuickShell panel on current monitor"})

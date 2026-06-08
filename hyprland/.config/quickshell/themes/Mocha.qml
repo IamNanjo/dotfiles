@@ -4,8 +4,6 @@ pragma Singleton
 import QtQuick
 
 QtObject {
-    id: mocha
-    
     readonly property color base: "#1e1e2e"
     readonly property color mantle: "#181825"
     readonly property color crust: "#11111b"

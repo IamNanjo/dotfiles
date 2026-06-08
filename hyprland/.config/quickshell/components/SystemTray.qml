@@ -55,8 +55,9 @@ RowLayout {
             }
 
             WheelHandler {
+                acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
                 onWheel: e => {
-                    modelData.scroll(e.rotation / 120, false);
+                    modelData.scroll(e.y / 120, false);
                 }
             }
 

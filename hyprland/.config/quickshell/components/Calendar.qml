@@ -46,7 +46,7 @@ Rectangle {
 
                 Components.Button {
                     iconLeft: "go-previous-symbolic"
-                    iconSize: 24
+                    iconSize: 22
                     onLeftClick: {
                         calendar.currentDate.setFullYear(calendar.currentDate.getFullYear() - 1);
                     }
@@ -69,7 +69,7 @@ Rectangle {
 
                 Components.Button {
                     iconLeft: "go-next-symbolic"
-                    iconSize: 24
+                    iconSize: 22
                     onLeftClick: {
                         calendar.currentDate.setFullYear(calendar.currentDate.getFullYear() + 1);
                     }
@@ -91,7 +91,7 @@ Rectangle {
 
                 Components.Button {
                     iconLeft: "go-previous-symbolic"
-                    iconSize: 24
+                    iconSize: 22
                     onLeftClick: {
                         calendar.currentDate.setMonth(calendar.currentDate.getMonth() - 1);
                     }
@@ -114,7 +114,7 @@ Rectangle {
 
                 Components.Button {
                     iconLeft: "go-next-symbolic"
-                    iconSize: 24
+                    iconSize: 22
                     onLeftClick: {
                         calendar.currentDate.setMonth(calendar.currentDate.getMonth() + 1);
                     }
