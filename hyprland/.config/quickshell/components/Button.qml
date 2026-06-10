@@ -16,6 +16,7 @@ WrapperRectangle {
     property string iconRight
     property int iconSize: 18
     property int fontSize: Fonts.mainFontSize
+    property int padding: 10
     property color backgroundColor: Mocha.crust
     property color foregroundColor: Mocha.text
     property bool active: false
@@ -25,8 +26,8 @@ WrapperRectangle {
     signal rightClick
 
     color: active ? Mocha.red : backgroundColor
-    rightMargin: 16
-    leftMargin: 16
+    rightMargin: padding
+    leftMargin: padding
     radius: 4
 
     implicitWidth: buttonContent.implicitWidth + leftMargin + rightMargin
@@ -35,7 +36,7 @@ WrapperRectangle {
     RowLayout {
         id: buttonContent
         anchors.centerIn: parent
-        spacing: 8
+        spacing: button.padding
 
         Image {
             id: buttonIconLeft

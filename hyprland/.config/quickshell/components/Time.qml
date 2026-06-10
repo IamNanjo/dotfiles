@@ -6,7 +6,7 @@ import "." as Components
 
 Components.Button {
     id: timeText
-    text: Qt.formatDateTime(clock.date, "dddd dd.MM.yyyy HH:mm")
+    text: Qt.formatDateTime(clock.date, "dd.MM.yyyy HH:mm")
     backgroundColor: "transparent"
     foregroundColor: Mocha.mauve
 

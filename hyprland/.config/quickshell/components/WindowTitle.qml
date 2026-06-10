@@ -14,7 +14,7 @@ Text {
     elide: Text.ElideRight
     wrapMode: Text.NoWrap
 
-    Layout.maximumWidth: 500
+    Layout.fillWidth: true
     Layout.fillHeight: true
 
     verticalAlignment: Text.AlignVCenter
