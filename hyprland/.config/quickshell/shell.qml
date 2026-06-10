@@ -57,7 +57,7 @@ ShellRoot {
                     anchors {
                         left: parent.left
                         verticalCenter: parent.verticalCenter
-                        leftMargin: 16
+                        leftMargin: 8
                     }
 
                     height: parent.height
@@ -89,7 +89,7 @@ ShellRoot {
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
-                        rightMargin: 16
+                        rightMargin: 8
                     }
 
                     spacing: 8

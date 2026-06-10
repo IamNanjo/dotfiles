@@ -10,7 +10,7 @@ RowLayout {
 
     Layout.fillHeight: true
 
-    spacing: 8
+    spacing: 0
 
     Repeater {
         model: SystemTray.items
